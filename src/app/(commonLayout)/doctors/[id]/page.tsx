@@ -1,7 +1,7 @@
 const page = () => {
   return (
     <div>
-      <p>page</p>
+      <p> doctores details</p>
     </div>
   );
 };
