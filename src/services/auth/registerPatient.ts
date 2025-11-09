@@ -2,6 +2,7 @@
 'use server';
 
 import z from 'zod';
+import { loginUser } from './loginUser';
 
 const registerValidationZodSchema = z.object({
   name: z.string().min(1, { message: 'Name is Required' }),
@@ -69,12 +70,20 @@ export const registerPatient = async (
         method: 'POST',
         body: newFormData,
       }
-    ).then(res => res.json());
+    );
 
-    console.log(res, 'res');
+    const result = await res.json();
 
-    return res;
-  } catch (err) {
+    if (result.success) {
+      await loginUser(_currentState, formData);
+    }
+
+    return result;
+  } catch (err: any) {
+    if (err?.digest?.startsWith('NEXT_REDIRECT')) {
+      throw err;
+    }
     console.log(err);
+    return { err: 'Registration Failed!' };
   }
 };

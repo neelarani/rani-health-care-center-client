@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
@@ -6,8 +5,10 @@ import { Menu } from 'lucide-react';
 
 import Image from 'next/image';
 import logo from '../../assets/logo/logo.png';
+import { getCookie } from '@/services/auth/tokenHandler';
+import LogoutButton from './LogoutButton';
 
-const PublicNavbar = () => {
+const PublicNavbar = async () => {
   const navItems = [
     { href: '#', label: 'Consultation' },
     { href: '#', label: 'Health Plans' },
@@ -15,6 +16,8 @@ const PublicNavbar = () => {
     { href: '#', label: 'Diagnostics' },
     { href: '#', label: 'NGOs' },
   ];
+
+  const accessToken = await getCookie('accesstoken');
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur  dark:bg-background/95">
@@ -35,7 +38,15 @@ const PublicNavbar = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center space-x-2"></div>
+        <div className="hidden md:flex items-center space-x-2">
+          {accessToken ? (
+            <LogoutButton />
+          ) : (
+            <Link href={'/login'} className="text-lg font-medium">
+              <Button>Login</Button>
+            </Link>
+          )}
+        </div>
 
         {/* Mobile Menu */}
 
@@ -60,7 +71,15 @@ const PublicNavbar = () => {
                   </Link>
                 ))}
                 <div className="border-t pt-4 flex flex-col space-y-4">
-                  <div className="flex justify-center"></div>
+                  <div className=" items-center space-x-2">
+                    {accessToken ? (
+                      <LogoutButton />
+                    ) : (
+                      <Link href={'/login'} className="text-lg font-medium">
+                        <Button>Login</Button>
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </nav>
             </SheetContent>

@@ -8,9 +8,9 @@ import {
 } from '@/lib/auth-utils';
 import { parse } from 'cookie';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import z from 'zod';
+import { setCookie } from './tokenHandler';
 
 const loginValidationZodSchema = z.object({
   email: z.email({
@@ -61,6 +61,8 @@ export const loginUser = async (
       },
     });
 
+    const result = await res.json();
+
     const setCookieHeaders = res.headers.getSetCookie();
 
     if (setCookieHeaders && setCookieHeaders.length > 0) {
@@ -86,9 +88,7 @@ export const loginUser = async (
       throw new Error('Tokens not found in cookies');
     }
 
-    const cookieStore = await cookies();
-
-    cookieStore.set('accessToken', accessTokenObject.accessToken, {
+    await setCookie('accessToken', accessTokenObject.accessToken, {
       secure: true,
       httpOnly: true,
       maxAge: parseInt(accessTokenObject['Max-Age']) || 1000 * 60 * 60,
@@ -96,7 +96,7 @@ export const loginUser = async (
       sameSite: accessTokenObject['SameSite'] || 'none',
     });
 
-    cookieStore.set('refreshToken', refreshTokenObject.refreshToken, {
+    await setCookie('refreshToken', refreshTokenObject.refreshToken, {
       secure: true,
       httpOnly: true,
       maxAge:
@@ -115,6 +115,10 @@ export const loginUser = async (
 
     const userRole: UserRole = verifiedToken.role;
 
+    if (!result.success) {
+      throw new Error('Login Failed!');
+    }
+
     if (redirectTo) {
       const requestedPath = redirectTo.toString();
       if (isValidRedirectForRole(requestedPath, userRole)) {
@@ -122,7 +126,11 @@ export const loginUser = async (
       } else {
         redirect(getDefaultDashboardRoute(userRole));
       }
+    } else {
+      redirect(getDefaultDashboardRoute(userRole));
     }
+
+    return result;
   } catch (error: any) {
     // Re-throw NEXT_REDIRECT errors so Next.js can handle them
     if (error?.digest?.startsWith('NEXT_REDIRECT')) {
