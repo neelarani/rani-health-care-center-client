@@ -79,11 +79,17 @@ export const registerPatient = async (
     }
 
     return result;
-  } catch (err: any) {
-    if (err?.digest?.startsWith('NEXT_REDIRECT')) {
-      throw err;
+  } catch (error: any) {
+    if (error?.digest?.startsWith('NEXT_REDIRECT')) {
+      throw error;
     }
-    console.log(err);
-    return { err: 'Registration Failed!' };
+    return {
+      success: false,
+      message: `${
+        process.env.NODE_ENV === 'development'
+          ? error.message
+          : 'Registration Failed. Please Try Again!'
+      }`,
+    };
   }
 };
