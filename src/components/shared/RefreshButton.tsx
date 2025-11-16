@@ -1,10 +1,11 @@
+'use client';
 import { RefreshCcw } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 import { Button } from '../ui/button';
 
 interface RefreshButtonProps {
-  size: 'sm' | 'default' | 'lg';
+  size?: 'sm' | 'default' | 'lg';
   variant?: 'default' | 'outline' | 'ghost';
   showLabel?: boolean;
 }
@@ -22,7 +23,6 @@ const RefreshButton = ({
       router.refresh();
     });
   };
-
   return (
     <Button
       size={size}

@@ -1,7 +1,13 @@
 'use client';
-
 import { Edit, Eye, Loader2, MoreHorizontal, Trash } from 'lucide-react';
 import React from 'react';
+import { Button } from '../ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 import {
   Table,
   TableBody,
@@ -10,13 +16,6 @@ import {
   TableHeader,
   TableRow,
 } from '../ui/table';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
-import { Button } from '../ui/button';
 
 export interface Column<T> {
   header: string;
@@ -26,7 +25,7 @@ export interface Column<T> {
 
 interface ManagementTableProps<T> {
   data: T[];
-  coloums: Column<T>[];
+  columns: Column<T>[];
   onView?: (row: T) => void;
   onEdit?: (row: T) => void;
   onDelete?: (row: T) => void;
@@ -36,12 +35,12 @@ interface ManagementTableProps<T> {
 }
 
 // const ManagementTable<T> = (props: ManagementTableProps<T>) => {
-//   return <div></div>;
+//   return <div>ManagementTable</div>;
 // };
 
 function ManagementTable<T>({
   data = [],
-  coloums = [],
+  columns = [],
   onView,
   onEdit,
   onDelete,
@@ -53,6 +52,7 @@ function ManagementTable<T>({
   return (
     <>
       <div className="rounded-lg border relative">
+        {/* Refreshing Overlay */}
         {isRefreshing && (
           <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-lg">
             <div className="flex flex-col items-center gap-2">
@@ -65,28 +65,32 @@ function ManagementTable<T>({
         <Table>
           <TableHeader>
             <TableRow>
-              {coloums?.map((column, colIndex) => (
+              {columns?.map((column, colIndex) => (
                 <TableHead key={colIndex} className={column.className}>
                   {column.header}
                 </TableHead>
               ))}
-              {hasActions && <TableHead>Actions</TableHead>}
+
+              {hasActions && (
+                <TableHead className="w-[70px]">Actions</TableHead>
+              )}
             </TableRow>
           </TableHeader>
+
           <TableBody>
             {data.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={coloums.length + (hasActions ? 1 : 0)}
+                  colSpan={columns.length + (hasActions ? 1 : 0)}
                   className="text-center py-8 text-muted-foreground"
                 >
                   {emptyMessage}
                 </TableCell>
               </TableRow>
             ) : (
-              data.map(item => (
+              data?.map(item => (
                 <TableRow key={getRowKey(item)}>
-                  {coloums.map((col, idx) => (
+                  {columns.map((col, idx) => (
                     <TableCell key={idx} className={col.className}>
                       {typeof col.accessor === 'function'
                         ? col.accessor(item)
@@ -97,24 +101,30 @@ function ManagementTable<T>({
                     <TableCell>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant={'ghost'} size={'icon'}>
+                          <Button variant="ghost" size="icon">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           {onView && (
                             <DropdownMenuItem onClick={() => onView(item)}>
-                              <Eye className="mr-2 h-4 w-4">View</Eye>
+                              <Eye className="mr-2 h-4 w-4" />
+                              View
                             </DropdownMenuItem>
                           )}
                           {onEdit && (
                             <DropdownMenuItem onClick={() => onEdit(item)}>
-                              <Edit className="mr-2 h-4 w-4">Edit</Edit>
+                              <Edit className="mr-2 h-4 w-4" />
+                              Edit
                             </DropdownMenuItem>
                           )}
                           {onDelete && (
-                            <DropdownMenuItem onClick={() => onDelete(item)}>
-                              <Trash className="mr-2 h-4 w-4">Delete</Trash>
+                            <DropdownMenuItem
+                              onClick={() => onDelete(item)}
+                              className="text-destructive"
+                            >
+                              <Trash className="mr-2 h-4 w-4" />
+                              Delete
                             </DropdownMenuItem>
                           )}
                         </DropdownMenuContent>
