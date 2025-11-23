@@ -25,12 +25,12 @@ const AdminDoctorsManagementPage = async ({
   );
   return (
     <div className="space-y-6">
-      <DoctorsManagementHeader specialities={specialitiesResult.data} />
+      <DoctorsManagementHeader specialities={specialitiesResult?.data || []} />
       <div className="flex space-x-2">
         <SearchFilter paramName="searchTerm" placeholder="Search doctors..." />
         <SelectFilter
           paramName="speciality" // ?speciality="Cardiology"
-          options={specialitiesResult.data.map((speciality: ISpecialty) => ({
+          options={specialitiesResult?.data?.map((speciality: ISpecialty) => ({
             label: speciality.title,
             value: speciality.title,
           }))}
@@ -40,8 +40,8 @@ const AdminDoctorsManagementPage = async ({
       </div>
       <Suspense fallback={<TableSkeleton columns={10} rows={10} />}>
         <DoctorsTable
-          doctors={doctorsResult.data}
-          specialities={specialitiesResult.data}
+          doctors={doctorsResult?.data || []}
+          specialities={specialitiesResult?.data || []}
         />
         <TablePagination
           currentPage={doctorsResult.meta.page}

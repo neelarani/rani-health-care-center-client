@@ -8,8 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
 import DoctorFormDialog from './DoctorFormDialog';
-import { doctorsColumns } from './DoctorsColumns';
+
 import DoctorViewDetailDialog from './DoctorViewDetailDialog';
+import { doctorsColumns } from './DoctorsColumns';
 
 interface DoctorsTableProps {
   doctors: IDoctor[];
