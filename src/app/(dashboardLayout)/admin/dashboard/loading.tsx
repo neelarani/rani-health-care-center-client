@@ -1,7 +1,7 @@
-import React from 'react';
+import { DashboardSkeleton } from '@/components/shared/DashboardSkeleton';
 
-const loading = () => {
-  return <div></div>;
+const AdminDashboardLoading = () => {
+  return <DashboardSkeleton />;
 };
 
-export default loading;
+export default AdminDashboardLoading;
