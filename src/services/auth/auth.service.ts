@@ -4,18 +4,16 @@ import {
   isValidRedirectForRole,
   UserRole,
 } from '@/lib/auth-utils';
-
+import { verifyAccessToken } from '@/lib/jwtHanlders';
 import { serverFetch } from '@/lib/server-fetch';
-
+import { zodValidator } from '@/lib/zodValidator';
+import { resetPasswordSchema } from '@/zod/auth.validation';
 import { parse } from 'cookie';
 import jwt from 'jsonwebtoken';
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { getUserInfo } from './getUserInfo';
 import { deleteCookie, getCookie, setCookie } from './tokenHandler';
-import { verifyAccessToken } from '@/lib/jwtHanlders';
-import { zodValidator } from '@/lib/zodValidator';
-import { resetPasswordSchema } from '@/zod/auth.validation';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function updateMyProfile(formData: FormData) {
