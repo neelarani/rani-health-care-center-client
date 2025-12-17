@@ -9,7 +9,6 @@ import {
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { createSchedule } from '@/services/admin/schedulesManagement';
-
 import { useActionState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 
@@ -26,9 +25,12 @@ const ScheduleFormDialog = ({
 }: IScheduleFormDialogProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction, isPending] = useActionState(createSchedule, null);
+  const prevStateRef = useRef(state);
 
   // Handle success/error from server
   useEffect(() => {
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
     if (state?.success) {
       toast.success(state.message || 'Schedule created successfully');
       if (formRef.current) {

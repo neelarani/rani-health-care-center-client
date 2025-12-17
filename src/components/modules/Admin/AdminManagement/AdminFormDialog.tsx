@@ -10,7 +10,6 @@ import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { createAdmin, updateAdmin } from '@/services/admin/adminsManagement';
 import { IAdmin } from '@/types/admin.interface';
-
 import Image from 'next/image';
 import { useActionState, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
@@ -38,6 +37,7 @@ const AdminFormDialog = ({
     null
   );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const prevStateRef = useRef(state);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -46,6 +46,8 @@ const AdminFormDialog = ({
 
   // Handle success/error from server
   useEffect(() => {
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
     if (state?.success) {
       toast.success(state.message || 'Operation successful');
       if (formRef.current) {

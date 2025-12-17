@@ -9,7 +9,6 @@ import {
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { updatePatient } from '@/services/admin/patientsManagement';
-
 import { IPatient } from '@/types/patient.interface';
 import { useActionState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
@@ -33,9 +32,12 @@ const PatientFormDialog = ({
     updatePatient.bind(null, patient?.id as string),
     null
   );
+  const prevStateRef = useRef(state);
 
   // Handle success/error from server
   useEffect(() => {
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
     if (state?.success) {
       toast.success(state.message || 'Operation successful');
       if (formRef.current) {
