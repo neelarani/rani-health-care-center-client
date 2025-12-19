@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { SheetTitle } from "@/components/ui/sheet";
-import { getIconComponent } from "@/lib/icon-mapper";
-import { cn } from "@/lib/utils";
-import { NavSection } from "@/types/dashboard.interface";
-import { UserInfo } from "@/types/user.interface";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
+import { SheetTitle } from '@/components/ui/sheet';
+import { getIconComponent } from '@/lib/icon-mapper';
+import { cn } from '@/lib/utils';
+import { NavSection } from '@/types/dashboard.interface';
+import { UserInfo } from '@/types/user.interface';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface DashboardMobileSidebarContentProps {
   userInfo: UserInfo;
@@ -39,12 +39,12 @@ const DashboardMobileSidebar = ({
           {navItems.map((section, sectionIdx) => (
             <div key={sectionIdx}>
               {section.title && (
-                <h4 className="mb-2 px-3 text-xs font-semibold text-muted-foreground uppercase">
+                <h4 className="mb-2 px-3 text-xs font-semibold text-muted uppercase">
                   {section.title}
                 </h4>
               )}
               <div className="space-y-1">
-                {section.items.map((item) => {
+                {section.items.map(item => {
                   const isActive = pathname === item.href;
                   const Icon = getIconComponent(item.icon);
 
@@ -53,16 +53,16 @@ const DashboardMobileSidebar = ({
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
+                        'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all',
                         isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-muted hover:bg-accent hover:text-accent-foreground'
                       )}
                     >
                       <Icon className="h-4 w-4" />
                       <span className="flex-1">{item.title}</span>
                       {item.badge && (
-                        <Badge variant={isActive ? "secondary" : "default"}>
+                        <Badge variant={isActive ? 'secondary' : 'default'}>
                           {item.badge}
                         </Badge>
                       )}
@@ -88,7 +88,7 @@ const DashboardMobileSidebar = ({
           </div>
           <div className="flex-1 overflow-hidden">
             <p className="text-sm font-medium truncate">{userInfo.name}</p>
-            <p className="text-xs text-muted-foreground capitalize">
+            <p className="text-xs text-muted capitalize">
               {userInfo.role.toLowerCase()}
             </p>
           </div>

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
-import { ISpecialty } from "@/types/specialities.interface";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import DoctorFormDialog from "./DoctorFormDialog";
+import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
+import { ISpecialty } from '@/types/specialities.interface';
+import { Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import DoctorFormDialog from './DoctorFormDialog';
 
 interface DoctorsManagementHeaderProps {
   specialities?: ISpecialty[];
@@ -27,7 +27,7 @@ const DoctorsManagementHeader = ({
   const [dialogKey, setDialogKey] = useState(0);
 
   const handleOpenDialog = () => {
-    setDialogKey((prev) => prev + 1); // Force remount
+    setDialogKey(prev => prev + 1); // Force remount
     setIsDialogOpen(true);
   };
 
@@ -44,15 +44,17 @@ const DoctorsManagementHeader = ({
         specialities={specialities}
       />
 
-      <ManagementPageHeader
-        title="Doctors Management"
-        description="Manage Doctors information and details"
-        action={{
-          label: "Add Doctor    ",
-          icon: Plus,
-          onClick: handleOpenDialog,
-        }}
-      />
+      <div className="text-muted">
+        <ManagementPageHeader
+          title="Doctors Management"
+          description="Manage Doctors information and details"
+          action={{
+            label: 'Add Doctor    ',
+            icon: Plus,
+            onClick: handleOpenDialog,
+          }}
+        />
+      </div>
     </>
   );
 };

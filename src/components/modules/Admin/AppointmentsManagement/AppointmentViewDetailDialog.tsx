@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
 import {
   AppointmentStatus,
   IAppointment,
   PaymentStatus,
-} from "@/types/appointments.interface";
-import { Calendar, Clock, CreditCard, User, Video, X } from "lucide-react";
+} from '@/types/appointments.interface';
+import { Calendar, Clock, CreditCard, User, Video, X } from 'lucide-react';
 
 interface AppointmentViewDetailDialogProps {
   open: boolean;
@@ -93,13 +93,13 @@ const AppointmentViewDetailDialog = ({
             {/* Status and Payment */}
             <div className="flex gap-4">
               <div className="flex-1">
-                <div className="text-sm font-medium text-muted-foreground mb-1">
+                <div className="text-sm font-medium text-muted mb-1">
                   Status
                 </div>
                 {getStatusBadge()}
               </div>
               <div className="flex-1">
-                <div className="text-sm font-medium text-muted-foreground mb-1">
+                <div className="text-sm font-medium text-muted mb-1">
                   Payment Status
                 </div>
                 {getPaymentBadge()}
@@ -111,33 +111,25 @@ const AppointmentViewDetailDialog = ({
             {/* Patient Information */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <User className="h-4 w-4 text-muted-foreground" />
+                <User className="h-4 w-4 text-muted" />
                 <h3 className="font-semibold">Patient Information</h3>
               </div>
               <div className="space-y-2 ml-6">
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Name
-                  </div>
-                  <div>{appointment.patient?.name || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Name</div>
+                  <div>{appointment.patient?.name || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Email
-                  </div>
-                  <div>{appointment.patient?.email || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Email</div>
+                  <div>{appointment.patient?.email || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Phone
-                  </div>
-                  <div>{appointment.patient?.contactNumber || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Phone</div>
+                  <div>{appointment.patient?.contactNumber || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Address
-                  </div>
-                  <div>{appointment.patient?.address || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Address</div>
+                  <div>{appointment.patient?.address || 'N/A'}</div>
                 </div>
               </div>
             </div>
@@ -147,33 +139,27 @@ const AppointmentViewDetailDialog = ({
             {/* Doctor Information */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <User className="h-4 w-4 text-muted-foreground" />
+                <User className="h-4 w-4 text-muted" />
                 <h3 className="font-semibold">Doctor Information</h3>
               </div>
               <div className="space-y-2 ml-6">
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Name
-                  </div>
-                  <div>{appointment.doctor?.name || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Name</div>
+                  <div>{appointment.doctor?.name || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Email
-                  </div>
-                  <div>{appointment.doctor?.email || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Email</div>
+                  <div>{appointment.doctor?.email || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Phone
-                  </div>
-                  <div>{appointment.doctor?.contactNumber || "N/A"}</div>
+                  <div className="text-sm font-medium text-muted">Phone</div>
+                  <div>{appointment.doctor?.contactNumber || 'N/A'}</div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
+                  <div className="text-sm font-medium text-muted">
                     Designation
                   </div>
-                  <div>{appointment.doctor?.designation || "N/A"}</div>
+                  <div>{appointment.doctor?.designation || 'N/A'}</div>
                 </div>
               </div>
             </div>
@@ -183,52 +169,50 @@ const AppointmentViewDetailDialog = ({
             {/* Schedule Information */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Calendar className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-muted" />
                 <h3 className="font-semibold">Schedule Information</h3>
               </div>
               <div className="space-y-2 ml-6">
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
-                    Date
-                  </div>
+                  <div className="text-sm font-medium text-muted">Date</div>
                   <div>
                     {startDate
-                      ? startDate.toLocaleDateString("en-US", {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
+                      ? startDate.toLocaleDateString('en-US', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
                         })
-                      : "N/A"}
+                      : 'N/A'}
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="flex-1">
-                    <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="text-sm font-medium text-muted flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       Start Time
                     </div>
                     <div>
                       {startDate
-                        ? startDate.toLocaleTimeString("en-US", {
-                            hour: "2-digit",
-                            minute: "2-digit",
+                        ? startDate.toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit',
                           })
-                        : "N/A"}
+                        : 'N/A'}
                     </div>
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="text-sm font-medium text-muted flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       End Time
                     </div>
                     <div>
                       {endDate
-                        ? endDate.toLocaleTimeString("en-US", {
-                            hour: "2-digit",
-                            minute: "2-digit",
+                        ? endDate.toLocaleTimeString('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit',
                           })
-                        : "N/A"}
+                        : 'N/A'}
                     </div>
                   </div>
                 </div>
@@ -240,28 +224,28 @@ const AppointmentViewDetailDialog = ({
             {/* Additional Information */}
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Video className="h-4 w-4 text-muted-foreground" />
+                <Video className="h-4 w-4 text-muted" />
                 <h3 className="font-semibold">Additional Information</h3>
               </div>
               <div className="space-y-2 ml-6">
                 <div>
-                  <div className="text-sm font-medium text-muted-foreground">
+                  <div className="text-sm font-medium text-muted">
                     Video Calling ID
                   </div>
                   <div className="font-mono">
-                    {appointment.videoCallingId || "Not set"}
+                    {appointment.videoCallingId || 'Not set'}
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="flex-1">
-                    <div className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="text-sm font-medium text-muted flex items-center gap-1">
                       <CreditCard className="h-3 w-3" />
                       Payment Status
                     </div>
                     <div>
                       {appointment.paymentStatus === PaymentStatus.PAID
-                        ? "Paid"
-                        : "Unpaid"}
+                        ? 'Paid'
+                        : 'Unpaid'}
                     </div>
                   </div>
                 </div>
@@ -273,19 +257,19 @@ const AppointmentViewDetailDialog = ({
             {/* Timestamps */}
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <div className="text-muted-foreground">Created At</div>
+                <div className="text-muted">Created At</div>
                 <div>
                   {appointment.createdAt
                     ? new Date(appointment.createdAt).toLocaleString()
-                    : "N/A"}
+                    : 'N/A'}
                 </div>
               </div>
               <div>
-                <div className="text-muted-foreground">Updated At</div>
+                <div className="text-muted">Updated At</div>
                 <div>
                   {appointment.updatedAt
                     ? new Date(appointment.updatedAt).toLocaleString()
-                    : "N/A"}
+                    : 'N/A'}
                 </div>
               </div>
             </div>

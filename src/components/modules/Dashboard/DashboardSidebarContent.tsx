@@ -37,7 +37,7 @@ const DashboardSidebarContent = ({
           {navItems.map((section, sectionIdx) => (
             <div key={sectionIdx}>
               {section.title && (
-                <h4 className="mb-2 px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider ">
+                <h4 className="mb-2 px-3 text-xs font-semibold text-muted uppercase tracking-wider ">
                   {section.title}
                 </h4>
               )}
@@ -89,7 +89,7 @@ const DashboardSidebarContent = ({
           </div>
           <div className="flex-1 overflow-hidden">
             <p className="text-sm font-medium truncate">{userInfo.name}</p>
-            <p className="text-xs text-muted-foreground capitalize">
+            <p className="text-xs text-muted capitalize">
               {userInfo.role.toLowerCase()}
             </p>
           </div>

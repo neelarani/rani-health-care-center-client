@@ -99,7 +99,7 @@ const StepCard = ({
           </div>
           <div>
             <h3 className="font-bold text-foreground">{title}</h3>
-            <p className="text-muted-foreground text-sm">{description}</p>
+            <p className="text-muted text-sm">{description}</p>
           </div>
         </div>
       </CardContent>

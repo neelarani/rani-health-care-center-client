@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,14 +8,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { createReview } from "@/services/patient/reviews.services";
-import { Star } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
+} from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { createReview } from '@/services/patient/reviews.services';
+import { Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface ReviewDialogProps {
   isOpen: boolean;
@@ -33,19 +33,19 @@ export default function ReviewDialog({
   const router = useRouter();
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (rating === 0) {
-      toast.error("Please select a rating");
+      toast.error('Please select a rating');
       return;
     }
 
     if (comment.trim().length < 10) {
-      toast.error("Comment must be at least 10 characters");
+      toast.error('Comment must be at least 10 characters');
       return;
     }
 
@@ -59,14 +59,14 @@ export default function ReviewDialog({
       });
 
       if (result.success) {
-        toast.success("Review submitted successfully!");
+        toast.success('Review submitted successfully!');
         onClose();
         router.refresh();
       } else {
-        toast.error(result.message || "Failed to submit review");
+        toast.error(result.message || 'Failed to submit review');
       }
     } catch (error) {
-      toast.error("An error occurred while submitting review");
+      toast.error('An error occurred while submitting review');
       console.error(error);
     } finally {
       setIsSubmitting(false);
@@ -77,13 +77,13 @@ export default function ReviewDialog({
     if (!isSubmitting) {
       setRating(0);
       setHoveredRating(0);
-      setComment("");
+      setComment('');
       onClose();
     }
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+    <Dialog open={isOpen} onOpenChange={open => !open && handleClose()}>
       <DialogContent className="max-w-md">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
@@ -98,7 +98,7 @@ export default function ReviewDialog({
             <div className="space-y-2">
               <Label htmlFor="rating">Rating *</Label>
               <div className="flex items-center gap-2">
-                {[1, 2, 3, 4, 5].map((star) => (
+                {[1, 2, 3, 4, 5].map(star => (
                   <button
                     key={star}
                     type="button"
@@ -110,24 +110,24 @@ export default function ReviewDialog({
                     <Star
                       className={`h-8 w-8 ${
                         star <= (hoveredRating || rating)
-                          ? "fill-yellow-500 text-yellow-500"
-                          : "text-gray-300"
+                          ? 'fill-yellow-500 text-yellow-500'
+                          : 'text-gray-300'
                       }`}
                     />
                   </button>
                 ))}
                 {rating > 0 && (
                   <span className="ml-2 text-sm font-medium">
-                    {rating}/5 -{" "}
+                    {rating}/5 -{' '}
                     {rating === 1
-                      ? "Poor"
+                      ? 'Poor'
                       : rating === 2
-                      ? "Fair"
+                      ? 'Fair'
                       : rating === 3
-                      ? "Good"
+                      ? 'Good'
                       : rating === 4
-                      ? "Very Good"
-                      : "Excellent"}
+                      ? 'Very Good'
+                      : 'Excellent'}
                   </span>
                 )}
               </div>
@@ -140,14 +140,12 @@ export default function ReviewDialog({
                 id="comment"
                 placeholder="Share your experience with this doctor..."
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={e => setComment(e.target.value)}
                 rows={5}
                 disabled={isSubmitting}
                 className="resize-none"
               />
-              <p className="text-xs text-muted-foreground">
-                {comment.length} characters
-              </p>
+              <p className="text-xs text-muted">{comment.length} characters</p>
             </div>
 
             {/* Warning */}
@@ -169,7 +167,7 @@ export default function ReviewDialog({
               Cancel
             </Button>
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Submit Review"}
+              {isSubmitting ? 'Submitting...' : 'Submit Review'}
             </Button>
           </DialogFooter>
         </form>

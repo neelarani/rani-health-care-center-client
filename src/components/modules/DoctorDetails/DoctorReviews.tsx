@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getReviews } from "@/services/patient/reviews.services";
-import { format } from "date-fns";
-import { Star, User } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getReviews } from '@/services/patient/reviews.services';
+import { format } from 'date-fns';
+import { Star, User } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface Review {
   id: string;
@@ -50,7 +50,7 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
           }
         }
       } catch (error) {
-        console.error("Error loading reviews:", error);
+        console.error('Error loading reviews:', error);
       } finally {
         setLoading(false);
       }
@@ -64,7 +64,7 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
       <Star
         key={i}
         className={`h-4 w-4 ${
-          i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+          i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
         }`}
       />
     ));
@@ -72,19 +72,19 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
 
   if (loading) {
     return (
-      <Card>
+      <Card className="bg-foreground text-muted">
         <CardHeader>
           <CardTitle>Patient Reviews</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Loading reviews...</p>
+          <p className="text-muted">Loading reviews...</p>
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <Card>
+    <Card className="bg-foreground text-muted border-muted-foreground/50">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>Patient Reviews</CardTitle>
@@ -103,12 +103,12 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
       </CardHeader>
       <CardContent>
         {reviews.length === 0 ? (
-          <p className="text-muted-foreground text-center py-8">
+          <p className="text-muted text-center py-8">
             No reviews yet. Be the first to review this doctor!
           </p>
         ) : (
           <div className="space-y-4">
-            {reviews.map((review) => (
+            {reviews.map(review => (
               <div
                 key={review.id}
                 className="border-b last:border-0 pb-4 last:pb-0"
@@ -130,14 +130,14 @@ export default function DoctorReviews({ doctorId }: DoctorReviewsProps) {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">
-                          {review.patient?.name || "Anonymous"}
+                          {review.patient?.name || 'Anonymous'}
                         </p>
                         <div className="flex items-center gap-1 mt-1">
                           {renderStars(review.rating)}
                         </div>
                       </div>
-                      <span className="text-sm text-muted-foreground">
-                        {format(new Date(review.createdAt), "MMM d, yyyy")}
+                      <span className="text-sm text-muted">
+                        {format(new Date(review.createdAt), 'MMM d, yyyy')}
                       </span>
                     </div>
                     <p className="text-sm text-gray-700">{review.comment}</p>

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import SpecialitiesFormDialog from "./SpecialitiesFormDialog";
+import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
+import { Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import SpecialitiesFormDialog from './SpecialitiesFormDialog';
 
 const SpecialitiesManagementHeader = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const SpecialitiesManagementHeader = () => {
   const [dialogKey, setDialogKey] = useState(0);
 
   const handleOpenDialog = () => {
-    setDialogKey((prev) => prev + 1); // Force remount
+    setDialogKey(prev => prev + 1); // Force remount
     setIsDialogOpen(true);
   };
 
@@ -36,15 +36,17 @@ const SpecialitiesManagementHeader = () => {
         onSuccess={handleSuccess}
       />
 
-      <ManagementPageHeader
-        title="Specialties Management"
-        description="Manage Specialties information and details"
-        action={{
-          label: "Add Specialty",
-          icon: Plus,
-          onClick: handleOpenDialog,
-        }}
-      />
+      <div className="text-muted">
+        <ManagementPageHeader
+          title="Specialties Management"
+          description="Manage Specialties information and details"
+          action={{
+            label: 'Add Specialty',
+            icon: Plus,
+            onClick: handleOpenDialog,
+          }}
+        />
+      </div>
     </>
   );
 };

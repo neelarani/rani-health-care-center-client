@@ -1,18 +1,18 @@
-import InputFieldError from "@/components/shared/InputFieldError";
-import { Button } from "@/components/ui/button";
+import InputFieldError from '@/components/shared/InputFieldError';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { createAdmin, updateAdmin } from "@/services/admin/adminsManagement";
-import { IAdmin } from "@/types/admin.interface";
-import Image from "next/image";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
+} from '@/components/ui/dialog';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { createAdmin, updateAdmin } from '@/services/admin/adminsManagement';
+import { IAdmin } from '@/types/admin.interface';
+import Image from 'next/image';
+import { useActionState, useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
 
 interface IAdminFormDialogProps {
   open: boolean;
@@ -49,7 +49,7 @@ const AdminFormDialog = ({
     if (state === prevStateRef.current) return;
     prevStateRef.current = state;
     if (state?.success) {
-      toast.success(state.message || "Operation successful");
+      toast.success(state.message || 'Operation successful');
       if (formRef.current) {
         formRef.current.reset();
       }
@@ -75,9 +75,9 @@ const AdminFormDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-h-[90vh] flex flex-col p-0">
+      <DialogContent className="max-h-[90vh] flex flex-col p-0 bg-foreground text-muted">
         <DialogHeader className="px-6 pt-6 pb-4">
-          <DialogTitle>{isEdit ? "Edit Admin" : "Add New Admin"}</DialogTitle>
+          <DialogTitle>{isEdit ? 'Edit Admin' : 'Add New Admin'}</DialogTitle>
         </DialogHeader>
 
         <form
@@ -93,7 +93,7 @@ const AdminFormDialog = ({
                 id="name"
                 name="name"
                 placeholder="John Doe"
-                defaultValue={state?.formData?.name || admin?.name || ""}
+                defaultValue={state?.formData?.name || admin?.name || ''}
               />
               <InputFieldError field="name" state={state} />
             </Field>
@@ -105,7 +105,7 @@ const AdminFormDialog = ({
                 name="email"
                 type="email"
                 placeholder="admin@example.com"
-                defaultValue={state?.formData?.email || admin?.email || ""}
+                defaultValue={state?.formData?.email || admin?.email || ''}
                 disabled={isEdit}
               />
               <InputFieldError field="email" state={state} />
@@ -118,7 +118,7 @@ const AdminFormDialog = ({
                 name="contactNumber"
                 placeholder="+1234567890"
                 defaultValue={
-                  state?.formData?.contactNumber || admin?.contactNumber || ""
+                  state?.formData?.contactNumber || admin?.contactNumber || ''
                 }
               />
               <InputFieldError field="contactNumber" state={state} />
@@ -133,7 +133,7 @@ const AdminFormDialog = ({
                   name="password"
                   type="password"
                   placeholder="Enter password"
-                  defaultValue={state?.formData?.password || ""}
+                  defaultValue={state?.formData?.password || ''}
                 />
                 <InputFieldError field="password" state={state} />
               </Field>
@@ -181,12 +181,16 @@ const AdminFormDialog = ({
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending}>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="bg-chart-1 hover:bg-chart-1/80"
+            >
               {isPending
-                ? "Saving..."
+                ? 'Saving...'
                 : isEdit
-                ? "Update Admin"
-                : "Create Admin"}
+                ? 'Update Admin'
+                : 'Create Admin'}
             </Button>
           </div>
         </form>

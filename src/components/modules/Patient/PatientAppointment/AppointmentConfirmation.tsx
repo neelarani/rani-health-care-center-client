@@ -1,14 +1,14 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import {
   createAppointment,
   createAppointmentWithPayLater,
-} from "@/services/patient/appointment.service";
-import { IDoctor } from "@/types/doctor.interface";
-import { ISchedule } from "@/types/schedule.interface";
-import { format } from "date-fns";
+} from '@/services/patient/appointment.service';
+import { IDoctor } from '@/types/doctor.interface';
+import { ISchedule } from '@/types/schedule.interface';
+import { format } from 'date-fns';
 import {
   Calendar,
   CheckCircle2,
@@ -19,10 +19,10 @@ import {
   Phone,
   Stethoscope,
   User,
-} from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface AppointmentConfirmationProps {
   doctor: IDoctor;
@@ -49,23 +49,23 @@ const AppointmentConfirmation = ({
       });
 
       if (result.success && result.data?.paymentUrl) {
-        toast.success("Redirecting to payment...");
+        toast.success('Redirecting to payment...');
         // Redirect to Stripe checkout
         window.location.replace(result.data.paymentUrl);
       } else if (result.success) {
         setBookingSuccess(true);
-        toast.success("Appointment booked successfully!");
+        toast.success('Appointment booked successfully!');
 
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push("/dashboard/my-appointments");
+          router.push('/dashboard/my-appointments');
         }, 2000);
       } else {
-        toast.error(result.message || "Failed to book appointment");
+        toast.error(result.message || 'Failed to book appointment');
         setIsPayingNow(false);
       }
     } catch (error) {
-      toast.error("An error occurred while booking the appointment");
+      toast.error('An error occurred while booking the appointment');
       setIsPayingNow(false);
       console.error(error);
     }
@@ -83,19 +83,19 @@ const AppointmentConfirmation = ({
       if (result.success) {
         setBookingSuccess(true);
         toast.success(
-          "Appointment booked! You can pay later from your appointments page."
+          'Appointment booked! You can pay later from your appointments page.'
         );
 
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push("/dashboard/my-appointments");
+          router.push('/dashboard/my-appointments');
         }, 2000);
       } else {
-        toast.error(result.message || "Failed to book appointment");
+        toast.error(result.message || 'Failed to book appointment');
         setIsPayingLater(false);
       }
     } catch (error) {
-      toast.error("An error occurred while booking the appointment");
+      toast.error('An error occurred while booking the appointment');
       setIsPayingLater(false);
       console.error(error);
     }
@@ -129,20 +129,20 @@ const AppointmentConfirmation = ({
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6 bg-foreground">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">
           Confirm Appointment
         </h1>
-        <p className="text-muted-foreground mt-2">
+        <p className="text-muted mt-2">
           Review the details below and confirm your appointment
         </p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Doctor Information Card */}
-        <Card>
+        <Card className="bg-foreground text-muted border-muted-foreground/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5" />
@@ -152,7 +152,7 @@ const AppointmentConfirmation = ({
           <CardContent className="space-y-4">
             <div>
               <p className="text-2xl font-semibold">{doctor.name}</p>
-              <p className="text-muted-foreground">{doctor.designation}</p>
+              <p className="text-muted">{doctor.designation}</p>
             </div>
 
             <Separator />
@@ -161,7 +161,7 @@ const AppointmentConfirmation = ({
               doctor.doctorSpecialties.length > 0 && (
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Stethoscope className="h-4 w-4 text-muted-foreground" />
+                    <Stethoscope className="h-4 w-4 text-muted" />
                     <span className="text-sm font-medium">Specialties</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -170,7 +170,7 @@ const AppointmentConfirmation = ({
                         key={idx}
                         className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md border border-blue-200"
                       >
-                        {ds.specialities?.title || "N/A"}
+                        {ds.specialities?.title || 'N/A'}
                       </span>
                     ))}
                   </div>
@@ -182,9 +182,7 @@ const AppointmentConfirmation = ({
             <div className="space-y-2">
               {doctor.qualification && (
                 <div className="flex justify-between">
-                  <span className="text-sm text-muted-foreground">
-                    Qualification:
-                  </span>
+                  <span className="text-sm text-muted">Qualification:</span>
                   <span className="text-sm font-medium">
                     {doctor.qualification}
                   </span>
@@ -193,9 +191,7 @@ const AppointmentConfirmation = ({
 
               {doctor.experience !== undefined && (
                 <div className="flex justify-between">
-                  <span className="text-sm text-muted-foreground">
-                    Experience:
-                  </span>
+                  <span className="text-sm text-muted">Experience:</span>
                   <span className="text-sm font-medium">
                     {doctor.experience} years
                   </span>
@@ -204,9 +200,7 @@ const AppointmentConfirmation = ({
 
               {doctor.currentWorkingPlace && (
                 <div className="flex justify-between">
-                  <span className="text-sm text-muted-foreground">
-                    Working at:
-                  </span>
+                  <span className="text-sm text-muted">Working at:</span>
                   <span className="text-sm font-medium">
                     {doctor.currentWorkingPlace}
                   </span>
@@ -219,14 +213,14 @@ const AppointmentConfirmation = ({
             <div className="space-y-2">
               {doctor.contactNumber && (
                 <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <Phone className="h-4 w-4 text-muted" />
                   <span className="text-sm">{doctor.contactNumber}</span>
                 </div>
               )}
 
               {doctor.address && (
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <MapPin className="h-4 w-4 text-muted" />
                   <span className="text-sm">{doctor.address}</span>
                 </div>
               )}
@@ -248,7 +242,7 @@ const AppointmentConfirmation = ({
         </Card>
 
         {/* Schedule Information Card */}
-        <Card>
+        <Card className="bg-foreground text-muted border-muted-foreground/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
@@ -258,12 +252,12 @@ const AppointmentConfirmation = ({
           <CardContent className="space-y-4">
             <div className="bg-linear-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 space-y-4">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Date</p>
+                <p className="text-sm text-muted mb-1">Date</p>
                 <p className="text-2xl font-bold text-blue-900">
-                  {format(new Date(schedule.startDateTime), "EEEE")}
+                  {format(new Date(schedule.startDateTime), 'EEEE')}
                 </p>
                 <p className="text-lg text-blue-700">
-                  {format(new Date(schedule.startDateTime), "MMMM d, yyyy")}
+                  {format(new Date(schedule.startDateTime), 'MMMM d, yyyy')}
                 </p>
               </div>
 
@@ -272,10 +266,10 @@ const AppointmentConfirmation = ({
               <div className="flex items-center gap-3">
                 <Clock className="h-5 w-5 text-blue-600" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Time</p>
+                  <p className="text-sm text-muted">Time</p>
                   <p className="text-lg font-semibold text-blue-900">
-                    {format(new Date(schedule.startDateTime), "h:mm a")} -{" "}
-                    {format(new Date(schedule.endDateTime), "h:mm a")}
+                    {format(new Date(schedule.startDateTime), 'h:mm a')} -{' '}
+                    {format(new Date(schedule.endDateTime), 'h:mm a')}
                   </p>
                 </div>
               </div>
@@ -283,7 +277,7 @@ const AppointmentConfirmation = ({
 
             <div className="space-y-3 pt-4">
               <h3 className="font-semibold text-sm">Important Information</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <ul className="space-y-2 text-sm text-muted">
                 <li className="flex items-start gap-2">
                   <span className="text-blue-600 mt-0.5">•</span>
                   <span>

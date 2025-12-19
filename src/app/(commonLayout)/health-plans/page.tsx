@@ -103,7 +103,7 @@ const HealthPlansPage = () => {
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-sm text-muted-foreground">{benefit.desc}</p>
+                <p className="text-sm text-muted">{benefit.desc}</p>
               </CardContent>
             </Card>
           );
@@ -133,7 +133,7 @@ const HealthPlansPage = () => {
                 <span className="text-4xl font-bold text-primary">
                   {plan.price}
                 </span>
-                <span className="text-muted-foreground">{plan.period}</span>
+                <span className="text-muted">{plan.period}</span>
               </div>
             </CardHeader>
             <CardContent>

@@ -119,11 +119,11 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
     return (
       <Card className="border border-muted-foreground/30 bg-foreground">
         <CardContent className="flex flex-col items-center justify-center py-12">
-          <Calendar className="h-12 w-12 text-muted-foreground mb-4" />
+          <Calendar className="h-12 w-12 text-muted mb-4" />
           <h3 className="text-lg font-semibold mb-2 text-muted">
             No Appointments Yet
           </h3>
-          <p className="text-muted-foreground text-center max-w-sm">
+          <p className="text-muted text-center max-w-sm">
             You haven&apos;t booked any appointments. Browse our doctors and
             book your first consultation.
           </p>
@@ -141,10 +141,10 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
           key={appointment.id}
           className="hover:shadow-lg transition-shadow"
         >
-          <CardContent className="pt-6 space-y-4">
+          <CardContent className="pt-6 space-y-4 bg-background p-2">
             {/* Status and Review Badge */}
-            <div className="flex justify-between items-start gap-2 flex-wrap">
-              <div className="flex gap-2 flex-wrap">
+            <div className="flex justify-between items-start gap-2 flex-wrap ">
+              <div className="flex gap-2 flex-wrap ">
                 {getStatusBadge(appointment.status)}
                 {getPaymentStatusBadge(appointment.paymentStatus)}
               </div>
@@ -152,7 +152,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                 {appointment.prescription && (
                   <Badge
                     variant="outline"
-                    className="bg-green-50 text-green-700"
+                    className="bg-green-50 text-green-700 "
                   >
                     <FileText className="h-3 w-3 mr-1" />
                     Prescription
@@ -178,10 +178,10 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   <User className="h-5 w-5 text-blue-600" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg">
+                  <h3 className="font-semibold text-lg text-muted">
                     {appointment.doctor?.name || 'N/A'}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted">
                     {appointment.doctor?.designation || 'Doctor'}
                   </p>
                 </div>
@@ -192,7 +192,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
             {appointment.doctor?.doctorSpecialties &&
               appointment.doctor.doctorSpecialties.length > 0 && (
                 <div className="flex items-center gap-2 flex-wrap">
-                  <Stethoscope className="h-4 w-4 text-muted-foreground" />
+                  <Stethoscope className="h-4 w-4 text-muted" />
                   {appointment.doctor.doctorSpecialties
                     .slice(0, 2)
                     .map((ds, idx) => (
@@ -212,7 +212,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
             {appointment.schedule && (
               <div className="space-y-2 bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center gap-2 text-sm">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 text-muted" />
                   <span className="font-medium">
                     {format(
                       new Date(appointment.schedule.startDateTime),
@@ -221,7 +221,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <Clock className="h-4 w-4 text-muted" />
                   <span>
                     {format(
                       new Date(appointment.schedule.startDateTime),
@@ -247,7 +247,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
 
             {/* Address */}
             {appointment.doctor?.address && (
-              <div className="flex items-start gap-2 text-sm text-muted-foreground">
+              <div className="flex items-start gap-2 text-sm text-muted">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
                 <span className="line-clamp-2">
                   {appointment.doctor.address}
@@ -264,7 +264,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                     <span>Rated {appointment.review.rating}/5</span>
                   </div>
                 ) : (
-                  <div className="text-sm text-muted-foreground bg-gray-50 rounded-lg p-2">
+                  <div className="text-sm text-muted bg-gray-50 rounded-lg p-2">
                     No review yet
                   </div>
                 )}
@@ -274,7 +274,12 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
 
           <CardFooter className="border-t pt-4">
             <div className="flex gap-2 w-full">
-              <Button variant="outline" size="sm" className="flex-1" asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-1 text-muted"
+                asChild
+              >
                 <Link href={`/dashboard/my-appointments/${appointment.id}`}>
                   View Details
                 </Link>

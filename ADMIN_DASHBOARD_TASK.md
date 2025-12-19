@@ -2,7 +2,12 @@
 
 ## 📋 Project Overview
 
-You are tasked with completing the frontend development for **Admin Management, Patient Management, Schedule Management, and Appointment Management** modules in the PH-HealthCare application. The backend API is fully implemented and operational. Your responsibility is to develop a professional, production-ready frontend that matches the quality standards set by the existing **Specialities Management** and **Doctors Management** modules.
+You are tasked with completing the frontend development for **Admin Management,
+Patient Management, Schedule Management, and Appointment Management** modules in
+the PH-HealthCare application. The backend API is fully implemented and
+operational. Your responsibility is to develop a professional, production-ready
+frontend that matches the quality standards set by the existing **Specialities
+Management** and **Doctors Management** modules.
 
 ---
 
@@ -62,14 +67,14 @@ src/
 #### 1. **Server Actions** (`src/services/admin/specialitiesManagement.ts`)
 
 ```typescript
-"use server";
-import { serverFetch } from "@/lib/server-fetch";
-import { zodValidator } from "@/lib/zodValidator";
+'use server';
+import { serverFetch } from '@/lib/server-fetch';
+import { zodValidator } from '@/lib/zodValidator';
 
 // CREATE operation with Zod validation
 export async function createSpeciality(_prevState: any, formData: FormData) {
   try {
-    const payload = { title: formData.get("title") as string };
+    const payload = { title: formData.get('title') as string };
 
     // Validate with Zod
     const validation = zodValidator(payload, createSpecialityZodSchema);
@@ -77,12 +82,12 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
 
     // Prepare FormData for file upload
     const newFormData = new FormData();
-    newFormData.append("data", JSON.stringify(validation.data));
-    if (formData.get("file")) {
-      newFormData.append("file", formData.get("file") as Blob);
+    newFormData.append('data', JSON.stringify(validation.data));
+    if (formData.get('file')) {
+      newFormData.append('file', formData.get('file') as Blob);
     }
 
-    const response = await serverFetch.post("/specialties", {
+    const response = await serverFetch.post('/specialties', {
       body: newFormData,
     });
     return await response.json();
@@ -90,16 +95,16 @@ export async function createSpeciality(_prevState: any, formData: FormData) {
     return {
       success: false,
       message:
-        process.env.NODE_ENV === "development"
+        process.env.NODE_ENV === 'development'
           ? error.message
-          : "Something went wrong",
+          : 'Something went wrong',
     };
   }
 }
 
 // READ operation
 export async function getSpecialities() {
-  const response = await serverFetch.get("/specialties");
+  const response = await serverFetch.get('/specialties');
   return await response.json();
 }
 
@@ -113,10 +118,10 @@ export async function deleteSpeciality(id: string) {
 #### 2. **Zod Validation** (`src/zod/specialities.validation.ts`)
 
 ```typescript
-import z from "zod";
+import z from 'zod';
 
 export const createSpecialityZodSchema = z.object({
-  title: z.string().min(3, "Title must be at least 3 characters long"),
+  title: z.string().min(3, 'Title must be at least 3 characters long'),
 });
 ```
 
@@ -142,12 +147,12 @@ export interface ISpecialty {
 #### 5. **Table Columns Definition** (`specialitiesColumns.tsx`)
 
 ```typescript
-import { Column } from "@/components/shared/ManagementTable";
+import { Column } from '@/components/shared/ManagementTable';
 
 export const specialitiesColumns: Column<ISpecialty>[] = [
   {
-    header: "Icon",
-    accessor: (speciality) => (
+    header: 'Icon',
+    accessor: speciality => (
       <Image
         src={speciality.icon}
         alt={speciality.title}
@@ -158,8 +163,8 @@ export const specialitiesColumns: Column<ISpecialty>[] = [
     ),
   },
   {
-    header: "Title",
-    accessor: (speciality) => speciality.title,
+    header: 'Title',
+    accessor: speciality => speciality.title,
   },
 ];
 ```
@@ -182,9 +187,9 @@ export const specialitiesColumns: Column<ISpecialty>[] = [
 export async function createDoctor(_prevState: any, formData: FormData) {
   // Extract and structure complex payload
   const payload: IDoctor = {
-    name: formData.get("name") as string,
-    email: formData.get("email") as string,
-    contactNumber: formData.get("contactNumber") as string,
+    name: formData.get('name') as string,
+    email: formData.get('email') as string,
+    contactNumber: formData.get('contactNumber') as string,
     // ... 10 more fields
   };
 
@@ -202,12 +207,12 @@ export async function createDoctor(_prevState: any, formData: FormData) {
 
   // Send with file
   const formData = new FormData();
-  formData.append("data", JSON.stringify(apiPayload));
-  if (formData.get("file")) {
-    formData.append("file", formData.get("file") as Blob);
+  formData.append('data', JSON.stringify(apiPayload));
+  if (formData.get('file')) {
+    formData.append('file', formData.get('file') as Blob);
   }
 
-  const response = await serverFetch.post("/user/create-doctor", {
+  const response = await serverFetch.post('/user/create-doctor', {
     body: formData,
   });
   return await response.json();
@@ -225,7 +230,7 @@ export async function updateDoctor(
   const validation = zodValidator(payload, updateDoctorZodSchema);
 
   const response = await serverFetch.patch(`/doctor/${id}`, {
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(validation.data),
   });
   return await response.json();
@@ -244,8 +249,8 @@ const DoctorFormDialog = ({ open, onClose, doctor, specialities }) => {
   const isEdit = !!doctor;
 
   // Controlled state for Select components
-  const [selectedSpeciality, setSelectedSpeciality] = useState<string>("");
-  const [gender, setGender] = useState<"MALE" | "FEMALE">("MALE");
+  const [selectedSpeciality, setSelectedSpeciality] = useState<string>('');
+  const [gender, setGender] = useState<'MALE' | 'FEMALE'>('MALE');
 
   // Server action with dynamic binding for edit
   const [state, formAction, pending] = useActionState(
@@ -269,7 +274,7 @@ const DoctorFormDialog = ({ open, onClose, doctor, specialities }) => {
       <DialogContent className="max-h-[90vh] flex flex-col p-0">
         {/* Fixed Header */}
         <DialogHeader className="px-6 pt-6 pb-4">
-          <DialogTitle>{isEdit ? "Edit Doctor" : "Add New Doctor"}</DialogTitle>
+          <DialogTitle>{isEdit ? 'Edit Doctor' : 'Add New Doctor'}</DialogTitle>
         </DialogHeader>
 
         <form action={formAction} className="flex flex-col flex-1 min-h-0">
@@ -308,7 +313,7 @@ const DoctorFormDialog = ({ open, onClose, doctor, specialities }) => {
                   <SelectValue placeholder="Select a speciality" />
                 </SelectTrigger>
                 <SelectContent>
-                  {specialities.map((spec) => (
+                  {specialities.map(spec => (
                     <SelectItem key={spec.id} value={spec.id}>
                       {spec.title}
                     </SelectItem>
@@ -338,7 +343,7 @@ const DoctorFormDialog = ({ open, onClose, doctor, specialities }) => {
               Cancel
             </Button>
             <Button type="submit" disabled={pending}>
-              {pending ? "Saving..." : isEdit ? "Update" : "Create"}
+              {pending ? 'Saving...' : isEdit ? 'Update' : 'Create'}
             </Button>
           </div>
         </form>
@@ -351,14 +356,14 @@ const DoctorFormDialog = ({ open, onClose, doctor, specialities }) => {
 #### 3. **Advanced Table Columns with Custom Cells**
 
 ```typescript
-import { UserInfoCell } from "@/components/shared/cell/UserInfoCell";
-import { StatusBadgeCell } from "@/components/shared/cell/StatusBadgeCell";
-import { DateCell } from "@/components/shared/cell/DateCell";
+import { UserInfoCell } from '@/components/shared/cell/UserInfoCell';
+import { StatusBadgeCell } from '@/components/shared/cell/StatusBadgeCell';
+import { DateCell } from '@/components/shared/cell/DateCell';
 
 export const doctorsColumns: Column<IDoctor>[] = [
   {
-    header: "Doctor",
-    accessor: (doctor) => (
+    header: 'Doctor',
+    accessor: doctor => (
       <UserInfoCell
         name={doctor.name}
         email={doctor.email}
@@ -367,8 +372,8 @@ export const doctorsColumns: Column<IDoctor>[] = [
     ),
   },
   {
-    header: "Specialties",
-    accessor: (doctor) => (
+    header: 'Specialties',
+    accessor: doctor => (
       <div className="flex flex-wrap gap-1">
         {doctor.doctorSpecialties?.map((spec, index) => (
           <span
@@ -376,23 +381,23 @@ export const doctorsColumns: Column<IDoctor>[] = [
             className="inline-flex items-center px-2 py-1 rounded-full 
                                      text-xs font-medium bg-blue-100 text-blue-800"
           >
-            {spec.specialties?.title || "N/A"}
+            {spec.specialties?.title || 'N/A'}
           </span>
         )) || <span className="text-xs text-gray-500">No specialties</span>}
       </div>
     ),
   },
   {
-    header: "Fee",
-    accessor: (doctor) => (
+    header: 'Fee',
+    accessor: doctor => (
       <span className="text-sm font-semibold text-green-600">
         ${doctor.appointmentFee}
       </span>
     ),
   },
   {
-    header: "Rating",
-    accessor: (doctor) => (
+    header: 'Rating',
+    accessor: doctor => (
       <div className="flex items-center gap-1">
         <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
         <span>{doctor.averageRating.toFixed(1)}</span>
@@ -400,12 +405,12 @@ export const doctorsColumns: Column<IDoctor>[] = [
     ),
   },
   {
-    header: "Status",
-    accessor: (doctor) => <StatusBadgeCell isDeleted={doctor.isDeleted} />,
+    header: 'Status',
+    accessor: doctor => <StatusBadgeCell isDeleted={doctor.isDeleted} />,
   },
   {
-    header: "Joined",
-    accessor: (doctor) => <DateCell date={doctor.createdAt} />,
+    header: 'Joined',
+    accessor: doctor => <DateCell date={doctor.createdAt} />,
   },
 ];
 ```
@@ -435,7 +440,7 @@ const AdminDoctorsManagementPage = async ({ searchParams }) => {
         <SearchFilter paramName="searchTerm" placeholder="Search doctors..." />
         <SelectFilter
           paramName="speciality"
-          options={specialitiesResult.data.map((spec) => ({
+          options={specialitiesResult.data.map(spec => ({
             label: spec.title,
             value: spec.title,
           }))}
@@ -484,13 +489,13 @@ const DoctorViewDetailDialog = ({ open, onClose, doctor }) => {
             </Avatar>
             <div className="flex-1">
               <h2 className="text-3xl font-bold">{doctor?.name}</h2>
-              <p className="text-muted-foreground flex items-center gap-2">
+              <p className="text-muted flex items-center gap-2">
                 <Mail className="h-4 w-4" />
                 {doctor?.email}
               </p>
               <div className="flex gap-2">
-                <Badge variant={doctor?.isDeleted ? "destructive" : "default"}>
-                  {doctor?.isDeleted ? "Inactive" : "Active"}
+                <Badge variant={doctor?.isDeleted ? 'destructive' : 'default'}>
+                  {doctor?.isDeleted ? 'Inactive' : 'Active'}
                 </Badge>
                 <Badge variant="secondary">
                   <Star className="h-3 w-3 mr-1 fill-yellow-400" />
@@ -513,7 +518,7 @@ const DoctorViewDetailDialog = ({ open, onClose, doctor }) => {
               <div className="grid grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
                 <InfoRow
                   label="Designation"
-                  value={doctor?.designation || "Not specified"}
+                  value={doctor?.designation || 'Not specified'}
                 />
                 {/* More fields */}
               </div>
@@ -528,7 +533,7 @@ const DoctorViewDetailDialog = ({ open, onClose, doctor }) => {
                 <h3 className="font-semibold text-lg">Specialties</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {doctor.doctorSpecialties.map((spec) => (
+                {doctor.doctorSpecialties.map(spec => (
                   <Badge variant="outline" className="px-4 py-2">
                     {spec.specialties?.title}
                   </Badge>
@@ -581,10 +586,10 @@ const DoctorsTable = ({ doctors, specialities }) => {
       <ManagementTable
         data={doctors}
         columns={doctorsColumns}
-        onView={(doctor) => setViewingDoctor(doctor)}
-        onEdit={(doctor) => setEditingDoctor(doctor)}
-        onDelete={(doctor) => setDeletingDoctor(doctor)}
-        getRowKey={(doctor) => doctor.id!}
+        onView={doctor => setViewingDoctor(doctor)}
+        onEdit={doctor => setEditingDoctor(doctor)}
+        onDelete={doctor => setDeletingDoctor(doctor)}
+        getRowKey={doctor => doctor.id!}
         emptyMessage="No doctors found"
       />
 
@@ -610,7 +615,7 @@ const DoctorsTable = ({ doctors, specialities }) => {
       {/* Delete Confirmation */}
       <DeleteConfirmationDialog
         open={!!deletingDoctor}
-        onOpenChange={(open) => !open && setDeletingDoctor(null)}
+        onOpenChange={open => !open && setDeletingDoctor(null)}
         onConfirm={confirmDelete}
         title="Delete Doctor"
         description={`Are you sure you want to delete ${deletingDoctor?.name}?`}
@@ -683,10 +688,10 @@ export async function create[Entity](_prevState: any, formData: FormData) {
 ```typescript
 // Zod Schema
 export const createSchema = z.object({
-  field1: z.string().min(3, "Message"),
-  field2: z.number().min(0, "Message"),
-  field3: z.enum(["VALUE1", "VALUE2"]),
-  field4: z.string().email("Invalid email"),
+  field1: z.string().min(3, 'Message'),
+  field2: z.number().min(0, 'Message'),
+  field3: z.enum(['VALUE1', 'VALUE2']),
+  field4: z.string().email('Invalid email'),
   field5: z.string().optional(),
 });
 
@@ -720,9 +725,9 @@ if (!validation.success) {
 ```typescript
 // URL-based filters using searchParams
 const queryString = queryStringFormatter({
-  searchTerm: "John",
-  speciality: "Cardiology",
-  page: "1",
+  searchTerm: 'John',
+  speciality: 'Cardiology',
+  page: '1',
 });
 // Output: "searchTerm=John&speciality=Cardiology&page=1"
 
@@ -789,7 +794,8 @@ interface IAdmin {
    - `AdminViewDetailDialog.tsx` - Detailed view with sections
    - `adminColumns.tsx` - Column definitions
 
-5. **Main Page** (`src/app/(dashboardLayout)/admin/dashboard/admins-management/page.tsx`)
+5. **Main Page**
+   (`src/app/(dashboardLayout)/admin/dashboard/admins-management/page.tsx`)
    - Search filter (name, email)
    - Pagination support
    - Refresh button
@@ -798,9 +804,11 @@ interface IAdmin {
 #### UI Requirements
 
 - **Table Columns**: Avatar+Name+Email, Contact, Status, Joined Date, Actions
-- **Form Fields**: Name, Email, Password (create only), Contact Number, Profile Photo (file upload, create only)
+- **Form Fields**: Name, Email, Password (create only), Contact Number, Profile
+  Photo (file upload, create only)
 - **View Dialog**: Personal Info section, Contact Info section, Account Status
-- **Validation**: Required fields marked, email format validation, password min 6 chars
+- **Validation**: Required fields marked, email format validation, password min
+  6 chars
 
 ---
 
@@ -852,7 +860,8 @@ interface IPatient {
 
 4. **Components**
 
-   - `PatientManagementHeader.tsx` - Header without Add button (patients register themselves)
+   - `PatientManagementHeader.tsx` - Header without Add button (patients
+     register themselves)
    - `PatientTable.tsx` - Table with View/Edit/Delete actions
    - `PatientViewDetailDialog.tsx` - Detailed view with medical records
    - `PatientFormDialog.tsx` - Edit only form
@@ -866,9 +875,11 @@ interface IPatient {
 
 #### UI Requirements
 
-- **Table Columns**: Avatar+Name+Email, Contact, Address, Status, Registered Date, Actions
+- **Table Columns**: Avatar+Name+Email, Contact, Address, Status, Registered
+  Date, Actions
 - **Form Fields**: Name, Contact Number, Address (Edit only - no email/password)
-- **View Dialog**: Personal Info, Contact Info, Medical Records (if available), Account Status
+- **View Dialog**: Personal Info, Contact Info, Medical Records (if available),
+  Account Status
 - **Note**: No "Add Patient" button (patients register via public registration)
 
 ---
@@ -928,8 +939,10 @@ interface ISchedule {
 
 #### UI Requirements
 
-- **Table Columns**: Start Date, End Date, Start Time, End Time, Duration (calculated), Created Date, Actions
-- **Form Fields**: Start Date (date input), End Date (date input), Start Time (time input), End Time (time input)
+- **Table Columns**: Start Date, End Date, Start Time, End Time, Duration
+  (calculated), Created Date, Actions
+- **Form Fields**: Start Date (date input), End Date (date input), Start Time
+  (time input), End Time (time input)
 - **View Dialog**: Schedule Details section with formatted dates/times
 - **Validation**:
   - End date must be >= start date
@@ -955,8 +968,8 @@ interface IAppointment {
   patientId: string;
   doctorId: string;
   scheduleId: string;
-  status: "SCHEDULED" | "INPROGRESS" | "COMPLETED" | "CANCELED";
-  paymentStatus: "PAID" | "UNPAID";
+  status: 'SCHEDULED' | 'INPROGRESS' | 'COMPLETED' | 'CANCELED';
+  paymentStatus: 'PAID' | 'UNPAID';
   videoCallingId?: string;
   createdAt: string;
   updatedAt: string;
@@ -1000,7 +1013,8 @@ interface IAppointment {
 
    - `AppointmentManagementHeader.tsx` - Header without Add button
    - `AppointmentTable.tsx` - Table with View/Change Status actions
-   - `AppointmentViewDetailDialog.tsx` - Comprehensive view with patient, doctor, schedule info
+   - `AppointmentViewDetailDialog.tsx` - Comprehensive view with patient,
+     doctor, schedule info
    - `AppointmentStatusDialog.tsx` - Dialog to update status
    - `appointmentColumns.tsx`
 
@@ -1194,13 +1208,15 @@ For each entity (Admin, Patient, Schedule, Appointment):
 2. **Create Zod Schemas** (`zod/[entity].validation.ts`)
 3. **Implement Server Actions** (`services/admin/[entity]Management.ts`)
    - Test each action in isolation
-4. **Create Table Columns** (`components/modules/Admin/[Entity]Management/[entity]Columns.tsx`)
+4. **Create Table Columns**
+   (`components/modules/Admin/[Entity]Management/[entity]Columns.tsx`)
 5. **Create Form Dialog** (`[Entity]FormDialog.tsx`)
    - Test create/edit functionality
 6. **Create View Dialog** (`[Entity]ViewDetailDialog.tsx`)
 7. **Create Table Component** (`[Entity]Table.tsx`)
 8. **Create Header Component** (`[Entity]ManagementHeader.tsx`)
-9. **Create Main Page** (`app/(dashboardLayout)/admin/dashboard/[entity]-management/page.tsx`)
+9. **Create Main Page**
+   (`app/(dashboardLayout)/admin/dashboard/[entity]-management/page.tsx`)
 10. **Test Complete Flow**: List → Create → View → Edit → Delete
 
 ### Step 5: Testing Checklist per Entity
@@ -1237,7 +1253,8 @@ For each entity (Admin, Patient, Schedule, Appointment):
 - Prefer `const` over `let`
 - Use arrow functions for components
 - Use named exports over default exports (except for pages)
-- Follow existing naming conventions (PascalCase for components, camelCase for functions)
+- Follow existing naming conventions (PascalCase for components, camelCase for
+  functions)
 - Add comments for complex logic
 - Keep components focused and single-responsibility
 
@@ -1294,25 +1311,35 @@ Your implementation will be evaluated on:
 
 ## 💡 Pro Tips
 
-1. **Start Small**: Don't try to build everything at once. Build one feature, test it, then move to the next.
+1. **Start Small**: Don't try to build everything at once. Build one feature,
+   test it, then move to the next.
 
-2. **Use Existing Components**: Leverage all shared components (ManagementTable, InputFieldError, etc.) to maintain consistency.
+2. **Use Existing Components**: Leverage all shared components (ManagementTable,
+   InputFieldError, etc.) to maintain consistency.
 
-3. **Test Early, Test Often**: Test each server action immediately after writing it before moving to UI.
+3. **Test Early, Test Often**: Test each server action immediately after writing
+   it before moving to UI.
 
-4. **Follow the Pattern**: The Specialities and Doctors implementations provide all the patterns you need.
+4. **Follow the Pattern**: The Specialities and Doctors implementations provide
+   all the patterns you need.
 
-5. **Handle Edge Cases**: Always handle null/undefined values, empty arrays, and API errors.
+5. **Handle Edge Cases**: Always handle null/undefined values, empty arrays, and
+   API errors.
 
-6. **Console is Your Friend**: Use `console.log` liberally during development, but remove before submission.
+6. **Console is Your Friend**: Use `console.log` liberally during development,
+   but remove before submission.
 
-7. **Read Error Messages**: TypeScript and React errors are usually very helpful - read them carefully.
+7. **Read Error Messages**: TypeScript and React errors are usually very
+   helpful - read them carefully.
 
-8. **Responsive Design**: Test on different screen sizes regularly (Chrome DevTools).
+8. **Responsive Design**: Test on different screen sizes regularly (Chrome
+   DevTools).
 
-9. **Commit Frequently**: Commit working code often so you can rollback if needed.
+9. **Commit Frequently**: Commit working code often so you can rollback if
+   needed.
 
-10. **Ask Questions**: If backend API structure is unclear, check with backend team or documentation.
+10. **Ask Questions**: If backend API structure is unclear, check with backend
+    team or documentation.
 
 ---
 
@@ -1388,7 +1415,9 @@ If you encounter issues:
 4. Test API endpoints directly
 5. Ask for clarification if needed
 
-**Remember**: The goal is not just to complete the task, but to learn professional-level Next.js development patterns. Take your time, understand each pattern, and build with quality.
+**Remember**: The goal is not just to complete the task, but to learn
+professional-level Next.js development patterns. Take your time, understand each
+pattern, and build with quality.
 
 ---
 

@@ -38,7 +38,7 @@ export function StatsCard({
       )}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-sm font-medium text-muted">
           {title}
         </CardTitle>
         <div
@@ -53,7 +53,7 @@ export function StatsCard({
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>
         {description && (
-          <p className="text-xs text-muted-foreground mt-1">{description}</p>
+          <p className="text-xs text-muted mt-1">{description}</p>
         )}
         {trend && (
           <div className="flex items-center gap-1 mt-2">
@@ -66,9 +66,7 @@ export function StatsCard({
               {trend.isPositive ? '+' : ''}
               {trend.value}%
             </span>
-            <span className="text-xs text-muted-foreground">
-              from last month
-            </span>
+            <span className="text-xs text-muted">from last month</span>
           </div>
         )}
       </CardContent>

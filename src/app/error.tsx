@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertTriangle, Home, RefreshCcw } from "lucide-react";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { AlertTriangle, Home, RefreshCcw } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Error({
   error,
@@ -93,20 +93,20 @@ export default function Error({
                   <h1 className="text-3xl font-bold tracking-tight">
                     Oops! Something went wrong
                   </h1>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted">
                     We encountered an unexpected error. Don&apos;t worry,
                     it&apos;s not your fault.
                   </p>
                 </div>
 
                 {/* Error Details (Development Only) */}
-                {process.env.NODE_ENV === "development" && (
+                {process.env.NODE_ENV === 'development' && (
                   <div className="w-full rounded-lg bg-muted p-4 text-left">
-                    <p className="text-sm font-mono text-muted-foreground break-all">
+                    <p className="text-sm font-mono text-muted break-all">
                       {error.message}
                     </p>
                     {error.digest && (
-                      <p className="text-xs font-mono text-muted-foreground mt-2">
+                      <p className="text-xs font-mono text-muted mt-2">
                         Error ID: {error.digest}
                       </p>
                     )}
@@ -128,7 +128,7 @@ export default function Error({
                 </div>
 
                 {/* Help Text */}
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted">
                   If this problem persists, please contact our support team.
                 </p>
               </div>

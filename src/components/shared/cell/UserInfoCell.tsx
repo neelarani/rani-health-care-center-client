@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Avatar } from "@/components/ui/avatar";
-import { getInitials } from "@/lib/formatters";
-import Image from "next/image";
+import { Avatar } from '@/components/ui/avatar';
+import { getInitials } from '@/lib/formatters';
+import Image from 'next/image';
 
 interface UserInfoCellProps {
   name: string;
@@ -24,7 +24,7 @@ export function UserInfoCell({ name, email, photo }: UserInfoCellProps) {
       </Avatar>
       <div>
         <p className="font-medium">{name}</p>
-        <p className="text-sm text-muted-foreground">{email}</p>
+        <p className="text-sm text-muted">{email}</p>
       </div>
     </div>
   );

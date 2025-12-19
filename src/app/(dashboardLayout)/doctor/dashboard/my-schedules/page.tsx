@@ -1,14 +1,14 @@
-import MySchedulesFilters from "@/components/modules/Doctor/MySchedules/MyScheduleFilters";
-import MySchedulesHeader from "@/components/modules/Doctor/MySchedules/MyScheduleHeader";
-import MySchedulesTable from "@/components/modules/Doctor/MySchedules/MyScheduleTable";
-import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
-import { queryStringFormatter } from "@/lib/formatters";
+import MySchedulesFilters from '@/components/modules/Doctor/MySchedules/MyScheduleFilters';
+import MySchedulesHeader from '@/components/modules/Doctor/MySchedules/MyScheduleHeader';
+import MySchedulesTable from '@/components/modules/Doctor/MySchedules/MyScheduleTable';
+import TablePagination from '@/components/shared/TablePagination';
+import { TableSkeleton } from '@/components/shared/TableSkeleton';
+import { queryStringFormatter } from '@/lib/formatters';
 import {
   getAvailableSchedules,
   getDoctorOwnSchedules,
-} from "@/services/doctor/doctorScedule.services";
-import { Suspense } from "react";
+} from '@/services/doctor/doctorScedule.services';
+import { Suspense } from 'react';
 
 interface DoctorMySchedulesPageProps {
   searchParams: Promise<{
@@ -32,7 +32,7 @@ const DoctorMySchedulesPage = async ({
   const totalPages = Math.ceil((meta?.total || 1) / (meta?.limit || 1));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-muted ">
       <MySchedulesHeader
         availableSchedules={availableSchedulesResponse?.data || []}
       />

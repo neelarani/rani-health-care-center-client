@@ -1,7 +1,7 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+'use client';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,13 +9,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { getInitials } from "@/lib/formatters";
-import { IDoctor } from "@/types/doctor.interface";
-import { Clock, DollarSign, Eye, MapPin, Star } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import BookAppointmentDialog from "./BookAppointmentDialog";
+} from '@/components/ui/card';
+import { getInitials } from '@/lib/formatters';
+import { IDoctor } from '@/types/doctor.interface';
+import { Clock, DollarSign, Eye, MapPin, Star } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import BookAppointmentDialog from './BookAppointmentDialog';
 
 interface DoctorCard {
   doctor: IDoctor;
@@ -26,11 +26,11 @@ export default function DoctorCard({ doctor }: DoctorCard) {
 
   return (
     <>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-foreground text-muted">
         <CardHeader className="pb-3">
           <div className="flex items-start gap-4">
             <Avatar className="h-16 w-16">
-              <AvatarImage src={doctor.profilePhoto || ""} alt={doctor.name} />
+              <AvatarImage src={doctor.profilePhoto || ''} alt={doctor.name} />
               <AvatarFallback className="text-lg">
                 {getInitials(doctor.name)}
               </AvatarFallback>
@@ -48,7 +48,7 @@ export default function DoctorCard({ doctor }: DoctorCard) {
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   <span className="text-sm font-medium">
-                    {doctor.averageRating?.toFixed(1) || "N/A"}
+                    {doctor.averageRating?.toFixed(1) || 'N/A'}
                   </span>
                 </div>
                 {doctor.doctorSpecialties &&
@@ -64,20 +64,20 @@ export default function DoctorCard({ doctor }: DoctorCard) {
 
         <CardContent className="space-y-3 pb-3">
           <div className="grid grid-cols-2 gap-3 text-sm">
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="flex items-center gap-2 text-muted">
               <Clock className="h-4 w-4 shrink-0" />
               <span className="truncate">{doctor.experience} years exp</span>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="flex items-center gap-2 text-muted">
               <DollarSign className="h-4 w-4 shrink-0" />
-              <span className="font-semibold text-foreground">
+              <span className="font-semibold text-muted">
                 ${doctor.appointmentFee}
               </span>
             </div>
           </div>
 
           {doctor.currentWorkingPlace && (
-            <div className="flex items-start gap-2 text-sm text-muted-foreground">
+            <div className="flex items-start gap-2 text-sm text-muted">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
               <span className="line-clamp-1">{doctor.currentWorkingPlace}</span>
             </div>
@@ -85,14 +85,12 @@ export default function DoctorCard({ doctor }: DoctorCard) {
 
           <div className="text-sm">
             <p className="font-medium mb-1">Qualification:</p>
-            <p className="text-muted-foreground line-clamp-2">
-              {doctor.qualification}
-            </p>
+            <p className="text-muted line-clamp-2">{doctor.qualification}</p>
           </div>
 
           {doctor.doctorSpecialties && doctor.doctorSpecialties.length > 1 && (
             <div className="flex flex-wrap gap-1">
-              {doctor.doctorSpecialties.slice(1, 3).map((specialty) => (
+              {doctor.doctorSpecialties.slice(1, 3).map(specialty => (
                 <Badge
                   key={specialty.specialitiesId}
                   variant="outline"

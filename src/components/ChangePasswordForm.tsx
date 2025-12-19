@@ -45,7 +45,7 @@ const ChangePasswordForm = () => {
           <Button
             variant="ghost"
             onClick={() => setShowOldPassword(!showOldPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-foreground"
             tabIndex={-1}
           >
             {showOldPassword ? (
@@ -77,7 +77,7 @@ const ChangePasswordForm = () => {
           <Button
             variant="ghost"
             onClick={() => setShowNewPassword(!showNewPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-foreground"
             tabIndex={-1}
           >
             {showNewPassword ? (
@@ -109,7 +109,7 @@ const ChangePasswordForm = () => {
           <Button
             variant="ghost"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-foreground"
             tabIndex={-1}
           >
             {showConfirmPassword ? (

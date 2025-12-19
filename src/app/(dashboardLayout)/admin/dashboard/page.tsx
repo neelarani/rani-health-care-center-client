@@ -1,10 +1,10 @@
-import { AppointmentBarChart } from "@/components/shared/AppointmentBarChart";
-import { AppointmentPieChart } from "@/components/shared/AppointmentPieChart";
-import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
-import { StatsCard } from "@/components/shared/StatCard";
-import { getDashboardMetaData } from "@/services/meta/dashboard.service";
-import { IAdminDashboardMeta } from "@/types/meta.interface";
-import { Suspense } from "react";
+import { AppointmentBarChart } from '@/components/shared/AppointmentBarChart';
+import { AppointmentPieChart } from '@/components/shared/AppointmentPieChart';
+import { DashboardSkeleton } from '@/components/shared/DashboardSkeleton';
+import { StatsCard } from '@/components/shared/StatCard';
+import { getDashboardMetaData } from '@/services/meta/dashboard.service';
+import { IAdminDashboardMeta } from '@/types/meta.interface';
+import { Suspense } from 'react';
 
 async function AdminDashboardContent() {
   const result = await getDashboardMetaData();
@@ -18,10 +18,11 @@ async function AdminDashboardContent() {
       {/* Stats Cards Grid */}
       <div
         className={`grid gap-4 md:grid-cols-2 lg:grid-cols-3 ${
-          data.adminCount !== undefined ? "xl:grid-cols-6" : "xl:grid-cols-5"
+          data.adminCount !== undefined ? 'xl:grid-cols-6' : 'xl:grid-cols-5'
         }`}
       >
         <StatsCard
+          className="bg-blue-500 border-none"
           title="Total Appointments"
           value={data.appointmentCount.toLocaleString()}
           iconName="CalendarDays"
@@ -29,6 +30,7 @@ async function AdminDashboardContent() {
           iconClassName="bg-blue-100"
         />
         <StatsCard
+          className="bg-purple-500 border-none"
           title="Total Patients"
           value={data.patientCount.toLocaleString()}
           iconName="Users"
@@ -36,6 +38,7 @@ async function AdminDashboardContent() {
           iconClassName="bg-green-100"
         />
         <StatsCard
+          className="bg-sky-500 border-none"
           title="Total Doctors"
           value={data.doctorCount.toLocaleString()}
           iconName="Stethoscope"
@@ -44,14 +47,16 @@ async function AdminDashboardContent() {
         />
         {data.adminCount !== undefined && (
           <StatsCard
+            className="bg-green-500 border-none"
             title="Total Admins"
             value={data.adminCount.toLocaleString()}
             iconName="UserCog"
             description="System administrators"
-            iconClassName="bg-orange-100"
+            iconClassName="bg-orange-300"
           />
         )}
         <StatsCard
+          className="bg-orange-500 border-none"
           title="Total Payments"
           value={data.paymentCount.toLocaleString()}
           iconName="CreditCard"
@@ -59,6 +64,7 @@ async function AdminDashboardContent() {
           iconClassName="bg-indigo-100"
         />
         <StatsCard
+          className="bg-green-500 border-none"
           title="Total Revenue"
           value={`$${totalRevenue.toLocaleString()}`}
           iconName="DollarSign"
@@ -80,8 +86,10 @@ const AdminDashboardPage = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-3xl font-bold tracking-tight text-muted">
+          Dashboard
+        </h1>
+        <p className="text-muted">
           Overview of your healthcare system statistics
         </p>
       </div>

@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
-import { Button } from "../ui/button";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useTransition } from 'react';
+import { Button } from '../ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from '../ui/select';
 
 interface TablePaginationProps {
   currentPage: number;
@@ -24,7 +24,7 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
 
   const navigateToPage = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("page", newPage.toString());
+    params.set('page', newPage.toString());
 
     startTransition(() => {
       router.push(`?${params.toString()}`);
@@ -33,15 +33,15 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
 
   const changeLimit = (newLimit: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set("limit", newLimit);
-    params.set("page", "1"); // Reset to first page when changing limit
+    params.set('limit', newLimit);
+    params.set('page', '1'); // Reset to first page when changing limit
 
     startTransition(() => {
       router.push(`?${params.toString()}`);
     });
   };
 
-  const currentLimit = searchParams.get("limit") || "10";
+  const currentLimit = searchParams.get('limit') || '10';
 
   // if (totalPages <= 1) {
   //   return null;
@@ -51,11 +51,12 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
     <div className="flex items-center justify-center gap-2">
       <Button
         variant="outline"
+        className="bg-chart-1 text-muted"
         size="sm"
         onClick={() => navigateToPage(currentPage - 1)}
         disabled={currentPage <= 1 || isPending}
       >
-        <ChevronLeft className="h-4 w-4 mr-1" />
+        <ChevronLeft className="h-4 w-4 mr-1 " />
         Previous
       </Button>
 
@@ -75,11 +76,11 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
           return (
             <Button
               key={pageNumber}
-              variant={pageNumber === currentPage ? "default" : "outline"}
+              variant={pageNumber === currentPage ? 'default' : 'outline'}
               size="sm"
               onClick={() => navigateToPage(pageNumber)}
               disabled={isPending}
-              className="w-10"
+              className="w-10 bg-blue-500"
             >
               {pageNumber}
             </Button>
@@ -89,6 +90,7 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
 
       <Button
         variant="outline"
+        className="bg-chart-1 text-muted"
         size="sm"
         onClick={() => navigateToPage(currentPage + 1)}
         disabled={currentPage === totalPages || isPending}
@@ -97,14 +99,14 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
         <ChevronRight className="h-4 w-4 ml-1" />
       </Button>
 
-      <span className="text-sm text-muted-foreground ml-2">
+      <span className="text-sm text-muted ml-2 ">
         {/* Page 9 of 20 */}
         Page {currentPage} of {totalPages}
       </span>
 
       {/* Items per page selector */}
       <div className="flex items-center gap-2">
-        <span className="text-sm text-muted-foreground">Items per page:</span>
+        <span className="text-sm text-muted">Items per page:</span>
         <Select
           value={currentLimit}
           onValueChange={changeLimit}

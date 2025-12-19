@@ -155,7 +155,7 @@ const NGOsPage = () => {
       <Card className="bg-linear-to-br from-green-300 to-blue-50 border-green-200">
         <CardContent className="p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Partner With Us</h2>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          <p className="text-muted mb-6 max-w-2xl mx-auto">
             Are you a healthcare NGO? Register your organization to reach more
             people in need and make a bigger impact.
           </p>
@@ -169,7 +169,7 @@ const NGOsPage = () => {
         <Card className="inline-block bg-pink-100">
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-muted mb-6 max-w-md">
               We are building a comprehensive directory of healthcare NGOs to
               connect those in need with available resources.
             </p>

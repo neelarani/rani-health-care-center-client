@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import {
   ArrowDown,
   ArrowUp,
@@ -8,16 +8,16 @@ import {
   Loader2,
   MoreHorizontal,
   Trash,
-} from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useTransition } from "react";
-import { Button } from "../ui/button";
+} from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useTransition } from 'react';
+import { Button } from '../ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from '../ui/dropdown-menu';
 import {
   Table,
   TableBody,
@@ -25,7 +25,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from '../ui/table';
 
 export interface Column<T> {
   header: string;
@@ -56,7 +56,7 @@ function ManagementTable<T>({
   onEdit,
   onDelete,
   getRowKey,
-  emptyMessage = "No records found.",
+  emptyMessage = 'No records found.',
   isRefreshing = false,
 }: ManagementTableProps<T>) {
   const hasActions = onView || onEdit || onDelete;
@@ -64,23 +64,23 @@ function ManagementTable<T>({
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
 
-  const currentSortBy = searchParams.get("sortBy") || "";
-  const currentSortOrder = searchParams.get("sortOrder") || "desc";
+  const currentSortBy = searchParams.get('sortBy') || '';
+  const currentSortOrder = searchParams.get('sortOrder') || 'desc';
 
   const handleSort = (sortKey: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
     // Toggle sort order if clicking the same column
     if (currentSortBy === sortKey) {
-      const newOrder = currentSortOrder === "asc" ? "desc" : "asc";
-      params.set("sortOrder", newOrder);
+      const newOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
+      params.set('sortOrder', newOrder);
     } else {
       // New column, default to descending
-      params.set("sortBy", sortKey);
-      params.set("sortOrder", "desc");
+      params.set('sortBy', sortKey);
+      params.set('sortOrder', 'desc');
     }
 
-    params.set("page", "1"); // Reset to first page
+    params.set('page', '1'); // Reset to first page
 
     startTransition(() => {
       router.push(`?${params.toString()}`);
@@ -91,10 +91,10 @@ function ManagementTable<T>({
     if (!sortKey) return null;
 
     if (currentSortBy !== sortKey) {
-      return <ArrowUpDown className="ml-2 h-4 w-4 text-muted-foreground" />;
+      return <ArrowUpDown className="ml-2 h-4 w-4 text-muted" />;
     }
 
-    return currentSortOrder === "asc" ? (
+    return currentSortOrder === 'asc' ? (
       <ArrowUp className="ml-2 h-4 w-4" />
     ) : (
       <ArrowDown className="ml-2 h-4 w-4" />
@@ -102,13 +102,13 @@ function ManagementTable<T>({
   };
   return (
     <>
-      <div className="rounded-lg border relative">
+      <div className="rounded-lg border relative text-muted">
         {/* Refreshing Overlay */}
         {isRefreshing && (
-          <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-lg">
+          <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] flex items-center justify-center z-10 rounded-lg text-muted">
             <div className="flex flex-col items-center gap-2">
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
-              <p className="text-sm text-muted-foreground">Refreshing...</p>
+              <p className="text-sm text-muted">Refreshing...</p>
             </div>
           </div>
         )}
@@ -121,18 +121,18 @@ function ManagementTable<T>({
                   {column.sortKey ? (
                     <span
                       onClick={() => handleSort(column.sortKey!)}
-                      className="flex items-center p-2 hover:text-foreground transition-colors font-medium cursor-pointer select-none"
+                      className="flex items-center p-2 hover:text-foreground transition-colors font-medium cursor-pointer select-none text-muted"
                     >
                       {column.header}
                       {getSortIcon(column.sortKey)}
                     </span>
                   ) : (
-                    column.header
+                    <span className="text-muted"> {column.header}</span>
                   )}
                 </TableHead>
               ))}
               {hasActions && (
-                <TableHead className="w-[70px]">Actions</TableHead>
+                <TableHead className="w-[70px] text-muted">Actions</TableHead>
               )}
             </TableRow>
           </TableHeader>
@@ -142,17 +142,17 @@ function ManagementTable<T>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length + (hasActions ? 1 : 0)}
-                  className="text-center py-8 text-muted-foreground"
+                  className="text-center py-8 text-muted"
                 >
                   {emptyMessage}
                 </TableCell>
               </TableRow>
             ) : (
-              data?.map((item) => (
+              data?.map(item => (
                 <TableRow key={getRowKey(item)}>
                   {columns.map((col, idx) => (
                     <TableCell key={idx} className={col.className}>
-                      {typeof col.accessor === "function"
+                      {typeof col.accessor === 'function'
                         ? col.accessor(item)
                         : String(item[col.accessor])}
                     </TableCell>

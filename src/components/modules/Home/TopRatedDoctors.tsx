@@ -57,9 +57,7 @@ const DoctorCard = ({ doctor }: { doctor: (typeof doctors)[0] }) => {
           <span className="ml-2 text-foreground font-semibold">
             {doctor.rating}
           </span>
-          <span className="ml-2 text-muted-foreground">
-            ({doctor.reviews} reviews)
-          </span>
+          <span className="ml-2 text-muted">({doctor.reviews} reviews)</span>
         </div>
       </CardContent>
       <CardFooter className="grid grid-cols-2 gap-2 p-4 pt-0">

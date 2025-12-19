@@ -76,7 +76,7 @@ export default function AIDoctorSuggestion() {
           </div>
           <div>
             <CardTitle className="text-primary">AI Doctor Suggestion</CardTitle>
-            <CardDescription className="text-primary/80 bg-foreground">
+            <CardDescription className="text-muted bg-foreground">
               Describe your symptoms and get AI-powered doctor recommendations
             </CardDescription>
           </div>
@@ -89,13 +89,11 @@ export default function AIDoctorSuggestion() {
             value={symptoms}
             onChange={e => setSymptoms(e.target.value)}
             rows={4}
-            className="resize-none bg-white border-primary/30 focus:border-primary focus:ring-primary/50"
+            className="resize-none text-gray-100  border-primary/30 focus:border-primary focus:ring-primary/50 "
             disabled={isLoading}
           />
           <div className="flex justify-between items-center mt-1">
-            <p className="text-xs text-muted-foreground">
-              {symptoms.length} characters
-            </p>
+            <p className="text-xs text-muted">{symptoms.length} characters</p>
             <p className="text-xs text-primary font-medium">
               Minimum 5 characters required
             </p>
@@ -133,16 +131,14 @@ export default function AIDoctorSuggestion() {
                   AI Recommended ({suggestedDoctors.length})
                 </Badge>
               </div>
-              <p className="text-xs text-muted-foreground">
-                Based on your symptoms
-              </p>
+              <p className="text-xs text-muted">Based on your symptoms</p>
             </div>
 
             <div className="space-y-3">
               {suggestedDoctors.map((doctor, index) => (
                 <div
                   key={doctor.id || index}
-                  className="p-4 bg-gradient-to-br from-primary/5 to-white rounded-lg border border-primary/20 hover:shadow-md transition-shadow"
+                  className="p-4 rounded-lg border border-primary/20 hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
                     {/* Doctor Number Badge */}
@@ -265,7 +261,7 @@ export default function AIDoctorSuggestion() {
             </div>
 
             <div className="pt-2 border-t border-primary/20">
-              <p className="text-xs text-center text-muted-foreground">
+              <p className="text-xs text-center text-muted">
                 ⚠️ AI suggestions are for guidance only. Please consult a
                 medical professional for accurate diagnosis.
               </p>
@@ -274,11 +270,11 @@ export default function AIDoctorSuggestion() {
         )}
 
         {showSuggestions && suggestedDoctors.length === 0 && (
-          <div className="p-6 bg-white rounded-lg border-2 border-amber-200 text-center">
+          <div className="p-6  rounded-lg border-2 text-muted text-center">
             <p className="text-amber-700 font-medium">
               No doctor recommendations found
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted mt-1">
               Try describing your symptoms differently or browse all doctors
               below.
             </p>

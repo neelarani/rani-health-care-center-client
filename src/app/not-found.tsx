@@ -34,7 +34,7 @@ function NotFoundContent() {
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Page Not Found
           </h2>
-          <p className="text-lg text-muted-foreground max-w-md">
+          <p className="text-lg text-muted max-w-md">
             Oops! The page you&apos;re looking for doesn&apos;t exist. It might
             have been moved or deleted.
           </p>
@@ -71,7 +71,7 @@ export default function NotFound() {
         <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
             <h1 className="text-8xl font-bold text-primary">404</h1>
-            <p className="text-lg text-muted-foreground mt-4">Loading...</p>
+            <p className="text-lg text-muted mt-4">Loading...</p>
           </div>
         </div>
       }

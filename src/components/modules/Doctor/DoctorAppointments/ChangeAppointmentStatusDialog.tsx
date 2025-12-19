@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,23 +8,23 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+} from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { changeAppointmentStatus } from "@/services/patient/appointment.service";
+} from '@/components/ui/select';
+import { changeAppointmentStatus } from '@/services/patient/appointment.service';
 import {
   AppointmentStatus,
   IAppointment,
-} from "@/types/appointments.interface";
-import { AlertCircle, Loader2 } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+} from '@/types/appointments.interface';
+import { AlertCircle, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface ChangeStatusDialogProps {
   appointment: IAppointment;
@@ -43,15 +43,15 @@ export default function ChangeAppointmentStatusDialog({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const statusOptions = [
-    { value: AppointmentStatus.SCHEDULED, label: "Scheduled" },
-    { value: AppointmentStatus.INPROGRESS, label: "In Progress" },
-    { value: AppointmentStatus.COMPLETED, label: "Completed" },
-    { value: AppointmentStatus.CANCELED, label: "Canceled" },
+    { value: AppointmentStatus.SCHEDULED, label: 'Scheduled' },
+    { value: AppointmentStatus.INPROGRESS, label: 'In Progress' },
+    { value: AppointmentStatus.COMPLETED, label: 'Completed' },
+    { value: AppointmentStatus.CANCELED, label: 'Canceled' },
   ];
 
   const handleSubmit = async () => {
     if (newStatus === appointment.status) {
-      toast.info("No changes made");
+      toast.info('No changes made');
       onClose();
       return;
     }
@@ -62,7 +62,7 @@ export default function ChangeAppointmentStatusDialog({
       const result = await changeAppointmentStatus(appointment.id, newStatus);
 
       if (result.success) {
-        toast.success("Appointment status updated successfully");
+        toast.success('Appointment status updated successfully');
 
         // Show prescription reminder if completed
         if (
@@ -81,10 +81,10 @@ export default function ChangeAppointmentStatusDialog({
 
         onClose();
       } else {
-        toast.error(result.message || "Failed to update status");
+        toast.error(result.message || 'Failed to update status');
       }
     } catch (error) {
-      toast.error("An error occurred while updating status");
+      toast.error('An error occurred while updating status');
       console.error(error);
     } finally {
       setIsSubmitting(false);
@@ -98,8 +98,8 @@ export default function ChangeAppointmentStatusDialog({
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="max-w-md">
+    <Dialog open={isOpen} onOpenChange={open => !open && handleClose()}>
+      <DialogContent className="max-w-md bg-foreground text-muted">
         <DialogHeader>
           <DialogTitle>Change Appointment Status</DialogTitle>
           <DialogDescription>
@@ -113,7 +113,7 @@ export default function ChangeAppointmentStatusDialog({
             <Label>Current Status</Label>
             <div className="text-sm font-medium">
               {
-                statusOptions.find((opt) => opt.value === appointment.status)
+                statusOptions.find(opt => opt.value === appointment.status)
                   ?.label
               }
             </div>
@@ -124,16 +124,14 @@ export default function ChangeAppointmentStatusDialog({
             <Label htmlFor="status">New Status</Label>
             <Select
               value={newStatus}
-              onValueChange={(value) =>
-                setNewStatus(value as AppointmentStatus)
-              }
+              onValueChange={value => setNewStatus(value as AppointmentStatus)}
               disabled={isSubmitting}
             >
               <SelectTrigger id="status">
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
               <SelectContent>
-                {statusOptions.map((option) => (
+                {statusOptions.map(option => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
                   </SelectItem>
@@ -173,7 +171,7 @@ export default function ChangeAppointmentStatusDialog({
                 Updating...
               </>
             ) : (
-              "Confirm Change"
+              'Confirm Change'
             )}
           </Button>
         </DialogFooter>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Card,
@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { format } from "date-fns";
-import { useMemo } from "react";
+} from '@/components/ui/card';
+import { format } from 'date-fns';
+import { useMemo } from 'react';
 import {
   Bar,
   BarChart,
@@ -18,7 +18,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-} from "recharts";
+} from 'recharts';
 
 interface BarChartData {
   month: Date | string;
@@ -32,12 +32,12 @@ interface AppointmentBarChartProps {
 export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
   const colors = useMemo(() => {
     // Get computed colors from CSS variables
-    if (typeof window === "undefined") {
+    if (typeof window === 'undefined') {
       return {
-        primary: "#3b82f6",
-        muted: "#9ca3af",
-        border: "#e5e7eb",
-        accent: "#f3f4f6",
+        primary: '#3b82f6',
+        muted: '#9ca3af',
+        border: '#e5e7eb',
+        accent: '#f3f4f6',
       };
     }
 
@@ -45,33 +45,35 @@ export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
     const styles = getComputedStyle(root);
 
     return {
-      primary: styles.getPropertyValue("--primary").trim(),
-      muted: styles.getPropertyValue("--muted-foreground").trim(),
-      border: styles.getPropertyValue("--border").trim(),
-      accent: styles.getPropertyValue("--accent").trim(),
+      primary: styles.getPropertyValue('--primary').trim(),
+      muted: styles.getPropertyValue('--muted-foreground').trim(),
+      border: styles.getPropertyValue('--border').trim(),
+      accent: styles.getPropertyValue('--accent').trim(),
     };
   }, []);
 
   // Format data for recharts
-  const formattedData = data.map((item) => ({
+  const formattedData = data.map(item => ({
     month:
-      typeof item.month === "string"
-        ? format(new Date(item.month), "MMM yyyy")
-        : format(item.month, "MMM yyyy"),
+      typeof item.month === 'string'
+        ? format(new Date(item.month), 'MMM yyyy')
+        : format(item.month, 'MMM yyyy'),
     appointments: Number(item.count),
   }));
 
   // Handle empty data
   if (formattedData.length === 0) {
     return (
-      <Card className="col-span-4">
+      <Card className="col-span-4 bg-foreground border-muted-foreground/30">
         <CardHeader>
-          <CardTitle>Appointment Trends</CardTitle>
-          <CardDescription>Monthly appointment statistics</CardDescription>
+          <CardTitle className="text-muted">Appointment Trends</CardTitle>
+          <CardDescription className="text-muted">
+            Monthly appointment statistics
+          </CardDescription>
         </CardHeader>
         <CardContent className="pl-2">
           <div className="flex items-center justify-center h-[350px]">
-            <p className="text-sm text-muted-foreground">No data available</p>
+            <p className="text-sm text-muted">No data available</p>
           </div>
         </CardContent>
       </Card>
@@ -82,7 +84,9 @@ export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
     <Card className="col-span-4">
       <CardHeader>
         <CardTitle>Appointment Trends</CardTitle>
-        <CardDescription>Monthly appointment statistics</CardDescription>
+        <CardDescription className="text-black">
+          Monthly appointment statistics
+        </CardDescription>
       </CardHeader>
       <CardContent className="pl-2">
         <ResponsiveContainer width="100%" height={350}>
@@ -104,28 +108,28 @@ export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => `${value}`}
+              tickFormatter={value => `${value}`}
             />
             <Tooltip
               cursor={{ fill: colors.primary, opacity: 0.1 }}
               contentStyle={{
                 backgroundColor: colors.accent,
                 border: `1px solid ${colors.border}`,
-                borderRadius: "8px",
-                boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                borderRadius: '8px',
+                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
               }}
               itemStyle={{
                 color: colors.muted,
               }}
               labelStyle={{
                 fontWeight: 600,
-                marginBottom: "4px",
+                marginBottom: '4px',
                 color: colors.muted,
               }}
             />
             <Legend
               wrapperStyle={{
-                paddingTop: "20px",
+                paddingTop: '20px',
               }}
             />
             <Bar

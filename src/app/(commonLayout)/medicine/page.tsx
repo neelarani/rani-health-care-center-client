@@ -95,7 +95,7 @@ const MedicinePage = () => {
                   1
                 </div>
                 <h3 className="font-semibold">Upload Prescription</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted">
                   Upload your doctor&apos;s prescription or browse medicines
                 </p>
               </div>
@@ -104,7 +104,7 @@ const MedicinePage = () => {
                   2
                 </div>
                 <h3 className="font-semibold">Place Order</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted">
                   Add medicines to cart and complete your order
                 </p>
               </div>
@@ -113,7 +113,7 @@ const MedicinePage = () => {
                   3
                 </div>
                 <h3 className="font-semibold">Get Delivered</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted">
                   Receive your medicines at your doorstep
                 </p>
               </div>
@@ -126,7 +126,7 @@ const MedicinePage = () => {
         <Card className="inline-block">
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-muted mb-6 max-w-md">
               We are working hard to bring you the best online medicine ordering
               experience. Stay tuned!
             </p>

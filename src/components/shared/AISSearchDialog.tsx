@@ -235,9 +235,7 @@ export default function AISearchDialog({
                   <Sparkles className="h-3 w-3 mr-1" />
                   AI Recommended ({suggestedDoctors.length})
                 </Badge>
-                <p className="text-xs text-muted-foreground">
-                  Based on your symptoms
-                </p>
+                <p className="text-xs text-muted">Based on your symptoms</p>
               </div>
 
               <div className="space-y-3 max-h-[400px] overflow-y-auto">
@@ -372,7 +370,7 @@ export default function AISearchDialog({
               </div>
 
               <div className="pt-2 border-t border-blue-200">
-                <p className="text-xs text-center text-muted-foreground">
+                <p className="text-xs text-center text-muted">
                   ⚠️ AI suggestions are for guidance only. Please consult a
                   medical professional for accurate diagnosis.
                 </p>
@@ -385,7 +383,7 @@ export default function AISearchDialog({
               <p className="text-amber-700 font-medium">
                 No doctor recommendations found
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-sm text-muted mt-1">
                 Try describing your symptoms differently.
               </p>
             </div>

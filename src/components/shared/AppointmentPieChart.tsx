@@ -125,9 +125,7 @@ export function AppointmentPieChart({
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center h-[300px] ">
-            <p className="text-sm md:text-2xl text-muted-foreground">
-              No data available
-            </p>
+            <p className="text-sm md:text-2xl text-muted">No data available</p>
           </div>
         </CardContent>
       </Card>
@@ -135,10 +133,12 @@ export function AppointmentPieChart({
   }
 
   return (
-    <Card className="col-span-3">
+    <Card className="col-span-3 bg-background border-none text-muted">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="text-muted/70">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>

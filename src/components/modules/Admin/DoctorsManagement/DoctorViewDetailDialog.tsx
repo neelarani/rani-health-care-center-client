@@ -1,15 +1,15 @@
-import InfoRow from "@/components/shared/InoRow";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import InfoRow from '@/components/shared/InoRow';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Separator } from "@/components/ui/separator";
-import { formatDateTime, getInitials } from "@/lib/formatters";
-import { IDoctor } from "@/types/doctor.interface";
+} from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
+import { formatDateTime, getInitials } from '@/lib/formatters';
+import { IDoctor } from '@/types/doctor.interface';
 import {
   Briefcase,
   Calendar,
@@ -21,7 +21,7 @@ import {
   Star,
   Stethoscope,
   User,
-} from "lucide-react";
+} from 'lucide-react';
 
 interface IDoctorViewDialogProps {
   open: boolean;
@@ -39,32 +39,32 @@ const DoctorViewDetailDialog = ({
   }
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="min-w-5xl max-h-[90vh] flex flex-col p-0">
+      <DialogContent className="min-w-5xl max-h-[90vh] flex flex-col p-0 bg-foreground text-muted">
         <DialogHeader className="px-6 pt-6 pb-4">
           <DialogTitle>Doctor Profile</DialogTitle>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto px-6 pb-6">
           {/* Doctor Profile Header */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg mb-6">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6  bg-foreground rounded-lg mb-6">
             <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
               <AvatarImage src={doctor?.profilePhoto} alt={doctor?.name} />
               <AvatarFallback className="text-2xl">
-                {getInitials(doctor?.name || "")}
+                {getInitials(doctor?.name || '')}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 text-center sm:text-left">
               <h2 className="text-3xl font-bold mb-1">{doctor?.name}</h2>
-              <p className="text-muted-foreground mb-2 flex items-center justify-center sm:justify-start gap-2">
+              <p className="text-muted mb-2 flex items-center justify-center sm:justify-start gap-2">
                 <Mail className="h-4 w-4" />
                 {doctor?.email}
               </p>
               <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                 <Badge
-                  variant={doctor?.isDeleted ? "destructive" : "default"}
+                  variant={doctor?.isDeleted ? 'destructive' : 'default'}
                   className="text-sm"
                 >
-                  {doctor?.isDeleted ? "Inactive" : "Active"}
+                  {doctor?.isDeleted ? 'Inactive' : 'Active'}
                 </Badge>
                 {doctor?.averageRating !== undefined && (
                   <Badge variant="secondary" className="text-sm">
@@ -88,52 +88,52 @@ const DoctorViewDetailDialog = ({
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
                 <div className="flex items-start gap-3">
-                  <Briefcase className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Briefcase className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Designation"
-                    value={doctor?.designation || "Not specified"}
+                    value={doctor?.designation || 'Not specified'}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <GraduationCap className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <GraduationCap className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Qualification"
-                    value={doctor?.qualification || "Not specified"}
+                    value={doctor?.qualification || 'Not specified'}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <User className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <User className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Registration Number"
-                    value={doctor?.registrationNumber || "Not specified"}
+                    value={doctor?.registrationNumber || 'Not specified'}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Experience"
                     value={
                       doctor?.experience
                         ? `${doctor.experience} years`
-                        : "Not specified"
+                        : 'Not specified'
                     }
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <Briefcase className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Briefcase className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Current Working Place"
-                    value={doctor?.currentWorkingPlace || "Not specified"}
+                    value={doctor?.currentWorkingPlace || 'Not specified'}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <DollarSign className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <DollarSign className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Appointment Fee"
                     value={
                       doctor?.appointmentFee
                         ? `$${doctor.appointmentFee}`
-                        : "Not specified"
+                        : 'Not specified'
                     }
                   />
                 </div>
@@ -158,7 +158,7 @@ const DoctorViewDetailDialog = ({
                           variant="outline"
                           className="px-4 py-2 text-sm"
                         >
-                          {specialty.specialities?.title || "Unknown"}
+                          {specialty.specialities?.title || 'Unknown'}
                         </Badge>
                       ))}
                     </div>
@@ -175,24 +175,24 @@ const DoctorViewDetailDialog = ({
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
                 <div className="flex items-start gap-3">
-                  <Phone className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Phone className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Contact Number"
-                    value={doctor?.contactNumber || "Not provided"}
+                    value={doctor?.contactNumber || 'Not provided'}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <Mail className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Mail className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Email"
-                    value={doctor?.email || "Not provided"}
+                    value={doctor?.email || 'Not provided'}
                   />
                 </div>
                 <div className="flex items-start gap-3 md:col-span-2">
-                  <MapPin className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <MapPin className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Address"
-                    value={doctor?.address || "Not provided"}
+                    value={doctor?.address || 'Not provided'}
                   />
                 </div>
               </div>
@@ -208,34 +208,34 @@ const DoctorViewDetailDialog = ({
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
                 <div className="flex items-start gap-3">
-                  <User className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <User className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Gender"
                     value={
                       doctor?.gender
                         ? doctor.gender.charAt(0) +
                           doctor.gender.slice(1).toLowerCase()
-                        : "Not specified"
+                        : 'Not specified'
                     }
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Joined On"
-                    value={formatDateTime(doctor?.createdAt || "")}
+                    value={formatDateTime(doctor?.createdAt || '')}
                   />
                 </div>
                 <div className="flex items-start gap-3">
-                  <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
+                  <Calendar className="h-4 w-4 mt-1 text-muted" />
                   <InfoRow
                     label="Last Updated"
-                    value={formatDateTime(doctor?.updatedAt || "")}
+                    value={formatDateTime(doctor?.updatedAt || '')}
                   />
                 </div>
                 {doctor?.averageRating !== undefined && (
                   <div className="flex items-start gap-3">
-                    <Star className="h-4 w-4 mt-1 text-muted-foreground" />
+                    <Star className="h-4 w-4 mt-1 text-muted" />
                     <InfoRow
                       label="Average Rating"
                       value={`${doctor.averageRating.toFixed(1)} / 5.0`}

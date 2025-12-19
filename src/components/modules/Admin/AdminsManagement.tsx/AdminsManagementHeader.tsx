@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import AdminFormDialog from "./AdminFormDialog";
+import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
+import { Plus } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import AdminFormDialog from './AdminFormDialog';
 
 const AdminsManagementHeader = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const AdminsManagementHeader = () => {
   const [dialogKey, setDialogKey] = useState(0);
 
   const handleOpenDialog = () => {
-    setDialogKey((prev) => prev + 1); // Force remount
+    setDialogKey(prev => prev + 1); // Force remount
     setIsDialogOpen(true);
   };
 
@@ -38,15 +38,17 @@ const AdminsManagementHeader = () => {
         onSuccess={handleSuccess}
       />
 
-      <ManagementPageHeader
-        title="Admins Management"
-        description="Manage admin accounts and permissions"
-        action={{
-          label: "Add Admin",
-          icon: Plus,
-          onClick: handleOpenDialog,
-        }}
-      />
+      <div className="text-muted">
+        <ManagementPageHeader
+          title="Admins Management"
+          description="Manage admin accounts and permissions"
+          action={{
+            label: 'Add Admin',
+            icon: Plus,
+            onClick: handleOpenDialog,
+          }}
+        />
+      </div>
     </>
   );
 };

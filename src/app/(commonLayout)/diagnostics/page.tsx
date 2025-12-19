@@ -110,7 +110,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div className="text-muted">
                   <h3 className="font-semibold mb-1">Accredited Labs</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted">
                     Partner labs certified by national and international bodies
                   </p>
                 </div>
@@ -121,7 +121,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Home Sample Collection</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted">
                     Trained phlebotomists collect samples from your home
                   </p>
                 </div>
@@ -132,7 +132,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Digital Reports</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted">
                     Access your reports online anytime, anywhere
                   </p>
                 </div>
@@ -145,7 +145,7 @@ const DiagnosticsPage = () => {
                   <h3 className="font-semibold mb-1 text-muted">
                     Affordable Pricing
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted">
                     Competitive rates with package discounts
                   </p>
                 </div>
@@ -159,7 +159,7 @@ const DiagnosticsPage = () => {
         <Card className="inline-block bg-green-100">
           <CardContent className="p-8 ">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted-foreground mb-6 max-w-md">
+            <p className="text-muted mb-6 max-w-md">
               We are partnering with top diagnostic labs to bring you the best
               testing services. Stay tuned!
             </p>

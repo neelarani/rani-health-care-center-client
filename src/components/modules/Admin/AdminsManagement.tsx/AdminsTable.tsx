@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
-import ManagementTable from "@/components/shared/ManagementTable";
-import { softDeleteAdmin } from "@/services/admin/adminsManagement";
-import { IAdmin } from "@/types/admin.interface";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { toast } from "sonner";
-import AdminFormDialog from "./AdminFormDialog";
-import { adminsColumns } from "./adminsColumn";
-import AdminViewDetailDialog from "./AdminViewDetailDialog";
+import DeleteConfirmationDialog from '@/components/shared/DeleteConfirmationDialog';
+import ManagementTable from '@/components/shared/ManagementTable';
+import { softDeleteAdmin } from '@/services/admin/adminsManagement';
+import { IAdmin } from '@/types/admin.interface';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import { toast } from 'sonner';
+import AdminFormDialog from './AdminFormDialog';
+import { adminsColumns } from './adminsColumn';
+import AdminViewDetailDialog from './AdminViewDetailDialog';
 
 interface AdminsTableProps {
   admins: IAdmin[];
@@ -49,11 +49,11 @@ const AdminsTable = ({ admins }: AdminsTableProps) => {
     setIsDeleting(false);
 
     if (result.success) {
-      toast.success(result.message || "Admin deleted successfully");
+      toast.success(result.message || 'Admin deleted successfully');
       setDeletingAdmin(null);
       handleRefresh();
     } else {
-      toast.error(result.message || "Failed to delete admin");
+      toast.error(result.message || 'Failed to delete admin');
     }
   };
 
@@ -65,7 +65,7 @@ const AdminsTable = ({ admins }: AdminsTableProps) => {
         onView={handleView}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        getRowKey={(admin) => admin.id!}
+        getRowKey={admin => admin.id!}
         emptyMessage="No admins found"
       />
 
@@ -90,7 +90,7 @@ const AdminsTable = ({ admins }: AdminsTableProps) => {
       {/* Delete Confirmation Dialog */}
       <DeleteConfirmationDialog
         open={!!deletingAdmin}
-        onOpenChange={(open) => !open && setDeletingAdmin(null)}
+        onOpenChange={open => !open && setDeletingAdmin(null)}
         onConfirm={confirmDelete}
         title="Delete Admin"
         description={`Are you sure you want to delete ${deletingAdmin?.name}? This action cannot be undone.`}

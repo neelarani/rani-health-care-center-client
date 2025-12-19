@@ -24,7 +24,7 @@ async function PatientDashboardContent() {
           iconName="CalendarDays"
           description="All time appointments"
           iconClassName="bg-blue-300"
-          className="bg-amber-200"
+          className="bg-amber-600 border-none"
         />
         <StatsCard
           title="Total Prescriptions"
@@ -32,7 +32,7 @@ async function PatientDashboardContent() {
           iconName="FileText"
           description="Medical prescriptions"
           iconClassName="bg-purple-100"
-          className="bg-blue-300 "
+          className="bg-sky-700 border-none"
         />
         <StatsCard
           title="Total Reviews"
@@ -40,12 +40,12 @@ async function PatientDashboardContent() {
           iconName="Star"
           description="Reviews given"
           iconClassName="bg-yellow-100"
-          className="bg-red-300"
+          className="bg-green-700 border-none"
         />
       </div>
 
       {/* Appointment Status Chart */}
-      <div className="grid gap-4">
+      <div className="grid gap-4 text-muted">
         <AppointmentPieChart
           data={data.formattedAppointmentStatusDistribution}
           title="Appointment Status Distribution"

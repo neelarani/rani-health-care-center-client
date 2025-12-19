@@ -1,14 +1,18 @@
 'use client';
 import { loginUser } from '@/services/auth/loginUser';
-import { useActionState, useEffect } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import InputFieldError from './shared/InputFieldError';
 import { Button } from './ui/button';
 import { Field, FieldDescription, FieldGroup, FieldLabel } from './ui/field';
 import { Input } from './ui/input';
+import LoginCredential from './shared/LoginCredential';
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
     if (state && !state.success && state.message) {
@@ -18,6 +22,12 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
 
   return (
     <form action={formAction} className="text-muted">
+      <LoginCredential
+        setCredentials={data => {
+          setEmail(data.email);
+          setPassword(data.password);
+        }}
+      />
       {redirect && <input type="hidden" name="redirect" value={redirect} />}
       <FieldGroup>
         <div className="grid grid-cols-1 gap-4">
@@ -29,6 +39,8 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               name="email"
               type="email"
               placeholder="m@example.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               //   required
             />
 
@@ -43,6 +55,8 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               name="password"
               type="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               //   required
             />
             <InputFieldError field="password" state={state} />

@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import ManagementTable from "@/components/shared/ManagementTable";
+import ManagementTable from '@/components/shared/ManagementTable';
 import {
   AppointmentStatus,
   IAppointment,
-} from "@/types/appointments.interface";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
-import ChangeAppointmentStatusDialog from "./ChangeAppointmentStatusDialog";
-import { doctorAppointmentColumns } from "./doctorAppointmentColumns";
-import DoctorAppointmentDetailDialog from "./DoctorAppointmentDetailDialog";
+} from '@/types/appointments.interface';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import ChangeAppointmentStatusDialog from './ChangeAppointmentStatusDialog';
+import { doctorAppointmentColumns } from './doctorAppointmentColumns';
+import DoctorAppointmentDetailDialog from './DoctorAppointmentDetailDialog';
 
 interface DoctorAppointmentsTableProps {
   appointments: IAppointment[];
@@ -39,8 +39,8 @@ export default function DoctorAppointmentsTable({
     // 1. Canceled appointments
     // 2. Completed appointments with prescriptions
     if (appointment.status === AppointmentStatus.CANCELED) {
-      toast.error("Cannot change status for canceled appointments", {
-        description: "Canceled appointments are final and cannot be modified.",
+      toast.error('Cannot change status for canceled appointments', {
+        description: 'Canceled appointments are final and cannot be modified.',
       });
       return;
     }
@@ -49,9 +49,9 @@ export default function DoctorAppointmentsTable({
       appointment.status === AppointmentStatus.COMPLETED &&
       !!appointment.prescription
     ) {
-      toast.error("Cannot change status once prescription is provided", {
+      toast.error('Cannot change status once prescription is provided', {
         description:
-          "Appointment status is locked after prescription is created to maintain medical record integrity.",
+          'Appointment status is locked after prescription is created to maintain medical record integrity.',
       });
       return;
     }
@@ -66,7 +66,7 @@ export default function DoctorAppointmentsTable({
         columns={doctorAppointmentColumns}
         onView={handleView}
         onEdit={handleEditClick}
-        getRowKey={(appointment) => appointment.id}
+        getRowKey={appointment => appointment.id}
         emptyMessage="No appointments found"
       />
 

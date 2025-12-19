@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import ClearFiltersButton from "@/components/shared/ClearFiltersButton";
-import RefreshButton from "@/components/shared/RefreshButton";
-import SelectFilter from "@/components/shared/SelectFilter";
+import ClearFiltersButton from '@/components/shared/ClearFiltersButton';
+import RefreshButton from '@/components/shared/RefreshButton';
+import SelectFilter from '@/components/shared/SelectFilter';
 
 const MySchedulesFilters = () => {
   return (
@@ -13,15 +13,15 @@ const MySchedulesFilters = () => {
       </div>
 
       {/* Row 2: Filter Controls */}
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center gap-3 flex-wrap text-muted">
         {/* Booking Status Filter */}
         <SelectFilter
           paramName="isBooked"
           placeholder="Booking Status"
           defaultValue="All Schedules"
           options={[
-            { label: "Available", value: "false" },
-            { label: "Booked", value: "true" },
+            { label: 'Available', value: 'false' },
+            { label: 'Booked', value: 'true' },
           ]}
         />
 

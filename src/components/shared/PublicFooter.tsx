@@ -73,7 +73,7 @@ function PublicFooter() {
             </p>
           </div>
         </div>
-        <div className="mt-8 border-t border-muted-foreground pt-4 text-center text-sm text-muted-foreground">
+        <div className="mt-8 border-t border-muted-foreground pt-4 text-center text-sm text-muted">
           &copy; {new Date().getFullYear()} Rani Health Care. All Rights
           Reserved.
         </div>

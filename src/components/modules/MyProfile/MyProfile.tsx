@@ -126,10 +126,8 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
 
               <div className="text-center">
                 <p className="font-semibold text-lg">{userInfo.name}</p>
-                <p className="text-sm text-muted-foreground">
-                  {userInfo.email}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1 capitalize">
+                <p className="text-sm text-muted">{userInfo.email}</p>
+                <p className="text-xs text-muted mt-1 capitalize">
                   {userInfo.role.replace('_', ' ')}
                 </p>
               </div>
@@ -278,7 +276,7 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
                         id="gender"
                         name="gender"
                         defaultValue={userInfo.doctor.gender || 'MALE'}
-                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         disabled={isPending}
                       >
                         <option value="MALE">Male</option>

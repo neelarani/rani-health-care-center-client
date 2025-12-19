@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { createPrescription } from "@/services/patient/prescription.service";
-import { IAppointment } from "@/types/appointments.interface";
-import { format } from "date-fns";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
-import AppointmentCountdown from "../../Patient/PatientAppointment/AppointmentCountdown";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { createPrescription } from '@/services/patient/prescription.service';
+import { IAppointment } from '@/types/appointments.interface';
+import { format } from 'date-fns';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import AppointmentCountdown from '../../Patient/PatientAppointment/AppointmentCountdown';
 
 interface DoctorAppointmentDetailDialogProps {
   appointment: IAppointment | null;
@@ -32,27 +32,27 @@ export default function DoctorAppointmentDetailDialog({
 }: DoctorAppointmentDetailDialogProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [instructions, setInstructions] = useState("");
-  const [followUpDate, setFollowUpDate] = useState("");
+  const [instructions, setInstructions] = useState('');
+  const [followUpDate, setFollowUpDate] = useState('');
 
   if (!appointment) return null;
 
   const { patient, schedule, status, paymentStatus, prescription } =
     appointment;
 
-  const isCompleted = status === "COMPLETED";
+  const isCompleted = status === 'COMPLETED';
   const hasPrescription = !!prescription;
   const canWritePrescription = isCompleted && !hasPrescription;
 
   const handleSubmitPrescription = async () => {
     if (!instructions.trim()) {
-      toast.error("Please provide prescription instructions");
+      toast.error('Please provide prescription instructions');
       return;
     }
 
     if (instructions.trim().length < 20) {
       toast.error(
-        "Instructions must be at least 20 characters long for clarity"
+        'Instructions must be at least 20 characters long for clarity'
       );
       return;
     }
@@ -77,111 +77,109 @@ export default function DoctorAppointmentDetailDialog({
       const result = await createPrescription(prescriptionData);
 
       if (result.success) {
-        toast.success("Prescription created successfully");
-        setInstructions("");
-        setFollowUpDate("");
+        toast.success('Prescription created successfully');
+        setInstructions('');
+        setFollowUpDate('');
         // Close dialog first, then refresh will update the data
         setTimeout(() => {
           onClose();
         }, 100);
       } else {
-        toast.error(result.message || "Failed to create prescription");
+        toast.error(result.message || 'Failed to create prescription');
         setIsSubmitting(false);
       }
     } catch (error) {
-      console.error("Error creating prescription:", error);
-      toast.error("An error occurred while creating prescription");
+      console.error('Error creating prescription:', error);
+      toast.error('An error occurred while creating prescription');
       setIsSubmitting(false);
     }
   };
 
   const handleClose = () => {
-    setInstructions("");
-    setFollowUpDate("");
+    setInstructions('');
+    setFollowUpDate('');
     onClose();
   };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="min-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="min-w-3xl max-h-[90vh] overflow-y-auto  bg-foreground">
         <DialogHeader>
-          <DialogTitle>Appointment Details</DialogTitle>
+          <DialogTitle className="text-muted">Appointment Details</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6">
           {/* Patient Information */}
-          <div className="border rounded-lg p-4 bg-muted/50">
-            <h3 className="font-semibold text-lg mb-3">Patient Information</h3>
+          <div className="border rounded-lg p-4 bg-muted/50 ">
+            <h3 className="font-semibold text-lg mb-3 ">Patient Information</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-muted-foreground">Name</p>
+                <p className="text-lg font-bold">Name</p>
                 <p className="font-medium">{patient?.name}</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Email</p>
+                <p className="text-lg font-bold">Email</p>
                 <p className="font-medium">{patient?.email}</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Contact Number</p>
+                <p className="text-lg font-bold">Contact Number</p>
                 <p className="font-medium">
-                  {patient?.contactNumber || "Not provided"}
+                  {patient?.contactNumber || 'Not provided'}
                 </p>
               </div>
               <div>
-                <p className="text-muted-foreground">Address</p>
+                <p className="font-bold text-lg">Address</p>
                 <p className="font-medium">
-                  {patient?.address || "Not provided"}
+                  {patient?.address || 'Not provided'}
                 </p>
               </div>
             </div>
           </div>
 
           {/* Appointment Details */}
-          <div className="border rounded-lg p-4">
+          <div className="border rounded-lg p-4 text-muted">
             <h3 className="font-semibold text-lg mb-3">Appointment Details</h3>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-muted-foreground">Schedule Date</p>
+                <p className="text-muted">Schedule Date</p>
                 <p className="font-medium">
                   {schedule?.startDateTime
-                    ? format(new Date(schedule.startDateTime), "PPP")
-                    : "N/A"}
+                    ? format(new Date(schedule.startDateTime), 'PPP')
+                    : 'N/A'}
                 </p>
               </div>
               <div>
-                <p className="text-muted-foreground">Time</p>
+                <p className="text-muted">Time</p>
                 <p className="font-medium">
                   {schedule?.startDateTime && schedule?.endDateTime
                     ? `${format(
                         new Date(schedule.startDateTime),
-                        "p"
-                      )} - ${format(new Date(schedule.endDateTime), "p")}`
-                    : "N/A"}
+                        'p'
+                      )} - ${format(new Date(schedule.endDateTime), 'p')}`
+                    : 'N/A'}
                 </p>
               </div>
-              {status === "SCHEDULED" && schedule?.startDateTime && (
+              {status === 'SCHEDULED' && schedule?.startDateTime && (
                 <div className="col-span-2 pt-2 border-t">
-                  <p className="text-muted-foreground mb-2">
-                    Time Until Appointment
-                  </p>
+                  <p className="text-muted mb-2">Time Until Appointment</p>
                   <AppointmentCountdown
                     appointmentDateTime={schedule.startDateTime}
                   />
                 </div>
               )}
               <div>
-                <p className="text-muted-foreground">Status</p>
+                <p className="text-muted">Status</p>
                 <div>
                   <Badge
                     variant="outline"
                     className={
-                      status === "COMPLETED"
-                        ? "border-green-500 text-green-700 bg-green-50"
-                        : status === "INPROGRESS"
-                        ? "border-blue-500 text-blue-700 bg-blue-50"
-                        : status === "SCHEDULED"
-                        ? "border-purple-500 text-purple-700 bg-purple-50"
-                        : "border-red-500 text-red-700 bg-red-50"
+                      status === 'COMPLETED'
+                        ? 'border-green-500 text-green-700 bg-green-50'
+                        : status === 'INPROGRESS'
+                        ? 'border-blue-500 text-blue-700 bg-blue-50'
+                        : status === 'SCHEDULED'
+                        ? 'border-purple-500 text-purple-700 bg-purple-50'
+                        : 'border-red-500 text-red-700 bg-red-50'
                     }
                   >
                     {status}
@@ -189,11 +187,11 @@ export default function DoctorAppointmentDetailDialog({
                 </div>
               </div>
               <div>
-                <p className="text-muted-foreground">Payment</p>
+                <p className="text-muted">Payment</p>
                 <div>
                   <Badge
                     variant={
-                      paymentStatus === "PAID" ? "default" : "destructive"
+                      paymentStatus === 'PAID' ? 'default' : 'destructive'
                     }
                   >
                     {paymentStatus}
@@ -205,10 +203,12 @@ export default function DoctorAppointmentDetailDialog({
 
           {/* Prescription Section */}
           <div className="border rounded-lg p-4">
-            <h3 className="font-semibold text-lg mb-3">Prescription</h3>
+            <h3 className="font-semibold text-lg mb-3 text-muted">
+              Prescription
+            </h3>
 
-            {status === "CANCELED" && (
-              <div className="text-sm text-muted-foreground p-4 bg-red-50 border border-red-200 rounded-md">
+            {status === 'CANCELED' && (
+              <div className="text-sm text-muted p-4 bg-red-50 border border-red-200 rounded-md">
                 <p className="text-red-800">
                   ⚠️ This appointment has been canceled. No prescription can be
                   provided.
@@ -216,11 +216,11 @@ export default function DoctorAppointmentDetailDialog({
               </div>
             )}
 
-            {!isCompleted && status !== "CANCELED" && (
-              <div className="text-sm text-muted-foreground p-4 bg-muted/50 rounded-md">
+            {!isCompleted && status !== 'CANCELED' && (
+              <div className="text-sm text-muted p-4 bg-muted/50 rounded-md">
                 <p>
-                  You can write a prescription once the appointment is marked as{" "}
-                  <span className="font-semibold text-green-700">
+                  You can write a prescription once the appointment is marked as{' '}
+                  <span className="font-semibold text-green-400">
                     COMPLETED
                   </span>
                   .
@@ -245,11 +245,11 @@ export default function DoctorAppointmentDetailDialog({
                     id="instructions"
                     placeholder="Enter prescription instructions (minimum 20 characters)..."
                     value={instructions}
-                    onChange={(e) => setInstructions(e.target.value)}
+                    onChange={e => setInstructions(e.target.value)}
                     rows={6}
                     className="resize-none"
                   />
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted">
                     {instructions.length} / 20 characters minimum
                   </p>
                 </div>
@@ -262,7 +262,7 @@ export default function DoctorAppointmentDetailDialog({
                     id="followUpDate"
                     type="datetime-local"
                     value={followUpDate}
-                    onChange={(e) => setFollowUpDate(e.target.value)}
+                    onChange={e => setFollowUpDate(e.target.value)}
                     min={new Date().toISOString().slice(0, 16)}
                   />
                 </div>
@@ -273,8 +273,8 @@ export default function DoctorAppointmentDetailDialog({
                   className="w-full"
                 >
                   {isSubmitting
-                    ? "Creating Prescription..."
-                    : "Create Prescription"}
+                    ? 'Creating Prescription...'
+                    : 'Create Prescription'}
                 </Button>
               </div>
             )}
@@ -293,9 +293,7 @@ export default function DoctorAppointmentDetailDialog({
 
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">
-                      Instructions
-                    </p>
+                    <p className="text-sm text-muted mb-1">Instructions</p>
                     <div className="bg-muted/50 p-3 rounded-md">
                       <p className="text-sm whitespace-pre-wrap">
                         {prescription.instructions}
@@ -305,16 +303,14 @@ export default function DoctorAppointmentDetailDialog({
 
                   {prescription.followUpDate && (
                     <div>
-                      <p className="text-sm text-muted-foreground mb-1">
-                        Follow-up Date
-                      </p>
+                      <p className="text-sm text-muted mb-1">Follow-up Date</p>
                       <p className="text-sm font-medium">
-                        {format(new Date(prescription.followUpDate), "PPP")}
+                        {format(new Date(prescription.followUpDate), 'PPP')}
                       </p>
                     </div>
                   )}
 
-                  <div className="text-xs text-muted-foreground italic pt-2 border-t">
+                  <div className="text-xs text-muted italic pt-2 border-t">
                     Note: Prescriptions cannot be edited or deleted once created
                   </div>
                 </div>
@@ -324,7 +320,11 @@ export default function DoctorAppointmentDetailDialog({
         </div>
 
         <div className="flex justify-end pt-4 border-t">
-          <Button variant="outline" onClick={handleClose}>
+          <Button
+            variant="outline"
+            onClick={handleClose}
+            className="text-muted"
+          >
             Close
           </Button>
         </div>

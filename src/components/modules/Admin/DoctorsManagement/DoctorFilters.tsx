@@ -1,10 +1,10 @@
-"use client";
-import ClearFiltersButton from "@/components/shared/ClearFiltersButton";
-import MultiSelectFilter from "@/components/shared/MultiSelectFilter";
-import RefreshButton from "@/components/shared/RefreshButton";
-import SearchFilter from "@/components/shared/SearchFilter";
-import SelectFilter from "@/components/shared/SelectFilter";
-import { ISpecialty } from "@/types/specialities.interface";
+'use client';
+import ClearFiltersButton from '@/components/shared/ClearFiltersButton';
+import MultiSelectFilter from '@/components/shared/MultiSelectFilter';
+import RefreshButton from '@/components/shared/RefreshButton';
+import SearchFilter from '@/components/shared/SearchFilter';
+import SelectFilter from '@/components/shared/SelectFilter';
+import { ISpecialty } from '@/types/specialities.interface';
 
 interface DoctorsFilterProps {
   specialties: ISpecialty[];
@@ -20,11 +20,11 @@ const DoctorFilters = ({ specialties }: DoctorsFilterProps) => {
       </div>
 
       {/* Row 2: Filter Controls - All on same line */}
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center gap-3 flex-wrap text-muted">
         {/* Specialties Multi-Select */}
         <MultiSelectFilter
           paramName="specialties"
-          options={specialties.map((specialty) => ({
+          options={specialties.map(specialty => ({
             value: specialty.title,
             label: specialty.title,
           }))}
@@ -35,15 +35,17 @@ const DoctorFilters = ({ specialties }: DoctorsFilterProps) => {
         />
 
         {/* Gender Filter */}
-        <SelectFilter
-          paramName="gender"
-          placeholder="Gender"
-          defaultValue="All Genders"
-          options={[
-            { label: "Male", value: "MALE" },
-            { label: "Female", value: "FEMALE" },
-          ]}
-        />
+        <div className="text-muted">
+          <SelectFilter
+            paramName="gender"
+            placeholder="Gender"
+            defaultValue="All Genders"
+            options={[
+              { label: 'Male', value: 'MALE' },
+              { label: 'Female', value: 'FEMALE' },
+            ]}
+          />
+        </div>
 
         {/* Email Filter */}
         <SearchFilter paramName="email" placeholder="Email" />
@@ -58,7 +60,7 @@ const DoctorFilters = ({ specialties }: DoctorsFilterProps) => {
       {/* Row 3: Active Filter Badges - Fixed height to prevent shift */}
       <MultiSelectFilter
         paramName="specialties"
-        options={specialties.map((specialty) => ({
+        options={specialties.map(specialty => ({
           value: specialty.title,
           label: specialty.title,
         }))}

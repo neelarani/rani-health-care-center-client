@@ -1,16 +1,16 @@
-import InputFieldError from "@/components/shared/InputFieldError";
-import { Button } from "@/components/ui/button";
+import InputFieldError from '@/components/shared/InputFieldError';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Field, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import { createSchedule } from "@/services/admin/schedulesManagement";
-import { useActionState, useEffect, useRef } from "react";
-import { toast } from "sonner";
+} from '@/components/ui/dialog';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { createSchedule } from '@/services/admin/schedulesManagement';
+import { useActionState, useEffect, useRef } from 'react';
+import { toast } from 'sonner';
 
 interface IScheduleFormDialogProps {
   open: boolean;
@@ -32,7 +32,7 @@ const ScheduleFormDialog = ({
     if (state === prevStateRef.current) return;
     prevStateRef.current = state;
     if (state?.success) {
-      toast.success(state.message || "Schedule created successfully");
+      toast.success(state.message || 'Schedule created successfully');
       if (formRef.current) {
         formRef.current.reset();
       }
@@ -50,7 +50,7 @@ const ScheduleFormDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-h-[90vh] flex flex-col p-0">
+      <DialogContent className="max-h-[90vh] flex flex-col p-0 bg-foreground text-muted">
         <DialogHeader className="px-6 pt-6 pb-4">
           <DialogTitle>Create Schedule</DialogTitle>
         </DialogHeader>
@@ -68,7 +68,7 @@ const ScheduleFormDialog = ({
                 id="startDate"
                 name="startDate"
                 type="date"
-                defaultValue={state?.formData?.startDate || ""}
+                defaultValue={state?.formData?.startDate || ''}
               />
               <InputFieldError field="startDate" state={state} />
             </Field>
@@ -80,7 +80,7 @@ const ScheduleFormDialog = ({
                 id="endDate"
                 name="endDate"
                 type="date"
-                defaultValue={state?.formData?.endDate || ""}
+                defaultValue={state?.formData?.endDate || ''}
               />
               <InputFieldError field="endDate" state={state} />
             </Field>
@@ -92,7 +92,7 @@ const ScheduleFormDialog = ({
                 id="startTime"
                 name="startTime"
                 type="time"
-                defaultValue={state?.formData?.startTime || ""}
+                defaultValue={state?.formData?.startTime || ''}
                 placeholder="HH:MM"
               />
               <p className="text-xs text-gray-500 mt-1">
@@ -108,7 +108,7 @@ const ScheduleFormDialog = ({
                 id="endTime"
                 name="endTime"
                 type="time"
-                defaultValue={state?.formData?.endTime || ""}
+                defaultValue={state?.formData?.endTime || ''}
                 placeholder="HH:MM"
               />
               <p className="text-xs text-gray-500 mt-1">
@@ -130,7 +130,7 @@ const ScheduleFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Creating..." : "Create Schedule"}
+              {isPending ? 'Creating...' : 'Create Schedule'}
             </Button>
           </div>
         </form>

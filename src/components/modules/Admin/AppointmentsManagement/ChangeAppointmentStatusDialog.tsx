@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,22 +8,22 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { changeAppointmentStatus } from "@/services/admin/appoitmentsManagement";
+} from '@/components/ui/select';
+import { changeAppointmentStatus } from '@/services/admin/appoitmentsManagement';
 import {
   AppointmentStatus,
   IAppointment,
-} from "@/types/appointments.interface";
-import { Loader2 } from "lucide-react";
-import { useState, useTransition } from "react";
-import { toast } from "sonner";
+} from '@/types/appointments.interface';
+import { Loader2 } from 'lucide-react';
+import { useState, useTransition } from 'react';
+import { toast } from 'sonner';
 
 interface ChangeAppointmentStatusDialogProps {
   open: boolean;
@@ -60,10 +60,10 @@ const ChangeAppointmentStatusDialog = ({
       );
 
       if (result?.success) {
-        toast.success("Appointment status updated successfully!");
+        toast.success('Appointment status updated successfully!');
         onSuccess();
       } else {
-        toast.error(result?.message || "Failed to update status");
+        toast.error(result?.message || 'Failed to update status');
       }
     });
   };
@@ -84,12 +84,12 @@ const ChangeAppointmentStatusDialog = ({
           <div className="space-y-4 py-4">
             {/* Current Appointment Info */}
             <div className="rounded-lg border p-3 space-y-1">
-              <div className="text-sm text-muted-foreground">Patient</div>
+              <div className="text-sm text-muted">Patient</div>
               <div className="font-medium">{appointment.patient?.name}</div>
-              <div className="text-sm text-muted-foreground">Doctor</div>
+              <div className="text-sm text-muted">Doctor</div>
               <div className="font-medium">{appointment.doctor?.name}</div>
-              <div className="text-sm text-muted-foreground mt-2">
-                Current Status:{" "}
+              <div className="text-sm text-muted mt-2">
+                Current Status:{' '}
                 <span className="font-medium">{appointment.status}</span>
               </div>
             </div>
@@ -99,7 +99,7 @@ const ChangeAppointmentStatusDialog = ({
               <label className="text-sm font-medium">New Status</label>
               <Select
                 value={selectedStatus}
-                onValueChange={(value) =>
+                onValueChange={value =>
                   setSelectedStatus(value as AppointmentStatus)
                 }
                 disabled={isPending}

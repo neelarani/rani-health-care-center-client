@@ -25,7 +25,7 @@ export default function PatientPrescriptionsList({
         <h3 className="text-lg font-semibold mb-2 text-muted">
           No Prescriptions Yet
         </h3>
-        <p className="text-muted-foreground">
+        <p className="text-muted">
           Your prescriptions will appear here after your appointments are
           completed.
         </p>
@@ -49,11 +49,11 @@ export default function PatientPrescriptionsList({
               <h3 className="font-semibold text-lg truncate">
                 {prescription.doctor?.name || 'N/A'}
               </h3>
-              <p className="text-sm text-muted-foreground truncate">
+              <p className="text-sm text-muted truncate">
                 {prescription.doctor?.email || 'N/A'}
               </p>
               {prescription.doctor?.designation && (
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-xs text-muted mt-1">
                   {prescription.doctor.designation}
                 </p>
               )}
@@ -63,8 +63,8 @@ export default function PatientPrescriptionsList({
           {/* Appointment Date */}
           {prescription.appointment?.schedule?.startDateTime && (
             <div className="flex items-center gap-2 mb-3 text-sm">
-              <Calendar className="h-4 w-4 text-muted-foreground" />
-              <span className="text-muted-foreground">Appointment:</span>
+              <Calendar className="h-4 w-4 text-muted" />
+              <span className="text-muted">Appointment:</span>
               <span className="font-medium">
                 {format(
                   new Date(prescription.appointment.schedule.startDateTime),
@@ -77,11 +77,11 @@ export default function PatientPrescriptionsList({
           {/* Instructions Preview */}
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-2">
-              <FileText className="h-4 w-4 text-muted-foreground" />
+              <FileText className="h-4 w-4 text-muted" />
               <span className="text-sm font-medium">Instructions</span>
             </div>
             <div className="bg-muted/50 p-3 rounded-md">
-              <p className="text-sm text-muted-foreground line-clamp-3">
+              <p className="text-sm text-muted line-clamp-3">
                 {prescription.instructions}
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function PatientPrescriptionsList({
           )}
 
           {/* Prescribed Date */}
-          <div className="flex items-center gap-2 text-xs text-muted-foreground pt-3 border-t">
+          <div className="flex items-center gap-2 text-xs text-muted pt-3 border-t">
             <Clock className="h-3 w-3" />
             <span>
               Prescribed on {format(new Date(prescription.createdAt), 'PPP')}

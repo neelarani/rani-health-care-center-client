@@ -15,6 +15,7 @@ const LoginPage = async ({
             Enter your credentials to access your account
           </p>
         </div>
+
         <LoginForm redirect={params.redirect} />
       </div>
     </div>

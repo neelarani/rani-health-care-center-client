@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,14 +8,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { IDoctor } from "@/types/doctor.interface";
-import { IDoctorSchedule } from "@/types/schedule.interface";
-import { format } from "date-fns";
-import { Calendar, Clock } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+} from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { IDoctor } from '@/types/doctor.interface';
+import { IDoctorSchedule } from '@/types/schedule.interface';
+import { format } from 'date-fns';
+import { Calendar, Clock } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface BookAppointmentDialogProps {
   doctor: IDoctor;
@@ -41,12 +41,12 @@ export default function BookAppointmentDialog({
   const groupSchedulesByDate = () => {
     const grouped: Record<string, IDoctorSchedule[]> = {};
 
-    doctorSchedules.forEach((schedule) => {
+    doctorSchedules.forEach(schedule => {
       if (!schedule.schedule?.startDateTime) return;
 
       const startDate = new Date(schedule.schedule.startDateTime)
         .toISOString()
-        .split("T")[0];
+        .split('T')[0];
 
       if (startDate) {
         if (!grouped[startDate]) {
@@ -75,7 +75,7 @@ export default function BookAppointmentDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseModal}>
-      <DialogContent className="max-w-2xl max-h-[80vh]">
+      <DialogContent className="max-w-2xl max-h-[80vh] bg-foreground text-muted border-muted-foreground/50">
         <>
           <DialogHeader>
             <DialogTitle>Book Appointment with Dr. {doctor.name}</DialogTitle>
@@ -86,10 +86,10 @@ export default function BookAppointmentDialog({
 
           <div className="space-y-4">
             {/* Doctor Info */}
-            <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
+            <div className="flex items-center gap-3 p-4 bg-muted text-black rounded-lg">
               <div>
                 <p className="font-medium">{doctor.designation}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-black">
                   Consultation Fee: ${doctor.appointmentFee}
                 </p>
               </div>
@@ -98,23 +98,19 @@ export default function BookAppointmentDialog({
             {/* Schedules */}
             {hasSchedulesWithoutData ? (
               <div className="text-center py-12">
-                <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-3" />
-                <p className="text-muted-foreground">
-                  Schedule data not available
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <Calendar className="h-12 w-12 mx-auto text-muted mb-3" />
+                <p className="text-muted">Schedule data not available</p>
+                <p className="text-sm text-muted mt-1">
                   The doctor has {doctorSchedules.length} schedule
-                  {doctorSchedules.length !== 1 ? "s" : ""}, but detailed
+                  {doctorSchedules.length !== 1 ? 's' : ''}, but detailed
                   information is not loaded.
                 </p>
               </div>
             ) : groupedSchedules.length === 0 ? (
               <div className="text-center py-12">
-                <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-3" />
-                <p className="text-muted-foreground">
-                  No available slots at the moment
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
+                <Calendar className="h-12 w-12 mx-auto text-muted mb-3" />
+                <p className="text-muted">No available slots at the moment</p>
+                <p className="text-sm text-muted mt-1">
                   Please check back later
                 </p>
               </div>
@@ -124,14 +120,14 @@ export default function BookAppointmentDialog({
                   {groupedSchedules.map(([date, dateSchedules]) => (
                     <div key={date}>
                       <div className="flex items-center gap-2 mb-2">
-                        <Calendar className="h-4 w-4 text-muted-foreground" />
+                        <Calendar className="h-4 w-4 text-muted" />
                         <h4 className="font-medium">
-                          {format(new Date(date), "EEEE, MMMM d, yyyy")}
+                          {format(new Date(date), 'EEEE, MMMM d, yyyy')}
                         </h4>
                       </div>
 
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {dateSchedules.map((schedule) => {
+                        {dateSchedules.map(schedule => {
                           const startTime = schedule.schedule?.startDateTime
                             ? new Date(schedule.schedule.startDateTime)
                             : null;
@@ -142,8 +138,8 @@ export default function BookAppointmentDialog({
                               variant={
                                 selectedSchedule?.scheduleId ===
                                 schedule.scheduleId
-                                  ? "default"
-                                  : "outline"
+                                  ? 'default'
+                                  : 'outline'
                               }
                               className="justify-start h-auto py-2"
                               onClick={() => setSelectedSchedule(schedule)}
@@ -151,8 +147,8 @@ export default function BookAppointmentDialog({
                               <Clock className="h-4 w-4 mr-2" />
                               <span className="text-sm">
                                 {startTime
-                                  ? format(startTime, "h:mm a")
-                                  : "N/A"}
+                                  ? format(startTime, 'h:mm a')
+                                  : 'N/A'}
                               </span>
                             </Button>
                           );
