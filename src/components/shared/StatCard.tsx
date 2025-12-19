@@ -33,7 +33,7 @@ export function StatsCard({
   return (
     <Card
       className={cn(
-        'hover:shadow-lg transition-all duration-300 hover:scale-105',
+        'hover:shadow-lg transition-all duration-300 hover:scale-102',
         className
       )}
     >

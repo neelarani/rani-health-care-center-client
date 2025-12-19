@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import DeleteConfirmationDialog from '@/components/shared/DeleteConfirmationDialog';
-import ManagementTable from '@/components/shared/ManagementTable';
-import { deleteDoctorOwnSchedule } from '@/services/doctor/doctorScedule.services';
-
-import { IDoctorSchedule } from '@/types/schedule.interface';
-import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-import { toast } from 'sonner';
-import { myScheduleColumns } from './myScheduleColumns';
+import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
+import ManagementTable from "@/components/shared/ManagementTable";
+import { deleteDoctorOwnSchedule } from "@/services/doctor/doctorScedule.services";
+import { IDoctorSchedule } from "@/types/schedule.interface";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
+import { myScheduleColumns } from "./myScheduleColumns";
 
 interface MySchedulesTableProps {
   schedules: IDoctorSchedule[];
@@ -34,7 +33,7 @@ export default function MySchedulesTable({
     if (!schedule.isBooked) {
       setDeletingSchedule(schedule);
     } else {
-      toast.error('Cannot delete booked schedule');
+      toast.error("Cannot delete booked schedule");
     }
   };
 
@@ -46,11 +45,11 @@ export default function MySchedulesTable({
     setIsDeleting(false);
 
     if (result.success) {
-      toast.success(result.message || 'Schedule deleted successfully');
+      toast.success(result.message || "Schedule deleted successfully");
       setDeletingSchedule(null);
       handleRefresh();
     } else {
-      toast.error(result.message || 'Failed to delete schedule');
+      toast.error(result.message || "Failed to delete schedule");
     }
   };
 
@@ -60,14 +59,14 @@ export default function MySchedulesTable({
         data={schedules}
         columns={myScheduleColumns}
         onDelete={handleDelete}
-        getRowKey={schedule => schedule.scheduleId}
+        getRowKey={(schedule) => schedule.scheduleId}
         emptyMessage="No schedules found. Try adjusting your filters or book new schedules."
       />
 
       {/* Delete Confirmation Dialog */}
       <DeleteConfirmationDialog
         open={!!deletingSchedule}
-        onOpenChange={open => !open && setDeletingSchedule(null)}
+        onOpenChange={(open) => !open && setDeletingSchedule(null)}
         onConfirm={confirmDelete}
         title="Delete Schedule"
         description="Are you sure you want to delete this schedule slot? This action cannot be undone."

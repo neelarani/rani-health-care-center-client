@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Clock } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface AppointmentCountdownProps {
   appointmentDateTime: string;
@@ -10,9 +10,9 @@ interface AppointmentCountdownProps {
 
 const AppointmentCountdown = ({
   appointmentDateTime,
-  className = '',
+  className = "",
 }: AppointmentCountdownProps) => {
-  const [timeLeft, setTimeLeft] = useState('');
+  const [timeLeft, setTimeLeft] = useState("");
   const [isPast, setIsPast] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const AppointmentCountdown = ({
 
       if (difference <= 0) {
         setIsPast(true);
-        setTimeLeft('Appointment time passed');
+        setTimeLeft("Appointment time passed");
         return;
       }
 
@@ -54,12 +54,12 @@ const AppointmentCountdown = ({
   return (
     <div
       className={`flex items-center gap-2 text-sm ${
-        isPast ? 'text-red-600' : 'text-blue-600'
+        isPast ? "text-red-600" : "text-blue-600"
       } ${className}`}
     >
       <Clock className="h-4 w-4" />
       <span className="font-medium">
-        {isPast ? 'Appointment passed' : `Starts in: ${timeLeft}`}
+        {isPast ? "Appointment passed" : `Starts in: ${timeLeft}`}
       </span>
     </div>
   );

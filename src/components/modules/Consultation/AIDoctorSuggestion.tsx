@@ -68,7 +68,7 @@ export default function AIDoctorSuggestion() {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-primary/5 via-white to-primary/5 border-primary/20 shadow-lg">
+    <Card className="bg-foreground border-primary/20 shadow-lg">
       <CardHeader>
         <div className="flex items-center gap-2">
           <div className="p-2 bg-primary rounded-lg">
@@ -76,7 +76,7 @@ export default function AIDoctorSuggestion() {
           </div>
           <div>
             <CardTitle className="text-primary">AI Doctor Suggestion</CardTitle>
-            <CardDescription className="text-primary/80">
+            <CardDescription className="text-primary/80 bg-foreground">
               Describe your symptoms and get AI-powered doctor recommendations
             </CardDescription>
           </div>
@@ -163,7 +163,7 @@ export default function AIDoctorSuggestion() {
                           className="w-16 h-16 rounded-full object-cover border-2 border-primary/30"
                         />
                       ) : (
-                        <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-foreground border-2 border-primary/30 flex items-center justify-center">
                           <span className="text-xl font-bold text-primary">
                             {doctor.name
                               ?.split(' ')

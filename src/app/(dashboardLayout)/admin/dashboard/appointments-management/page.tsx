@@ -1,12 +1,12 @@
-import AppointmentsFilter from '@/components/modules/Admin/AppointmentsManagement/AppointmentsFilter';
-import AppointmentsTable from '@/components/modules/Admin/AppointmentsManagement/AppointmentsTable';
-import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
-import TablePagination from '@/components/shared/TablePagination';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { queryStringFormatter } from '@/lib/formatters';
-import { getAppointments } from '@/services/admin/appoitmentsManagement';
+import AppointmentsFilter from "@/components/modules/Admin/AppointmentsManagement/AppointmentsFilter";
 
-import { Suspense } from 'react';
+import AppointmentsTable from "@/components/modules/Admin/AppointmentsManagement/AppointmentsTable";
+import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
+import TablePagination from "@/components/shared/TablePagination";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { queryStringFormatter } from "@/lib/formatters";
+import { getAppointments } from "@/services/admin/appoitmentsManagement";
+import { Suspense } from "react";
 
 const AppointmentsManagementPage = async ({
   searchParams,

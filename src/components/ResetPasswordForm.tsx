@@ -66,6 +66,7 @@ const ResetPasswordForm = ({
               type="password"
               placeholder="Enter new password"
               autoComplete="new-password"
+              className="text-muted"
             />
             <InputFieldError field="newPassword" state={state as any} />
           </Field>
@@ -79,6 +80,7 @@ const ResetPasswordForm = ({
               type="password"
               placeholder="Confirm new password"
               autoComplete="new-password"
+              className="text-muted"
             />
             <InputFieldError field="confirmPassword" state={state as any} />
           </Field>
@@ -86,7 +88,11 @@ const ResetPasswordForm = ({
 
         <FieldGroup className="mt-4">
           <Field>
-            <Button type="submit" disabled={isPending} className="w-full">
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="w-full bg-chart-1 hover:bg-chart-1/80"
+            >
               {isPending ? 'Resetting...' : 'Reset Password'}
             </Button>
 

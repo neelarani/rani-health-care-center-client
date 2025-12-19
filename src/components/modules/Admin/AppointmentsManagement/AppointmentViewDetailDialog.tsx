@@ -1,23 +1,22 @@
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import {
   AppointmentStatus,
   IAppointment,
   PaymentStatus,
-} from '@/types/appointments.interface';
-
-import { Calendar, Clock, CreditCard, User, Video, X } from 'lucide-react';
+} from "@/types/appointments.interface";
+import { Calendar, Clock, CreditCard, User, Video, X } from "lucide-react";
 
 interface AppointmentViewDetailDialogProps {
   open: boolean;
@@ -120,25 +119,25 @@ const AppointmentViewDetailDialog = ({
                   <div className="text-sm font-medium text-muted-foreground">
                     Name
                   </div>
-                  <div>{appointment.patient?.name || 'N/A'}</div>
+                  <div>{appointment.patient?.name || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Email
                   </div>
-                  <div>{appointment.patient?.email || 'N/A'}</div>
+                  <div>{appointment.patient?.email || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Phone
                   </div>
-                  <div>{appointment.patient?.contactNumber || 'N/A'}</div>
+                  <div>{appointment.patient?.contactNumber || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Address
                   </div>
-                  <div>{appointment.patient?.address || 'N/A'}</div>
+                  <div>{appointment.patient?.address || "N/A"}</div>
                 </div>
               </div>
             </div>
@@ -156,25 +155,25 @@ const AppointmentViewDetailDialog = ({
                   <div className="text-sm font-medium text-muted-foreground">
                     Name
                   </div>
-                  <div>{appointment.doctor?.name || 'N/A'}</div>
+                  <div>{appointment.doctor?.name || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Email
                   </div>
-                  <div>{appointment.doctor?.email || 'N/A'}</div>
+                  <div>{appointment.doctor?.email || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Phone
                   </div>
-                  <div>{appointment.doctor?.contactNumber || 'N/A'}</div>
+                  <div>{appointment.doctor?.contactNumber || "N/A"}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-muted-foreground">
                     Designation
                   </div>
-                  <div>{appointment.doctor?.designation || 'N/A'}</div>
+                  <div>{appointment.doctor?.designation || "N/A"}</div>
                 </div>
               </div>
             </div>
@@ -194,13 +193,13 @@ const AppointmentViewDetailDialog = ({
                   </div>
                   <div>
                     {startDate
-                      ? startDate.toLocaleDateString('en-US', {
-                          weekday: 'long',
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
+                      ? startDate.toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
                         })
-                      : 'N/A'}
+                      : "N/A"}
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -211,11 +210,11 @@ const AppointmentViewDetailDialog = ({
                     </div>
                     <div>
                       {startDate
-                        ? startDate.toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit',
+                        ? startDate.toLocaleTimeString("en-US", {
+                            hour: "2-digit",
+                            minute: "2-digit",
                           })
-                        : 'N/A'}
+                        : "N/A"}
                     </div>
                   </div>
                   <div className="flex-1">
@@ -225,11 +224,11 @@ const AppointmentViewDetailDialog = ({
                     </div>
                     <div>
                       {endDate
-                        ? endDate.toLocaleTimeString('en-US', {
-                            hour: '2-digit',
-                            minute: '2-digit',
+                        ? endDate.toLocaleTimeString("en-US", {
+                            hour: "2-digit",
+                            minute: "2-digit",
                           })
-                        : 'N/A'}
+                        : "N/A"}
                     </div>
                   </div>
                 </div>
@@ -250,7 +249,7 @@ const AppointmentViewDetailDialog = ({
                     Video Calling ID
                   </div>
                   <div className="font-mono">
-                    {appointment.videoCallingId || 'Not set'}
+                    {appointment.videoCallingId || "Not set"}
                   </div>
                 </div>
                 <div className="flex gap-4">
@@ -261,8 +260,8 @@ const AppointmentViewDetailDialog = ({
                     </div>
                     <div>
                       {appointment.paymentStatus === PaymentStatus.PAID
-                        ? 'Paid'
-                        : 'Unpaid'}
+                        ? "Paid"
+                        : "Unpaid"}
                     </div>
                   </div>
                 </div>
@@ -278,7 +277,7 @@ const AppointmentViewDetailDialog = ({
                 <div>
                   {appointment.createdAt
                     ? new Date(appointment.createdAt).toLocaleString()
-                    : 'N/A'}
+                    : "N/A"}
                 </div>
               </div>
               <div>
@@ -286,7 +285,7 @@ const AppointmentViewDetailDialog = ({
                 <div>
                   {appointment.updatedAt
                     ? new Date(appointment.updatedAt).toLocaleString()
-                    : 'N/A'}
+                    : "N/A"}
                 </div>
               </div>
             </div>

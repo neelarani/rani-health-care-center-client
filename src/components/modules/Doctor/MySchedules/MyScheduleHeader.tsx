@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+"use client";
 
-import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
-import { Plus } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-import BookScheduleDialog from './BookScheduleDialog';
+import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import BookScheduleDialog from "./BookScheduleDialog";
 
 interface MySchedulesHeaderProps {
   availableSchedules: any[];
@@ -44,7 +44,7 @@ const MySchedulesHeader = ({ availableSchedules }: MySchedulesHeaderProps) => {
         title="My Schedules"
         description="Manage your availability and time slots for patient consultations"
         action={{
-          label: 'Book Schedule',
+          label: "Book Schedule",
           icon: Plus,
           onClick: handleOpenDialog,
         }}

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import ClearFiltersButton from '@/components/shared/ClearFiltersButton';
-import RefreshButton from '@/components/shared/RefreshButton';
-import SelectFilter from '@/components/shared/SelectFilter';
+import ClearFiltersButton from "@/components/shared/ClearFiltersButton";
+import RefreshButton from "@/components/shared/RefreshButton";
+import SelectFilter from "@/components/shared/SelectFilter";
 
 const MySchedulesFilters = () => {
   return (
@@ -20,8 +20,8 @@ const MySchedulesFilters = () => {
           placeholder="Booking Status"
           defaultValue="All Schedules"
           options={[
-            { label: 'Available', value: 'false' },
-            { label: 'Booked', value: 'true' },
+            { label: "Available", value: "false" },
+            { label: "Booked", value: "true" },
           ]}
         />
 

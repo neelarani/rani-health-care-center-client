@@ -1,14 +1,14 @@
-import ForgotPasswordForm from '@/components/ForgotPasswordForm';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import ForgotPasswordForm from "@/components/ForgotPasswordForm";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { AlertCircle } from 'lucide-react';
-import Link from 'next/link';
+} from "@/components/ui/card";
+import { AlertCircle } from "lucide-react";
+import Link from "next/link";
 
 interface ForgotPasswordPageProps {
   searchParams: Promise<{ error?: string }>;
@@ -31,7 +31,7 @@ const ForgotPasswordPage = async ({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {error === 'invalid-link' && (
+          {error === "invalid-link" && (
             <Alert variant="destructive" className="mb-4">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
@@ -39,7 +39,7 @@ const ForgotPasswordPage = async ({
               </AlertDescription>
             </Alert>
           )}
-          {error === 'expired-link' && (
+          {error === "expired-link" && (
             <Alert variant="destructive" className="mb-4">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
@@ -49,7 +49,7 @@ const ForgotPasswordPage = async ({
           )}
           <ForgotPasswordForm />
           <div className="mt-4 text-center text-sm">
-            Remember your password?{' '}
+            Remember your password?{" "}
             <Link href="/login" className="text-primary hover:underline">
               Back to Login
             </Link>

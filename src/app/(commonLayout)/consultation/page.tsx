@@ -29,12 +29,12 @@ const ConsultationPage = async ({
   const specialties = specialtiesResponse?.data || [];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 text-muted ">
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Find a Doctor</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-3xl font-bold tracking-tight ">Find a Doctor</h1>
+          <p className="text-muted mt-2">
             Search and book appointments with our qualified healthcare
             professionals
           </p>

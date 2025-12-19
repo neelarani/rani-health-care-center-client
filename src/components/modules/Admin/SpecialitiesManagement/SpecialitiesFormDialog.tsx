@@ -1,17 +1,17 @@
-'use client';
-import InputFieldError from '@/components/shared/InputFieldError';
-import { Button } from '@/components/ui/button';
+"use client";
+import InputFieldError from "@/components/shared/InputFieldError";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Field, FieldLabel } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import { createSpeciality } from '@/services/admin/specialitiesManagement';
-import { useActionState, useEffect, useRef, useState } from 'react';
-import { toast } from 'sonner';
+} from "@/components/ui/dialog";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { createSpeciality } from "@/services/admin/specialitiesManagement";
+import { useActionState, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 interface ISpecialitiesFormDialogProps {
   open: boolean;
@@ -57,7 +57,7 @@ const SpecialitiesFormDialog = ({
 
   const handleClose = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
     if (selectedFile) {
       setSelectedFile(null);
@@ -80,7 +80,7 @@ const SpecialitiesFormDialog = ({
               id="title"
               name="title"
               placeholder="Cardiology"
-              defaultValue={state?.formData?.title || ''}
+              defaultValue={state?.formData?.title || ""}
             />
             <InputFieldError field="title" state={state} />
           </Field>
@@ -109,7 +109,7 @@ const SpecialitiesFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={pending}>
-              {pending ? 'Saving...' : 'Save Specialty'}
+              {pending ? "Saving..." : "Save Specialty"}
             </Button>
           </div>
         </form>

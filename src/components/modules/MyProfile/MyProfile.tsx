@@ -82,20 +82,18 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-3xl font-bold">My Profile</h1>
-        <p className="text-muted-foreground mt-1">
-          Manage your personal information
-        </p>
+        <h1 className="text-3xl font-bold text-muted">My Profile</h1>
+        <p className="text-muted/70 mt-1">Manage your personal information</p>
       </div>
 
       <form onSubmit={handleSubmit}>
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Profile Card */}
-          <Card className="lg:col-span-1">
+          <Card className="lg:col-span-1 bg-foreground text-muted border-muted-foreground/30">
             <CardHeader>
               <CardTitle>Profile Picture</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col items-center space-y-4">
+            <CardContent className="flex flex-col items-center space-y-4 ">
               <div className="relative">
                 <Avatar className="h-32 w-32">
                   {previewImage || profilePhoto ? (
@@ -111,7 +109,7 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
                 </Avatar>
                 <label
                   htmlFor="file"
-                  className="absolute bottom-0 right-0 bg-primary text-primary-foreground rounded-full p-2 cursor-pointer hover:bg-primary/90 transition-colors"
+                  className="absolute bottom-0 right-0 bg-primary text-muted/80 rounded-full p-2 cursor-pointer hover:bg-primary/90 transition-colors "
                 >
                   <Camera className="h-4 w-4" />
                   <Input
@@ -139,7 +137,7 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
           </Card>
 
           {/* Profile Information Card */}
-          <Card className="lg:col-span-2">
+          <Card className="lg:col-span-2 bg-foreground text-muted border-muted-foreground/30">
             <CardHeader>
               <CardTitle>Personal Information</CardTitle>
             </CardHeader>
@@ -176,7 +174,6 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
                     type="email"
                     value={userInfo.email}
                     disabled
-                    className="bg-muted"
                   />
                 </div>
 
@@ -306,7 +303,11 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
               </div>
 
               <div className="flex justify-end pt-4">
-                <Button type="submit" disabled={isPending}>
+                <Button
+                  type="submit"
+                  disabled={isPending}
+                  className="bg-chart-1 hover:bg-chart-1/80"
+                >
                   {isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />

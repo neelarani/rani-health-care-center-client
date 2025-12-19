@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import DeleteConfirmationDialog from '@/components/shared/DeleteConfirmationDialog';
-import ManagementTable from '@/components/shared/ManagementTable';
-import { softDeletePatient } from '@/services/admin/patientsManagement';
-
-import { IPatient } from '@/types/patient.interface';
-import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-import { toast } from 'sonner';
-import { patientsColumns } from './patientsColumns';
-import PatientFormDialog from './PatientFormDialog';
-import PatientViewDetailDialog from './PatientsViewDetailDialog';
+import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
+import ManagementTable from "@/components/shared/ManagementTable";
+import { softDeletePatient } from "@/services/admin/patientsManagement";
+import { IPatient } from "@/types/patient.interface";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { toast } from "sonner";
+import PatientFormDialog from "./PatientFormDialog";
+import { patientsColumns } from "./patientsColumns";
+import PatientViewDetailDialog from "./PatientsViewDetailDialog";
 
 interface PatientsTableProps {
   patients: IPatient[];
@@ -50,11 +49,11 @@ const PatientsTable = ({ patients }: PatientsTableProps) => {
     setIsDeleting(false);
 
     if (result.success) {
-      toast.success(result.message || 'Patient deleted successfully');
+      toast.success(result.message || "Patient deleted successfully");
       setDeletingPatient(null);
       handleRefresh();
     } else {
-      toast.error(result.message || 'Failed to delete patient');
+      toast.error(result.message || "Failed to delete patient");
     }
   };
 
@@ -66,7 +65,7 @@ const PatientsTable = ({ patients }: PatientsTableProps) => {
         onView={handleView}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        getRowKey={patient => patient.id!}
+        getRowKey={(patient) => patient.id!}
         emptyMessage="No patients found"
       />
 
@@ -91,7 +90,7 @@ const PatientsTable = ({ patients }: PatientsTableProps) => {
       {/* Delete Confirmation Dialog */}
       <DeleteConfirmationDialog
         open={!!deletingPatient}
-        onOpenChange={open => !open && setDeletingPatient(null)}
+        onOpenChange={(open) => !open && setDeletingPatient(null)}
         onConfirm={confirmDelete}
         title="Delete Patient"
         description={`Are you sure you want to delete ${deletingPatient?.name}? This action cannot be undone.`}

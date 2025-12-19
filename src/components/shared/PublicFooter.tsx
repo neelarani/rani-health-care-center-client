@@ -1,96 +1,70 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../assets/logo/logo.png';
 
 function PublicFooter() {
   return (
-    <footer className="border-t bg-background">
+    <footer className="bg-foreground border-t border-muted-foreground">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <Image src={logo} alt={'logo'} width={200} height={200}></Image>
-            <p className="text-sm text-muted-foreground">
+            <h3 className="font-bold mb-2 text-muted">Rani Health Care</h3>
+            <p className="text-sm text-muted/70">
               Your health is our priority. We are here to provide the best
               medical services.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold mb-2">Quick Links</h3>
+            <h3 className="font-semibold mb-2 text-muted">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Home
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Services
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-2">Support</h3>
+            <h3 className="font-semibold mb-2 text-muted">Support</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link href="#" className="text-muted/70 hover:text-muted">
                   Privacy Policy
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-2">Contact Us</h3>
-            <p className="text-sm text-muted-foreground">
+            <h3 className="font-semibold mb-2 text-muted">Contact Us</h3>
+            <p className="text-sm text-muted/70 ">
               123 Medical Lane
               <br />
               Health City, HC 12345
@@ -99,8 +73,9 @@ function PublicFooter() {
             </p>
           </div>
         </div>
-        <div className="mt-8 border-t pt-4 text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} PH Doc. All Rights Reserved.
+        <div className="mt-8 border-t border-muted-foreground pt-4 text-center text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} Rani Health Care. All Rights
+          Reserved.
         </div>
       </div>
     </footer>

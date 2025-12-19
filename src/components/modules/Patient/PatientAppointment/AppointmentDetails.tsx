@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { format } from 'date-fns';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { format } from "date-fns";
 import {
   AlertCircle,
   Calendar,
@@ -18,20 +18,20 @@ import {
   Star,
   Stethoscope,
   User,
-} from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 // import ReviewDialog from "./ReviewDialog";
-import { changeAppointmentStatus } from '@/services/patient/appointment.service';
-import { initiatePayment } from '@/services/payment/payment.service';
+import { changeAppointmentStatus } from "@/services/patient/appointment.service";
+import { initiatePayment } from "@/services/payment/payment.service";
 import {
   AppointmentStatus,
   IAppointment,
   PaymentStatus,
-} from '@/types/appointments.interface';
-import { toast } from 'sonner';
-import AppointmentCountdown from './AppointmentCountdown';
-import ReviewDialog from './ReviewDialog';
+} from "@/types/appointments.interface";
+import { toast } from "sonner";
+import AppointmentCountdown from "./AppointmentCountdown";
+import ReviewDialog from "./ReviewDialog";
 
 interface AppointmentDetailProps {
   appointment: IAppointment;
@@ -58,26 +58,26 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
       const result = await initiatePayment(appointment.id);
 
       if (result.success && result.data?.paymentUrl) {
-        toast.success('Redirecting to payment...');
+        toast.success("Redirecting to payment...");
         // Store return URL before redirecting to payment
         sessionStorage.setItem(
-          'paymentReturnUrl',
-          '/dashboard/my-appointments'
+          "paymentReturnUrl",
+          "/dashboard/my-appointments"
         );
         window.location.replace(result.data.paymentUrl);
       } else {
-        toast.error(result.message || 'Failed to initiate payment');
+        toast.error(result.message || "Failed to initiate payment");
         setIsProcessingPayment(false);
       }
     } catch (error) {
-      toast.error('An error occurred while initiating payment');
+      toast.error("An error occurred while initiating payment");
       setIsProcessingPayment(false);
       console.error(error);
     }
   };
 
   const handleCancelAppointment = async () => {
-    if (!confirm('Are you sure you want to cancel this appointment?')) {
+    if (!confirm("Are you sure you want to cancel this appointment?")) {
       return;
     }
 
@@ -89,13 +89,13 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
       );
 
       if (result.success) {
-        toast.success('Appointment cancelled successfully');
+        toast.success("Appointment cancelled successfully");
         router.refresh();
       } else {
-        toast.error(result.message || 'Failed to cancel appointment');
+        toast.error(result.message || "Failed to cancel appointment");
       }
     } catch (error) {
-      toast.error('An error occurred while cancelling appointment');
+      toast.error("An error occurred while cancelling appointment");
       console.error(error);
     } finally {
       setIsCancelling(false);
@@ -108,22 +108,22 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
       { variant: any; label: string; className?: string }
     > = {
       [AppointmentStatus.SCHEDULED]: {
-        variant: 'default',
-        label: 'Scheduled',
-        className: 'bg-blue-500 hover:bg-blue-600',
+        variant: "default",
+        label: "Scheduled",
+        className: "bg-blue-500 hover:bg-blue-600",
       },
       [AppointmentStatus.INPROGRESS]: {
-        variant: 'secondary',
-        label: 'In Progress',
+        variant: "secondary",
+        label: "In Progress",
       },
       [AppointmentStatus.COMPLETED]: {
-        variant: 'default',
-        label: 'Completed',
-        className: 'bg-green-500 hover:bg-green-600',
+        variant: "default",
+        label: "Completed",
+        className: "bg-green-500 hover:bg-green-600",
       },
       [AppointmentStatus.CANCELED]: {
-        variant: 'destructive',
-        label: 'Canceled',
+        variant: "destructive",
+        label: "Canceled",
       },
     };
 
@@ -159,7 +159,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                   Cancelling...
                 </>
               ) : (
-                'Cancel Appointment'
+                "Cancel Appointment"
               )}
             </Button>
           )}
@@ -267,10 +267,10 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
           <CardContent className="space-y-4">
             <div>
               <p className="text-2xl font-semibold">
-                {appointment.doctor?.name || 'N/A'}
+                {appointment.doctor?.name || "N/A"}
               </p>
               <p className="text-muted-foreground">
-                {appointment.doctor?.designation || 'Doctor'}
+                {appointment.doctor?.designation || "Doctor"}
               </p>
             </div>
 
@@ -287,7 +287,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                     <div className="flex flex-wrap gap-2">
                       {appointment.doctor.doctorSpecialties.map((ds, idx) => (
                         <Badge key={idx} variant="secondary">
-                          {ds.specialities?.title || 'N/A'}
+                          {ds.specialities?.title || "N/A"}
                         </Badge>
                       ))}
                     </div>
@@ -394,13 +394,13 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                     <p className="text-xl font-bold text-blue-900">
                       {format(
                         new Date(appointment.schedule.startDateTime),
-                        'EEEE'
+                        "EEEE"
                       )}
                     </p>
                     <p className="text-blue-700">
                       {format(
                         new Date(appointment.schedule.startDateTime),
-                        'MMMM d, yyyy'
+                        "MMMM d, yyyy"
                       )}
                     </p>
                   </div>
@@ -414,12 +414,12 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                       <p className="font-semibold text-blue-900">
                         {format(
                           new Date(appointment.schedule.startDateTime),
-                          'h:mm a'
-                        )}{' '}
-                        -{' '}
+                          "h:mm a"
+                        )}{" "}
+                        -{" "}
                         {format(
                           new Date(appointment.schedule.endDateTime),
-                          'h:mm a'
+                          "h:mm a"
                         )}
                       </p>
                     </div>
@@ -472,7 +472,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
                       <p className="text-sm text-green-700">
                         {format(
                           new Date(appointment.prescription.followUpDate),
-                          'MMMM d, yyyy'
+                          "MMMM d, yyyy"
                         )}
                       </p>
                     </div>
@@ -496,13 +496,13 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
           <CardContent>
             <div className="bg-yellow-50 rounded-lg p-4 space-y-3">
               <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map(star => (
+                {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
                     className={`h-5 w-5 ${
                       star <= appointment.review!.rating
-                        ? 'fill-yellow-500 text-yellow-500'
-                        : 'text-gray-300'
+                        ? "fill-yellow-500 text-yellow-500"
+                        : "text-gray-300"
                     }`}
                   />
                 ))}
@@ -536,7 +536,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
           isOpen={showReviewDialog}
           onClose={() => setShowReviewDialog(false)}
           appointmentId={appointment.id}
-          doctorName={appointment.doctor?.name || 'the doctor'}
+          doctorName={appointment.doctor?.name || "the doctor"}
         />
       )}
     </div>

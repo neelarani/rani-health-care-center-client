@@ -126,7 +126,11 @@ const ChangePasswordForm = () => {
         )}
       </Field>
 
-      <Button type="submit" disabled={isPending} className="w-full">
+      <Button
+        type="submit"
+        disabled={isPending}
+        className="w-full bg-chart-1 hover:bg-chart-1/80"
+      >
         {isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

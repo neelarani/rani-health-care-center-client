@@ -1,9 +1,9 @@
-import { AppointmentPieChart } from '@/components/shared/AppointmentPieChart';
-import { DashboardSkeleton } from '@/components/shared/DashboardSkeleton';
-import { StatsCard } from '@/components/shared/StatCard';
-import { getDashboardMetaData } from '@/services/meta/dashboard.service';
-import { IDoctorDashboardMeta } from '@/types/meta.interface';
-import { Suspense } from 'react';
+import { AppointmentPieChart } from "@/components/shared/AppointmentPieChart";
+import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
+import { StatsCard } from "@/components/shared/StatCard";
+import { getDashboardMetaData } from "@/services/meta/dashboard.service";
+import { IDoctorDashboardMeta } from "@/types/meta.interface";
+import { Suspense } from "react";
 async function DoctorDashboardContent() {
   const result = await getDashboardMetaData();
 

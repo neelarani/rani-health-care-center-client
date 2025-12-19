@@ -1,15 +1,15 @@
-import InfoRow from '@/components/shared/InoRow';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
+import InfoRow from "@/components/shared/InoRow";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Separator } from '@/components/ui/separator';
-import { formatDateTime, getInitials } from '@/lib/formatters';
-import { IPatient } from '@/types/patient.interface';
+} from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
+import { formatDateTime, getInitials } from "@/lib/formatters";
+import { IPatient } from "@/types/patient.interface";
 import {
   Activity,
   Calendar,
@@ -20,7 +20,7 @@ import {
   MapPin,
   Phone,
   User,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface IPatientViewDialogProps {
   open: boolean;
@@ -51,11 +51,11 @@ const PatientViewDetailDialog = ({
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6 bg-linear-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 rounded-lg mb-6">
             <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
               <AvatarImage
-                src={patient?.profilePhoto || ''}
+                src={patient?.profilePhoto || ""}
                 alt={patient?.name}
               />
               <AvatarFallback className="text-2xl">
-                {getInitials(patient?.name || '')}
+                {getInitials(patient?.name || "")}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 text-center sm:text-left">
@@ -66,10 +66,10 @@ const PatientViewDetailDialog = ({
               </p>
               <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                 <Badge
-                  variant={patient?.isDeleted ? 'destructive' : 'default'}
+                  variant={patient?.isDeleted ? "destructive" : "default"}
                   className="text-sm"
                 >
-                  {patient?.isDeleted ? 'Inactive' : 'Active'}
+                  {patient?.isDeleted ? "Inactive" : "Active"}
                 </Badge>
               </div>
             </div>
@@ -88,21 +88,21 @@ const PatientViewDetailDialog = ({
                   <Phone className="h-4 w-4 mt-1 text-muted-foreground" />
                   <InfoRow
                     label="Contact Number"
-                    value={patient?.contactNumber || 'Not provided'}
+                    value={patient?.contactNumber || "Not provided"}
                   />
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="h-4 w-4 mt-1 text-muted-foreground" />
                   <InfoRow
                     label="Email"
-                    value={patient?.email || 'Not provided'}
+                    value={patient?.email || "Not provided"}
                   />
                 </div>
                 <div className="flex items-start gap-3 md:col-span-2">
                   <MapPin className="h-4 w-4 mt-1 text-muted-foreground" />
                   <InfoRow
                     label="Address"
-                    value={patient?.address || 'Not provided'}
+                    value={patient?.address || "Not provided"}
                   />
                 </div>
               </div>
@@ -128,7 +128,7 @@ const PatientViewDetailDialog = ({
                           healthData.gender
                             ? healthData.gender.charAt(0) +
                               healthData.gender.slice(1).toLowerCase()
-                            : 'Not specified'
+                            : "Not specified"
                         }
                       />
                     </div>
@@ -136,7 +136,7 @@ const PatientViewDetailDialog = ({
                       <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
                       <InfoRow
                         label="Date of Birth"
-                        value={formatDateTime(healthData.dateOfBirth || '')}
+                        value={formatDateTime(healthData.dateOfBirth || "")}
                       />
                     </div>
                     <div className="flex items-start gap-3">
@@ -144,8 +144,8 @@ const PatientViewDetailDialog = ({
                       <InfoRow
                         label="Blood Group"
                         value={
-                          healthData.bloodGroup?.replace(/_/g, ' ') ||
-                          'Not specified'
+                          healthData.bloodGroup?.replace(/_/g, " ") ||
+                          "Not specified"
                         }
                       />
                     </div>
@@ -153,14 +153,14 @@ const PatientViewDetailDialog = ({
                       <Activity className="h-4 w-4 mt-1 text-muted-foreground" />
                       <InfoRow
                         label="Height"
-                        value={healthData.height || 'Not specified'}
+                        value={healthData.height || "Not specified"}
                       />
                     </div>
                     <div className="flex items-start gap-3">
                       <Activity className="h-4 w-4 mt-1 text-muted-foreground" />
                       <InfoRow
                         label="Weight"
-                        value={healthData.weight || 'Not specified'}
+                        value={healthData.weight || "Not specified"}
                       />
                     </div>
                     <div className="flex items-start gap-3">
@@ -171,7 +171,7 @@ const PatientViewDetailDialog = ({
                           healthData.maritalStatus
                             ? healthData.maritalStatus.charAt(0) +
                               healthData.maritalStatus.slice(1).toLowerCase()
-                            : 'Not specified'
+                            : "Not specified"
                         }
                       />
                     </div>
@@ -240,7 +240,7 @@ const PatientViewDetailDialog = ({
                     <h3 className="font-semibold text-lg">Medical Reports</h3>
                   </div>
                   <div className="space-y-2">
-                    {patient.medicalReport.map(report => (
+                    {patient.medicalReport.map((report) => (
                       <div
                         key={report.id}
                         className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
@@ -284,14 +284,14 @@ const PatientViewDetailDialog = ({
                   <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
                   <InfoRow
                     label="Joined On"
-                    value={formatDateTime(patient?.createdAt || '')}
+                    value={formatDateTime(patient?.createdAt || "")}
                   />
                 </div>
                 <div className="flex items-start gap-3">
                   <Calendar className="h-4 w-4 mt-1 text-muted-foreground" />
                   <InfoRow
                     label="Last Updated"
-                    value={formatDateTime(patient?.updatedAt || '')}
+                    value={formatDateTime(patient?.updatedAt || "")}
                   />
                 </div>
               </div>

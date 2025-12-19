@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,14 +8,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { IDoctor } from '@/types/doctor.interface';
-import { IDoctorSchedule } from '@/types/schedule.interface';
-import { format } from 'date-fns';
-import { Calendar, Clock } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { IDoctor } from "@/types/doctor.interface";
+import { IDoctorSchedule } from "@/types/schedule.interface";
+import { format } from "date-fns";
+import { Calendar, Clock } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface BookAppointmentDialogProps {
   doctor: IDoctor;
@@ -41,12 +41,12 @@ export default function BookAppointmentDialog({
   const groupSchedulesByDate = () => {
     const grouped: Record<string, IDoctorSchedule[]> = {};
 
-    doctorSchedules.forEach(schedule => {
+    doctorSchedules.forEach((schedule) => {
       if (!schedule.schedule?.startDateTime) return;
 
       const startDate = new Date(schedule.schedule.startDateTime)
         .toISOString()
-        .split('T')[0];
+        .split("T")[0];
 
       if (startDate) {
         if (!grouped[startDate]) {
@@ -104,7 +104,7 @@ export default function BookAppointmentDialog({
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
                   The doctor has {doctorSchedules.length} schedule
-                  {doctorSchedules.length !== 1 ? 's' : ''}, but detailed
+                  {doctorSchedules.length !== 1 ? "s" : ""}, but detailed
                   information is not loaded.
                 </p>
               </div>
@@ -126,12 +126,12 @@ export default function BookAppointmentDialog({
                       <div className="flex items-center gap-2 mb-2">
                         <Calendar className="h-4 w-4 text-muted-foreground" />
                         <h4 className="font-medium">
-                          {format(new Date(date), 'EEEE, MMMM d, yyyy')}
+                          {format(new Date(date), "EEEE, MMMM d, yyyy")}
                         </h4>
                       </div>
 
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {dateSchedules.map(schedule => {
+                        {dateSchedules.map((schedule) => {
                           const startTime = schedule.schedule?.startDateTime
                             ? new Date(schedule.schedule.startDateTime)
                             : null;
@@ -142,8 +142,8 @@ export default function BookAppointmentDialog({
                               variant={
                                 selectedSchedule?.scheduleId ===
                                 schedule.scheduleId
-                                  ? 'default'
-                                  : 'outline'
+                                  ? "default"
+                                  : "outline"
                               }
                               className="justify-start h-auto py-2"
                               onClick={() => setSelectedSchedule(schedule)}
@@ -151,8 +151,8 @@ export default function BookAppointmentDialog({
                               <Clock className="h-4 w-4 mr-2" />
                               <span className="text-sm">
                                 {startTime
-                                  ? format(startTime, 'h:mm a')
-                                  : 'N/A'}
+                                  ? format(startTime, "h:mm a")
+                                  : "N/A"}
                               </span>
                             </Button>
                           );

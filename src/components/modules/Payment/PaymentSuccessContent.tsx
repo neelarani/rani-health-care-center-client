@@ -1,12 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { revalidate } from '@/lib/revalidate';
-
-import { CheckCircle2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { revalidate } from "@/lib/revalidate";
+import { CheckCircle2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const PaymentSuccessContent = () => {
   const router = useRouter();
@@ -14,15 +13,15 @@ const PaymentSuccessContent = () => {
 
   useEffect(() => {
     // Get return URL from session storage only on client
-    revalidate('my-appointments');
+    revalidate("my-appointments");
     const storedUrl =
-      sessionStorage.getItem('paymentReturnUrl') ||
-      '/dashboard/my-appointments';
-    sessionStorage.removeItem('paymentReturnUrl');
+      sessionStorage.getItem("paymentReturnUrl") ||
+      "/dashboard/my-appointments";
+    sessionStorage.removeItem("paymentReturnUrl");
 
     // Start countdown
     const timer = setInterval(() => {
-      setCountdown(prev => {
+      setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
           return 0;
@@ -44,9 +43,9 @@ const PaymentSuccessContent = () => {
 
   const handleManualRedirect = () => {
     const storedUrl =
-      sessionStorage.getItem('paymentReturnUrl') ||
-      '/dashboard/my-appointments';
-    sessionStorage.removeItem('paymentReturnUrl');
+      sessionStorage.getItem("paymentReturnUrl") ||
+      "/dashboard/my-appointments";
+    sessionStorage.removeItem("paymentReturnUrl");
     router.push(storedUrl);
   };
 

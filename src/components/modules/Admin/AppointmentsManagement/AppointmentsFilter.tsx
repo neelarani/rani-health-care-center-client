@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import ClearFiltersButton from '@/components/shared/ClearFiltersButton';
-import RefreshButton from '@/components/shared/RefreshButton';
-import SearchFilter from '@/components/shared/SearchFilter';
-import SelectFilter from '@/components/shared/SelectFilter';
+import ClearFiltersButton from "@/components/shared/ClearFiltersButton";
+import RefreshButton from "@/components/shared/RefreshButton";
+import SearchFilter from "@/components/shared/SearchFilter";
+import SelectFilter from "@/components/shared/SelectFilter";
 
 const AppointmentsFilter = () => {
   return (
@@ -21,10 +21,10 @@ const AppointmentsFilter = () => {
           placeholder="Appointment Status"
           defaultValue="All Appointment Statuses"
           options={[
-            { label: 'Scheduled', value: 'SCHEDULED' },
-            { label: 'In Progress', value: 'INPROGRESS' },
-            { label: 'Completed', value: 'COMPLETED' },
-            { label: 'Canceled', value: 'CANCELED' },
+            { label: "Scheduled", value: "SCHEDULED" },
+            { label: "In Progress", value: "INPROGRESS" },
+            { label: "Completed", value: "COMPLETED" },
+            { label: "Canceled", value: "CANCELED" },
           ]}
         />
 
@@ -34,8 +34,8 @@ const AppointmentsFilter = () => {
           placeholder="Payment Status"
           defaultValue="All Payment Statuses"
           options={[
-            { label: 'Paid', value: 'PAID' },
-            { label: 'Unpaid', value: 'UNPAID' },
+            { label: "Paid", value: "PAID" },
+            { label: "Unpaid", value: "UNPAID" },
           ]}
         />
 

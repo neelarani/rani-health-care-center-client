@@ -1,5 +1,6 @@
 'use client';
 
+import AISearchDialog from '@/components/shared/AISSearchDialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -8,10 +9,8 @@ import { UserInfo } from '@/types/user.interface';
 import { Menu, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import DashboardMobileSidebar from './DashboardMobileSidebar';
-
-import UserDropdown from './UserDropdown';
-import AISearchDialog from '@/components/shared/AISearchDialog';
 import NotificationDropdown from './NotificationDropdown';
+import UserDropdown from './UserDropdown';
 
 interface DashboardNavbarContentProps {
   userInfo: UserInfo;
@@ -54,7 +53,7 @@ const DashboardNavbarContent = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
+    <header className="sticky top-0 z-40 w-full border-b bg-foreground backdrop-blur border-muted-foreground/30">
       <div className="flex h-16 items-center justify-between gap-4 px-4 md:px-6">
         {/* Mobile Menu Toggle */}
         <Sheet open={isMobile && isOpen} onOpenChange={setIsOpen}>
@@ -84,7 +83,7 @@ const DashboardNavbarContent = ({
             <Input
               type="text"
               placeholder="Search doctors by symptoms..."
-              className="pl-9 pr-4"
+              className="pl-9 pr-4 border-muted-foreground/30 text-muted"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}

@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { createPrescription } from '@/services/patient/prescription.service';
-import { IAppointment } from '@/types/appointments.interface';
-import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from 'sonner';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { createPrescription } from "@/services/patient/prescription.service";
+import { IAppointment } from "@/types/appointments.interface";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
+import AppointmentCountdown from "../../Patient/PatientAppointment/AppointmentCountdown";
 
 interface DoctorAppointmentDetailDialogProps {
   appointment: IAppointment | null;
@@ -31,27 +32,27 @@ export default function DoctorAppointmentDetailDialog({
 }: DoctorAppointmentDetailDialogProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [instructions, setInstructions] = useState('');
-  const [followUpDate, setFollowUpDate] = useState('');
+  const [instructions, setInstructions] = useState("");
+  const [followUpDate, setFollowUpDate] = useState("");
 
   if (!appointment) return null;
 
   const { patient, schedule, status, paymentStatus, prescription } =
     appointment;
 
-  const isCompleted = status === 'COMPLETED';
+  const isCompleted = status === "COMPLETED";
   const hasPrescription = !!prescription;
   const canWritePrescription = isCompleted && !hasPrescription;
 
   const handleSubmitPrescription = async () => {
     if (!instructions.trim()) {
-      toast.error('Please provide prescription instructions');
+      toast.error("Please provide prescription instructions");
       return;
     }
 
     if (instructions.trim().length < 20) {
       toast.error(
-        'Instructions must be at least 20 characters long for clarity'
+        "Instructions must be at least 20 characters long for clarity"
       );
       return;
     }
@@ -76,27 +77,28 @@ export default function DoctorAppointmentDetailDialog({
       const result = await createPrescription(prescriptionData);
 
       if (result.success) {
-        toast.success('Prescription created successfully');
-        setInstructions('');
-        setFollowUpDate('');
-        onClose();
-        router.refresh();
+        toast.success("Prescription created successfully");
+        setInstructions("");
+        setFollowUpDate("");
+        // Close dialog first, then refresh will update the data
+        setTimeout(() => {
+          onClose();
+        }, 100);
       } else {
-        toast.error(result.message || 'Failed to create prescription');
+        toast.error(result.message || "Failed to create prescription");
+        setIsSubmitting(false);
       }
     } catch (error) {
-      console.error('Error creating prescription:', error);
-      toast.error('An error occurred while creating prescription');
-    } finally {
+      console.error("Error creating prescription:", error);
+      toast.error("An error occurred while creating prescription");
       setIsSubmitting(false);
     }
   };
 
   const handleClose = () => {
-    setInstructions('');
-    setFollowUpDate('');
+    setInstructions("");
+    setFollowUpDate("");
     onClose();
-    router.refresh();
   };
 
   return (
@@ -122,13 +124,13 @@ export default function DoctorAppointmentDetailDialog({
               <div>
                 <p className="text-muted-foreground">Contact Number</p>
                 <p className="font-medium">
-                  {patient?.contactNumber || 'Not provided'}
+                  {patient?.contactNumber || "Not provided"}
                 </p>
               </div>
               <div>
                 <p className="text-muted-foreground">Address</p>
                 <p className="font-medium">
-                  {patient?.address || 'Not provided'}
+                  {patient?.address || "Not provided"}
                 </p>
               </div>
             </div>
@@ -142,8 +144,8 @@ export default function DoctorAppointmentDetailDialog({
                 <p className="text-muted-foreground">Schedule Date</p>
                 <p className="font-medium">
                   {schedule?.startDateTime
-                    ? format(new Date(schedule.startDateTime), 'PPP')
-                    : 'N/A'}
+                    ? format(new Date(schedule.startDateTime), "PPP")
+                    : "N/A"}
                 </p>
               </div>
               <div>
@@ -152,24 +154,34 @@ export default function DoctorAppointmentDetailDialog({
                   {schedule?.startDateTime && schedule?.endDateTime
                     ? `${format(
                         new Date(schedule.startDateTime),
-                        'p'
-                      )} - ${format(new Date(schedule.endDateTime), 'p')}`
-                    : 'N/A'}
+                        "p"
+                      )} - ${format(new Date(schedule.endDateTime), "p")}`
+                    : "N/A"}
                 </p>
               </div>
+              {status === "SCHEDULED" && schedule?.startDateTime && (
+                <div className="col-span-2 pt-2 border-t">
+                  <p className="text-muted-foreground mb-2">
+                    Time Until Appointment
+                  </p>
+                  <AppointmentCountdown
+                    appointmentDateTime={schedule.startDateTime}
+                  />
+                </div>
+              )}
               <div>
                 <p className="text-muted-foreground">Status</p>
                 <div>
                   <Badge
                     variant="outline"
                     className={
-                      status === 'COMPLETED'
-                        ? 'border-green-500 text-green-700 bg-green-50'
-                        : status === 'INPROGRESS'
-                        ? 'border-blue-500 text-blue-700 bg-blue-50'
-                        : status === 'SCHEDULED'
-                        ? 'border-purple-500 text-purple-700 bg-purple-50'
-                        : 'border-red-500 text-red-700 bg-red-50'
+                      status === "COMPLETED"
+                        ? "border-green-500 text-green-700 bg-green-50"
+                        : status === "INPROGRESS"
+                        ? "border-blue-500 text-blue-700 bg-blue-50"
+                        : status === "SCHEDULED"
+                        ? "border-purple-500 text-purple-700 bg-purple-50"
+                        : "border-red-500 text-red-700 bg-red-50"
                     }
                   >
                     {status}
@@ -181,7 +193,7 @@ export default function DoctorAppointmentDetailDialog({
                 <div>
                   <Badge
                     variant={
-                      paymentStatus === 'PAID' ? 'default' : 'destructive'
+                      paymentStatus === "PAID" ? "default" : "destructive"
                     }
                   >
                     {paymentStatus}
@@ -195,7 +207,7 @@ export default function DoctorAppointmentDetailDialog({
           <div className="border rounded-lg p-4">
             <h3 className="font-semibold text-lg mb-3">Prescription</h3>
 
-            {status === 'CANCELED' && (
+            {status === "CANCELED" && (
               <div className="text-sm text-muted-foreground p-4 bg-red-50 border border-red-200 rounded-md">
                 <p className="text-red-800">
                   ⚠️ This appointment has been canceled. No prescription can be
@@ -204,10 +216,10 @@ export default function DoctorAppointmentDetailDialog({
               </div>
             )}
 
-            {!isCompleted && status !== 'CANCELED' && (
+            {!isCompleted && status !== "CANCELED" && (
               <div className="text-sm text-muted-foreground p-4 bg-muted/50 rounded-md">
                 <p>
-                  You can write a prescription once the appointment is marked as{' '}
+                  You can write a prescription once the appointment is marked as{" "}
                   <span className="font-semibold text-green-700">
                     COMPLETED
                   </span>
@@ -233,7 +245,7 @@ export default function DoctorAppointmentDetailDialog({
                     id="instructions"
                     placeholder="Enter prescription instructions (minimum 20 characters)..."
                     value={instructions}
-                    onChange={e => setInstructions(e.target.value)}
+                    onChange={(e) => setInstructions(e.target.value)}
                     rows={6}
                     className="resize-none"
                   />
@@ -250,7 +262,7 @@ export default function DoctorAppointmentDetailDialog({
                     id="followUpDate"
                     type="datetime-local"
                     value={followUpDate}
-                    onChange={e => setFollowUpDate(e.target.value)}
+                    onChange={(e) => setFollowUpDate(e.target.value)}
                     min={new Date().toISOString().slice(0, 16)}
                   />
                 </div>
@@ -261,8 +273,8 @@ export default function DoctorAppointmentDetailDialog({
                   className="w-full"
                 >
                   {isSubmitting
-                    ? 'Creating Prescription...'
-                    : 'Create Prescription'}
+                    ? "Creating Prescription..."
+                    : "Create Prescription"}
                 </Button>
               </div>
             )}
@@ -297,7 +309,7 @@ export default function DoctorAppointmentDetailDialog({
                         Follow-up Date
                       </p>
                       <p className="text-sm font-medium">
-                        {format(new Date(prescription.followUpDate), 'PPP')}
+                        {format(new Date(prescription.followUpDate), "PPP")}
                       </p>
                     </div>
                   )}

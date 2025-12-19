@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   ArrowDown,
   ArrowUp,
@@ -8,16 +8,16 @@ import {
   Loader2,
   MoreHorizontal,
   Trash,
-} from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useTransition } from 'react';
-import { Button } from '../ui/button';
+} from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useTransition } from "react";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from "../ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -25,7 +25,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../ui/table';
+} from "../ui/table";
 
 export interface Column<T> {
   header: string;
@@ -56,7 +56,7 @@ function ManagementTable<T>({
   onEdit,
   onDelete,
   getRowKey,
-  emptyMessage = 'No records found.',
+  emptyMessage = "No records found.",
   isRefreshing = false,
 }: ManagementTableProps<T>) {
   const hasActions = onView || onEdit || onDelete;
@@ -64,23 +64,23 @@ function ManagementTable<T>({
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
 
-  const currentSortBy = searchParams.get('sortBy') || '';
-  const currentSortOrder = searchParams.get('sortOrder') || 'desc';
+  const currentSortBy = searchParams.get("sortBy") || "";
+  const currentSortOrder = searchParams.get("sortOrder") || "desc";
 
   const handleSort = (sortKey: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
     // Toggle sort order if clicking the same column
     if (currentSortBy === sortKey) {
-      const newOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-      params.set('sortOrder', newOrder);
+      const newOrder = currentSortOrder === "asc" ? "desc" : "asc";
+      params.set("sortOrder", newOrder);
     } else {
       // New column, default to descending
-      params.set('sortBy', sortKey);
-      params.set('sortOrder', 'desc');
+      params.set("sortBy", sortKey);
+      params.set("sortOrder", "desc");
     }
 
-    params.set('page', '1'); // Reset to first page
+    params.set("page", "1"); // Reset to first page
 
     startTransition(() => {
       router.push(`?${params.toString()}`);
@@ -94,7 +94,7 @@ function ManagementTable<T>({
       return <ArrowUpDown className="ml-2 h-4 w-4 text-muted-foreground" />;
     }
 
-    return currentSortOrder === 'asc' ? (
+    return currentSortOrder === "asc" ? (
       <ArrowUp className="ml-2 h-4 w-4" />
     ) : (
       <ArrowDown className="ml-2 h-4 w-4" />
@@ -148,11 +148,11 @@ function ManagementTable<T>({
                 </TableCell>
               </TableRow>
             ) : (
-              data?.map(item => (
+              data?.map((item) => (
                 <TableRow key={getRowKey(item)}>
                   {columns.map((col, idx) => (
                     <TableCell key={idx} className={col.className}>
-                      {typeof col.accessor === 'function'
+                      {typeof col.accessor === "function"
                         ? col.accessor(item)
                         : String(item[col.accessor])}
                     </TableCell>

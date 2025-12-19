@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
-import { Field } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { forgotPassword } from '@/services/auth/auth.service';
-import { CheckCircle, Loader2, Mail } from 'lucide-react';
-import { useActionState } from 'react';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { forgotPassword } from "@/services/auth/auth.service";
+import { CheckCircle, Loader2, Mail } from "lucide-react";
+import { useActionState } from "react";
 
 const ForgotPasswordForm = () => {
   const [state, formAction, isPending] = useActionState(forgotPassword, null);
@@ -37,14 +37,14 @@ const ForgotPasswordForm = () => {
             type="email"
             placeholder="Enter your email"
             className="pl-10"
-            defaultValue={state?.formData?.email || ''}
+            defaultValue={state?.formData?.email || ""}
             required
             disabled={isPending}
           />
         </div>
-        {state?.errors?.find(e => e.field === 'email') && (
+        {state?.errors?.find((e) => e.field === "email") && (
           <p className="text-sm text-red-500">
-            {state.errors.find(e => e.field === 'email')?.message}
+            {state.errors.find((e) => e.field === "email")?.message}
           </p>
         )}
       </Field>
@@ -56,7 +56,7 @@ const ForgotPasswordForm = () => {
             Sending Reset Link...
           </>
         ) : (
-          'Send Reset Link'
+          "Send Reset Link"
         )}
       </Button>
     </form>

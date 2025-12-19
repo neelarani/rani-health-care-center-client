@@ -1,6 +1,6 @@
-'use client';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { useMemo } from 'react';
+"use client";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { useMemo } from "react";
 
 interface ManagementPageLoadingProps {
   columns: number;
@@ -25,7 +25,7 @@ export function ManagementPageLoading({
           <div
             key={index}
             className={`h-10 ${
-              filterWidths[index] || 'w-40'
+              filterWidths[index] || "w-40"
             } bg-slate-300 dark:bg-slate-700 animate-pulse rounded-md border-2 border-slate-400 dark:border-slate-500 shadow-sm`}
           />
         ))}

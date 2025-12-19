@@ -1,11 +1,11 @@
 'use client';
 
+import { useAuthToken } from '@/hooks/useAuthToken';
 import { UserInfo } from '@/types/user.interface';
 import { LayoutDashboard } from 'lucide-react';
 import Link from 'next/link';
 import UserDropdown from '../modules/Dashboard/UserDropdown';
 import { Button } from '../ui/button';
-import { useAuthToken } from '@/hooks/useAuthToken';
 
 interface NavbarAuthButtonsProps {
   initialHasToken: boolean;
@@ -30,7 +30,7 @@ export default function NavbarAuthButtons({
     return (
       <>
         <Link href={dashboardRoute}>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2 text-muted ">
             <LayoutDashboard className="h-4 w-4" />
             Dashboard
           </Button>
@@ -42,7 +42,7 @@ export default function NavbarAuthButtons({
 
   return (
     <Link href="/login">
-      <Button>Login</Button>
+      <Button className="bg-chart-1 hover:bg-chart-1/80">Login</Button>
     </Link>
   );
 }

@@ -1,12 +1,11 @@
 import { getDefaultDashboardRoute } from '@/lib/auth-utils';
 import { getUserInfo } from '@/services/auth/getUserInfo';
-
+import { getCookie } from '@/services/auth/tokenHandlers';
 import Link from 'next/link';
-
+import AISearchDialog from './AISSearchDialog';
 import MobileMenu from './MobileMenu';
 import NavbarAuthButtons from './NavbarAuthButtons';
-import AISearchDialog from './AISearchDialog';
-import { getCookie } from '@/services/auth/tokenHandler';
+import NavbarLinks from './NavbarLinks';
 
 const PublicNavbar = async () => {
   const navItems = [
@@ -24,26 +23,14 @@ const PublicNavbar = async () => {
     : '/';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur  dark:bg-background/95">
+    <header className="sticky top-0 z-50 w-full border-b bg-foreground border-muted-foreground/20">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">
-            Rani Health Care
-          </span>
+        <Link href="/" className="text-xl font-bold text-muted">
+          Rani Health Care
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navItems.map(link => (
-            <Link
-              key={link.label}
-              href={link.href}
-              prefetch={true}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Client Component */}
+        <NavbarLinks navItems={navItems} />
 
         <div className="hidden md:flex items-center space-x-2">
           <AISearchDialog />
@@ -54,7 +41,6 @@ const PublicNavbar = async () => {
           />
         </div>
 
-        {/* Mobile Menu */}
         <MobileMenu
           navItems={navItems}
           hasAccessToken={!!accessToken}

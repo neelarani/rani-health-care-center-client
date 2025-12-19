@@ -1,17 +1,17 @@
-import InputFieldError from '@/components/shared/InputFieldError';
-import { Button } from '@/components/ui/button';
+import InputFieldError from "@/components/shared/InputFieldError";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Field, FieldLabel } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
-import { updatePatient } from '@/services/admin/patientsManagement';
-import { IPatient } from '@/types/patient.interface';
-import { useActionState, useEffect, useRef } from 'react';
-import { toast } from 'sonner';
+} from "@/components/ui/dialog";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { updatePatient } from "@/services/admin/patientsManagement";
+import { IPatient } from "@/types/patient.interface";
+import { useActionState, useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 interface IPatientFormDialogProps {
   open: boolean;
@@ -39,7 +39,7 @@ const PatientFormDialog = ({
     if (state === prevStateRef.current) return;
     prevStateRef.current = state;
     if (state?.success) {
-      toast.success(state.message || 'Operation successful');
+      toast.success(state.message || "Operation successful");
       if (formRef.current) {
         formRef.current.reset();
       }
@@ -75,7 +75,7 @@ const PatientFormDialog = ({
                 id="name"
                 name="name"
                 placeholder="John Doe"
-                defaultValue={state?.formData?.name || patient?.name || ''}
+                defaultValue={state?.formData?.name || patient?.name || ""}
               />
               <InputFieldError field="name" state={state} />
             </Field>
@@ -87,7 +87,7 @@ const PatientFormDialog = ({
                 name="email"
                 type="email"
                 placeholder="patient@example.com"
-                defaultValue={state?.formData?.email || patient?.email || ''}
+                defaultValue={state?.formData?.email || patient?.email || ""}
                 disabled={isPending}
               />
               <InputFieldError field="email" state={state} />
@@ -100,7 +100,7 @@ const PatientFormDialog = ({
                 name="contactNumber"
                 placeholder="+1234567890"
                 defaultValue={
-                  state?.formData?.contactNumber || patient?.contactNumber || ''
+                  state?.formData?.contactNumber || patient?.contactNumber || ""
                 }
               />
               <InputFieldError field="contactNumber" state={state} />
@@ -113,7 +113,7 @@ const PatientFormDialog = ({
                 name="address"
                 placeholder="123 Main St, City, Country"
                 defaultValue={
-                  state?.formData?.address || patient?.address || ''
+                  state?.formData?.address || patient?.address || ""
                 }
               />
               <InputFieldError field="address" state={state} />
@@ -131,7 +131,7 @@ const PatientFormDialog = ({
               Cancel
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? 'Saving...' : 'Save Changes'}
+              {isPending ? "Saving..." : "Save Changes"}
             </Button>
           </div>
         </form>

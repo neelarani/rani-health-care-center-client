@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useTransition } from 'react';
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useTransition } from "react";
 
 interface ClearFiltersButtonProps {
   /**
@@ -32,12 +32,12 @@ interface ClearFiltersButtonProps {
   /**
    * Button variant
    */
-  variant?: 'ghost' | 'outline' | 'destructive' | 'secondary';
+  variant?: "ghost" | "outline" | "destructive" | "secondary";
 
   /**
    * Button size
    */
-  size?: 'default' | 'sm' | 'lg' | 'icon';
+  size?: "default" | "sm" | "lg" | "icon";
 
   /**
    * Custom className
@@ -83,13 +83,13 @@ interface ClearFiltersButtonProps {
  */
 const ClearFiltersButton = ({
   preserveParams = [],
-  excludeFromCount = ['page', 'limit', 'sortBy', 'sortOrder'],
+  excludeFromCount = ["page", "limit", "sortBy", "sortOrder"],
   onBeforeClear,
   onAfterClear,
-  variant = 'ghost',
-  size = 'default',
-  className = 'h-10 px-3',
-  label = 'Clear',
+  variant = "ghost",
+  size = "default",
+  className = "h-10 px-3",
+  label = "Clear",
   showCount = true,
 }: ClearFiltersButtonProps) => {
   const router = useRouter();
@@ -98,7 +98,7 @@ const ClearFiltersButton = ({
 
   // Count active filters (excluding preserved params and excluded from count params)
   const activeFiltersCount = Array.from(searchParams.keys()).filter(
-    key => !preserveParams.includes(key) && !excludeFromCount.includes(key)
+    (key) => !preserveParams.includes(key) && !excludeFromCount.includes(key)
   ).length;
 
   const handleClear = () => {
@@ -111,7 +111,7 @@ const ClearFiltersButton = ({
     const params = new URLSearchParams();
 
     // Preserve specified params
-    preserveParams.forEach(param => {
+    preserveParams.forEach((param) => {
       const value = searchParams.get(param);
       if (value) {
         params.set(param, value);

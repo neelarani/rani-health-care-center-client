@@ -1,10 +1,10 @@
-import { AppointmentBarChart } from '@/components/shared/AppointmentBarChart';
-import { AppointmentPieChart } from '@/components/shared/AppointmentPieChart';
-import { DashboardSkeleton } from '@/components/shared/DashboardSkeleton';
-import { StatsCard } from '@/components/shared/StatCard';
-import { getDashboardMetaData } from '@/services/meta/dashboard.service';
-import { IAdminDashboardMeta } from '@/types/meta.interface';
-import { Suspense } from 'react';
+import { AppointmentBarChart } from "@/components/shared/AppointmentBarChart";
+import { AppointmentPieChart } from "@/components/shared/AppointmentPieChart";
+import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
+import { StatsCard } from "@/components/shared/StatCard";
+import { getDashboardMetaData } from "@/services/meta/dashboard.service";
+import { IAdminDashboardMeta } from "@/types/meta.interface";
+import { Suspense } from "react";
 
 async function AdminDashboardContent() {
   const result = await getDashboardMetaData();
@@ -18,7 +18,7 @@ async function AdminDashboardContent() {
       {/* Stats Cards Grid */}
       <div
         className={`grid gap-4 md:grid-cols-2 lg:grid-cols-3 ${
-          data.adminCount !== undefined ? 'xl:grid-cols-6' : 'xl:grid-cols-5'
+          data.adminCount !== undefined ? "xl:grid-cols-6" : "xl:grid-cols-5"
         }`}
       >
         <StatsCard

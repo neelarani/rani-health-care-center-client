@@ -88,16 +88,19 @@ export default function NotificationDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <Button variant="outline" size="icon" className="relative text-muted">
           <Bell className="h-5 w-5" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-[10px] font-bold  flex items-center justify-center">
               {unreadCount > 9 ? '9+' : unreadCount}
             </span>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80">
+      <DropdownMenuContent
+        align="end"
+        className="w-80 bg-foreground text-muted hover:text-muted border-muted-foreground/50"
+      >
         <DropdownMenuLabel className="flex items-center justify-between">
           <span>Notifications</span>
           {unreadCount > 0 && (
@@ -109,7 +112,7 @@ export default function NotificationDropdown() {
         <DropdownMenuSeparator />
         <ScrollArea className="h-[400px]">
           {MOCK_NOTIFICATIONS.length === 0 ? (
-            <div className="p-4 text-center text-sm text-muted-foreground">
+            <div className="p-4 text-center text-sm text-muted/80">
               No notifications yet
             </div>
           ) : (
@@ -132,10 +135,10 @@ export default function NotificationDropdown() {
                       <div className="h-2 w-2 rounded-full bg-blue-600 shrink-0 mt-1" />
                     )}
                   </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="text-xs text-muted/80 line-clamp-2 ">
                     {notification.message}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted/80">
                     {formatDistanceToNow(notification.timestamp, {
                       addSuffix: true,
                     })}
@@ -146,7 +149,7 @@ export default function NotificationDropdown() {
           )}
         </ScrollArea>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-center justify-center text-sm font-medium text-primary cursor-pointer">
+        <DropdownMenuItem className="text-center justify-center text-sm font-medium text-muted cursor-pointer">
           View all notifications
         </DropdownMenuItem>
       </DropdownMenuContent>

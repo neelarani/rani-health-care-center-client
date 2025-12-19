@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
-import { Plus } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-import ScheduleFormDialog from './ScheduleFormDialog';
+import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import ScheduleFormDialog from "./ScheduleFormDialog";
 
 const SchedulesManagementHeader = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ const SchedulesManagementHeader = () => {
   const [dialogKey, setDialogKey] = useState(0);
 
   const handleOpenDialog = () => {
-    setDialogKey(prev => prev + 1); // Force remount
+    setDialogKey((prev) => prev + 1); // Force remount
     setIsDialogOpen(true);
   };
 
@@ -42,7 +42,7 @@ const SchedulesManagementHeader = () => {
         title="Schedules Management"
         description="Create and manage appointment schedules"
         action={{
-          label: 'Create Schedule',
+          label: "Create Schedule",
           icon: Plus,
           onClick: handleOpenDialog,
         }}

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { UserInfo } from '@/types/user.interface';
-import { LayoutDashboard, Menu } from 'lucide-react';
-import Link from 'next/link';
-import UserDropdown from '../modules/Dashboard/UserDropdown';
-import { Button } from '../ui/button';
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
-import AISearchDialog from './AISearchDialog';
+import { UserInfo } from "@/types/user.interface";
+import { LayoutDashboard, Menu } from "lucide-react";
+import Link from "next/link";
+import UserDropdown from "../modules/Dashboard/UserDropdown";
+import { Button } from "../ui/button";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import AISearchDialog from "./AISSearchDialog";
 
 interface MobileMenuProps {
   navItems: Array<{ href: string; label: string }>;
@@ -32,7 +32,7 @@ const MobileMenu = ({
         <SheetContent side="right" className="w-[300px] sm:w-[400px] p-4">
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <nav className="flex flex-col space-y-4 mt-8">
-            {navItems.map(link => (
+            {navItems.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -48,7 +48,7 @@ const MobileMenu = ({
               {hasAccessToken && userInfo ? (
                 <>
                   <Link
-                    href={dashboardRoute || '/'}
+                    href={dashboardRoute || "/"}
                     className="text-lg font-medium"
                   >
                     <Button className="w-full gap-2">

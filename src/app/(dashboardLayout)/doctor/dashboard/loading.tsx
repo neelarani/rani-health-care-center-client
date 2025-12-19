@@ -1,7 +1,7 @@
-import { DashboardSkeleton } from '@/components/shared/DashboardSkeleton';
+import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
 
-const DoctorDashboardLoading = () => {
+const AdminDashboardLoading = () => {
   return <DashboardSkeleton />;
 };
 
-export default DoctorDashboardLoading;
+export default AdminDashboardLoading;

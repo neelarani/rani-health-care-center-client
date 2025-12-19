@@ -1,12 +1,11 @@
-import PatientsFilter from '@/components/modules/Admin/PatientsManagement/PatientsFilter';
-import PatientsTable from '@/components/modules/Admin/PatientsManagement/PatientsTable';
-import ManagementPageHeader from '@/components/shared/ManagementPageHeader';
-import TablePagination from '@/components/shared/TablePagination';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { queryStringFormatter } from '@/lib/formatters';
-import { getPatients } from '@/services/admin/patientsManagement';
-
-import { Suspense } from 'react';
+import PatientsFilter from "@/components/modules/Admin/PatientsManagement/PatientsFilter";
+import PatientsTable from "@/components/modules/Admin/PatientsManagement/PatientsTable";
+import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
+import TablePagination from "@/components/shared/TablePagination";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { queryStringFormatter } from "@/lib/formatters";
+import { getPatients } from "@/services/admin/patientsManagement";
+import { Suspense } from "react";
 
 const AdminPatientsManagementPage = async ({
   searchParams,

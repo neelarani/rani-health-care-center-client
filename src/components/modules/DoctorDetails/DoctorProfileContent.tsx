@@ -1,7 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { IDoctor } from '@/types/doctor.interface';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { IDoctor } from "@/types/doctor.interface";
 import {
   Briefcase,
   Calendar,
@@ -12,7 +12,7 @@ import {
   MapPin,
   Phone,
   Star,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface DoctorProfileContentProps {
   doctor: IDoctor;
@@ -20,9 +20,9 @@ interface DoctorProfileContentProps {
 
 const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
   const initials = doctor.name
-    .split(' ')
-    .map(n => n[0])
-    .join('')
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
     .toUpperCase()
     .slice(0, 2);
 
@@ -38,7 +38,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
                 {doctor.profilePhoto ? (
                   <AvatarImage
                     src={
-                      typeof doctor.profilePhoto === 'string'
+                      typeof doctor.profilePhoto === "string"
                         ? doctor.profilePhoto
                         : undefined
                     }
@@ -65,9 +65,9 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
               {doctor.doctorSpecialties &&
                 doctor.doctorSpecialties.length > 0 && (
                   <div className="flex flex-wrap gap-2">
-                    {doctor.doctorSpecialties.map(specialty => (
+                    {doctor.doctorSpecialties.map((specialty) => (
                       <Badge key={specialty.specialitiesId} variant="secondary">
-                        {specialty.specialties?.title || 'Specialty'}
+                        {specialty.specialities?.title || "Specialty"}
                       </Badge>
                     ))}
                   </div>
@@ -142,7 +142,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
                 <p className="font-semibold">
                   {doctor.experience
                     ? `${doctor.experience} years`
-                    : 'Not specified'}
+                    : "Not specified"}
                 </p>
               </div>
             </div>

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import ClearFiltersButton from '@/components/shared/ClearFiltersButton';
-import RefreshButton from '@/components/shared/RefreshButton';
-import SearchFilter from '@/components/shared/SearchFilter';
+import ClearFiltersButton from "@/components/shared/ClearFiltersButton";
+import RefreshButton from "@/components/shared/RefreshButton";
+import SearchFilter from "@/components/shared/SearchFilter";
 
 const PatientsFilter = () => {
   return (

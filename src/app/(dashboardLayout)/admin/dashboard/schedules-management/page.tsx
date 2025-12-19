@@ -1,12 +1,11 @@
-import SchedulesFilter from '@/components/modules/Admin/SchedulesManagement/SchedulesFilter';
-import SchedulesManagementHeader from '@/components/modules/Admin/SchedulesManagement/SchedulesManagementHeader';
-import SchedulesTable from '@/components/modules/Admin/SchedulesManagement/SchedulesTable';
-import TablePagination from '@/components/shared/TablePagination';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { queryStringFormatter } from '@/lib/formatters';
-import { getSchedules } from '@/services/admin/schedulesManagement';
-
-import { Suspense } from 'react';
+import SchedulesFilter from "@/components/modules/Admin/SchedulesManagement/SchedulesFilter";
+import SchedulesManagementHeader from "@/components/modules/Admin/SchedulesManagement/SchedulesManagementHeader";
+import SchedulesTable from "@/components/modules/Admin/SchedulesManagement/SchedulesTable";
+import TablePagination from "@/components/shared/TablePagination";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { queryStringFormatter } from "@/lib/formatters";
+import { getSchedules } from "@/services/admin/schedulesManagement";
+import { Suspense } from "react";
 
 const AdminSchedulesManagementPage = async ({
   searchParams,

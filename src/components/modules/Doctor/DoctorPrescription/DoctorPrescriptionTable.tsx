@@ -1,20 +1,19 @@
-'use client';
+"use client";
 
-import ManagementTable from '@/components/shared/ManagementTable';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import ManagementTable from "@/components/shared/ManagementTable";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { format } from 'date-fns';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-
-import { IPrescription } from '@/types/prescription.interface';
-import { doctorPrescriptionColumns } from './doctorPrescriptionColumns';
+} from "@/components/ui/dialog";
+import { format } from "date-fns";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { doctorPrescriptionColumns } from "./doctorPrescriptionColumns";
+import { IPrescription } from "@/types/prescription.interface";
 
 interface DoctorPrescriptionsTableProps {
   prescriptions: IPrescription[];
@@ -42,7 +41,7 @@ export default function DoctorPrescriptionsTable({
         data={prescriptions}
         columns={doctorPrescriptionColumns}
         onView={handleView}
-        getRowKey={prescription => prescription.id}
+        getRowKey={(prescription) => prescription.id}
         emptyMessage="No prescriptions found"
       />
 
@@ -64,26 +63,26 @@ export default function DoctorPrescriptionsTable({
                   <div>
                     <p className="text-muted-foreground">Name</p>
                     <p className="font-medium">
-                      {viewingPrescription.patient?.name || 'N/A'}
+                      {viewingPrescription.patient?.name || "N/A"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Email</p>
                     <p className="font-medium">
-                      {viewingPrescription.patient?.email || 'N/A'}
+                      {viewingPrescription.patient?.email || "N/A"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Contact Number</p>
                     <p className="font-medium">
                       {viewingPrescription.patient?.contactNumber ||
-                        'Not provided'}
+                        "Not provided"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Address</p>
                     <p className="font-medium">
-                      {viewingPrescription.patient?.address || 'Not provided'}
+                      {viewingPrescription.patient?.address || "Not provided"}
                     </p>
                   </div>
                 </div>
@@ -103,9 +102,9 @@ export default function DoctorPrescriptionsTable({
                             new Date(
                               viewingPrescription.appointment.schedule.startDateTime
                             ),
-                            'PPP'
+                            "PPP"
                           )
-                        : 'N/A'}
+                        : "N/A"}
                     </p>
                   </div>
                   <div>
@@ -118,21 +117,21 @@ export default function DoctorPrescriptionsTable({
                             new Date(
                               viewingPrescription.appointment.schedule.startDateTime
                             ),
-                            'p'
+                            "p"
                           )} - ${format(
                             new Date(
                               viewingPrescription.appointment.schedule.endDateTime
                             ),
-                            'p'
+                            "p"
                           )}`
-                        : 'N/A'}
+                        : "N/A"}
                     </p>
                   </div>
                   <div>
                     <p className="text-muted-foreground">Status</p>
                     <div>
                       <Badge variant="default" className="bg-green-600">
-                        {viewingPrescription.appointment?.status || 'N/A'}
+                        {viewingPrescription.appointment?.status || "N/A"}
                       </Badge>
                     </div>
                   </div>
@@ -141,7 +140,7 @@ export default function DoctorPrescriptionsTable({
                     <div>
                       <Badge variant="default">
                         {viewingPrescription.appointment?.paymentStatus ||
-                          'N/A'}
+                          "N/A"}
                       </Badge>
                     </div>
                   </div>
@@ -176,7 +175,7 @@ export default function DoctorPrescriptionsTable({
                       >
                         {format(
                           new Date(viewingPrescription.followUpDate),
-                          'PPP'
+                          "PPP"
                         )}
                       </Badge>
                     </div>
@@ -187,7 +186,7 @@ export default function DoctorPrescriptionsTable({
                       Prescribed On
                     </p>
                     <p className="text-sm font-medium">
-                      {format(new Date(viewingPrescription.createdAt), 'PPP p')}
+                      {format(new Date(viewingPrescription.createdAt), "PPP p")}
                     </p>
                   </div>
 

@@ -1,9 +1,9 @@
-import SpecialitiesManagementHeader from '@/components/modules/Admin/SpecialitiesManagement/SpecialitiesManagementHeader';
-import SpecialitiesTable from '@/components/modules/Admin/SpecialitiesManagement/SpecialitiesTable';
-import RefreshButton from '@/components/shared/RefreshButton';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { getSpecialities } from '@/services/admin/specialitiesManagement';
-import { Suspense } from 'react';
+import SpecialitiesManagementHeader from "@/components/modules/Admin/SpecialitiesManagement/SpecialitiesManagementHeader";
+import SpecialitiesTable from "@/components/modules/Admin/SpecialitiesManagement/SpecialitiesTable";
+import RefreshButton from "@/components/shared/RefreshButton";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { getSpecialities } from "@/services/admin/specialitiesManagement";
+import { Suspense } from "react";
 
 const AdminSpecialitiesManagementPage = async () => {
   const result = await getSpecialities();

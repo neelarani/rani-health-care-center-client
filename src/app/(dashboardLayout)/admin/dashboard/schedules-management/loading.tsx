@@ -1,4 +1,4 @@
-import { ManagementPageLoading } from '@/components/shared/ManagementPageLoader';
+import { ManagementPageLoading } from "@/components/shared/ManagementPageLoader";
 
 const SpecialtyManagementLoading = () => {
   return (
@@ -6,7 +6,7 @@ const SpecialtyManagementLoading = () => {
       columns={10}
       hasActionButton
       filterCount={5}
-      filterWidths={['w-48', 'w-32', 'w-40', 'w-24', 'w-36']}
+      filterWidths={["w-48", "w-32", "w-40", "w-24", "w-36"]}
     />
   );
 };

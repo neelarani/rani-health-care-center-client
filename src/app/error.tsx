@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { AlertTriangle, Home, RefreshCcw } from 'lucide-react';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertTriangle, Home, RefreshCcw } from "lucide-react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -100,7 +100,7 @@ export default function Error({
                 </div>
 
                 {/* Error Details (Development Only) */}
-                {process.env.NODE_ENV === 'development' && (
+                {process.env.NODE_ENV === "development" && (
                   <div className="w-full rounded-lg bg-muted p-4 text-left">
                     <p className="text-sm font-mono text-muted-foreground break-all">
                       {error.message}

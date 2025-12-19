@@ -1,14 +1,12 @@
-'use client';
+"use client";
 
-import ManagementTable from '@/components/shared/ManagementTable';
-
-import { useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
-
-import AppointmentViewDetailDialog from './AppointmentViewDetailDialog';
-import { IAppointment } from '@/types/appointments.interface';
-import { appointmentsColumns } from './appointmentsColumns';
-import ChangeAppointmentStatusDialog from './ChangeAppointmentStatusDialog';
+import ManagementTable from "@/components/shared/ManagementTable";
+import { IAppointment } from "@/types/appointments.interface";
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { appointmentsColumns } from "./appointmentsColumns";
+import AppointmentViewDetailDialog from "./AppointmentViewDetailDialog";
+import ChangeAppointmentStatusDialog from "./ChangeAppointmentStatusDialog";
 
 interface AppointmentsTableProps {
   appointments: IAppointment[];
@@ -43,7 +41,7 @@ const AppointmentsTable = ({ appointments }: AppointmentsTableProps) => {
         columns={appointmentsColumns}
         onView={handleView}
         onEdit={handleEdit}
-        getRowKey={appointment => appointment.id!}
+        getRowKey={(appointment) => appointment.id!}
         emptyMessage="No appointments found"
       />
 

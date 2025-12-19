@@ -2,12 +2,11 @@
 
 import { registerPatient } from '@/services/auth/registerPatient';
 import { useActionState, useEffect } from 'react';
+import { toast } from 'sonner';
+import InputFieldError from './shared/InputFieldError';
 import { Button } from './ui/button';
 import { Field, FieldDescription, FieldGroup, FieldLabel } from './ui/field';
 import { Input } from './ui/input';
-import { toast } from 'sonner';
-
-import InputFieldError from './shared/InputFieldError';
 
 const RegisterForm = () => {
   const [state, formAction, isPending] = useActionState(registerPatient, null);
@@ -17,9 +16,8 @@ const RegisterForm = () => {
       toast.error(state.message);
     }
   }, [state]);
-
   return (
-    <form action={formAction}>
+    <form action={formAction} className="text-muted">
       <FieldGroup>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Name */}
@@ -37,7 +35,6 @@ const RegisterForm = () => {
               type="text"
               placeholder="123 Main St"
             />
-
             <InputFieldError field="address" state={state} />
           </Field>
           {/* Email */}
@@ -49,13 +46,13 @@ const RegisterForm = () => {
               type="email"
               placeholder="m@example.com"
             />
-
             <InputFieldError field="email" state={state} />
           </Field>
           {/* Password */}
           <Field>
             <FieldLabel htmlFor="password">Password</FieldLabel>
             <Input id="password" name="password" type="password" />
+
             <InputFieldError field="password" state={state} />
           </Field>
           {/* Confirm Password */}
@@ -72,7 +69,11 @@ const RegisterForm = () => {
         </div>
         <FieldGroup className="mt-4">
           <Field>
-            <Button type="submit" disabled={isPending}>
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="bg-chart-1 hover:bg-chart-1/80"
+            >
               {isPending ? 'Creating Account...' : 'Create Account'}
             </Button>
 

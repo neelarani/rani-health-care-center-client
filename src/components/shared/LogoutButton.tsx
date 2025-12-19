@@ -8,11 +8,7 @@ const LogoutButton = () => {
     await logoutUser();
   };
   return (
-    <Button
-      variant={'default'}
-      onClick={handleLogout}
-      className="cursor-pointer"
-    >
+    <Button className="bg-chart-1 hover:bg-chart-1/80 " onClick={handleLogout}>
       Logout
     </Button>
   );

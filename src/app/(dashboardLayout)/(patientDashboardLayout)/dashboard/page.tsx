@@ -23,7 +23,8 @@ async function PatientDashboardContent() {
           value={data.appointmentCount.toLocaleString()}
           iconName="CalendarDays"
           description="All time appointments"
-          iconClassName="bg-blue-100"
+          iconClassName="bg-blue-300"
+          className="bg-amber-200"
         />
         <StatsCard
           title="Total Prescriptions"
@@ -31,6 +32,7 @@ async function PatientDashboardContent() {
           iconName="FileText"
           description="Medical prescriptions"
           iconClassName="bg-purple-100"
+          className="bg-blue-300 "
         />
         <StatsCard
           title="Total Reviews"
@@ -38,6 +40,7 @@ async function PatientDashboardContent() {
           iconName="Star"
           description="Reviews given"
           iconClassName="bg-yellow-100"
+          className="bg-red-300"
         />
       </div>
 
@@ -55,10 +58,12 @@ async function PatientDashboardContent() {
 
 const PatientDashboardPage = () => {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">My Dashboard</h1>
-        <p className="text-muted-foreground">
+    <div className="space-y-7 ">
+      <div className="space-y-3">
+        <h1 className="text-3xl font-bold tracking-tight text-muted">
+          My Dashboard
+        </h1>
+        <p className="text-muted">
           Overview of your health records and appointment history
         </p>
       </div>

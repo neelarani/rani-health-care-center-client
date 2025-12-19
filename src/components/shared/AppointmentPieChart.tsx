@@ -116,14 +116,18 @@ export function AppointmentPieChart({
   // Handle empty data
   if (formattedData.length === 0 || formattedData.every(d => d.value === 0)) {
     return (
-      <Card className="col-span-3">
+      <Card className="col-span-3 bg-foreground border-muted-foreground/30">
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{description}</CardDescription>
+          <CardTitle className="text-muted text-xl">{title}</CardTitle>
+          <CardDescription className="text-muted/70">
+            {description}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center justify-center h-[300px]">
-            <p className="text-sm text-muted-foreground">No data available</p>
+          <div className="flex items-center justify-center h-[300px] ">
+            <p className="text-sm md:text-2xl text-muted-foreground">
+              No data available
+            </p>
           </div>
         </CardContent>
       </Card>

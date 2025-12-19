@@ -1,8 +1,10 @@
+import LoginSuccessToast from '@/components/shared/LoginSuccessToast';
+import LogoutSuccessToast from '@/components/shared/LogoutSuccessToast';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import { Suspense } from 'react';
 import { Toaster } from 'sonner';
-import LogoutSuccessToast from '@/components/shared/LogoutSuccessToast';
+import './globals.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,13 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Toaster position="bottom-right" richColors></Toaster>
-        <LogoutSuccessToast />
+        <Toaster position="bottom-right" richColors />
+        <Suspense fallback={null}>
+          <LoginSuccessToast />
+          <LogoutSuccessToast />
+        </Suspense>
       </body>
     </html>
   );

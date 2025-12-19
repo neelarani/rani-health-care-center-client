@@ -1,9 +1,9 @@
-import AppointmentConfirmation from '@/components/modules/Patient/PatientAppointment/AppointmentConfirmation';
-import { getDoctorById } from '@/services/admin/doctorManagement';
-import { getScheduleById } from '@/services/admin/schedulesManagement';
-import { IDoctor } from '@/types/doctor.interface';
-import { ISchedule } from '@/types/schedule.interface';
-import { notFound } from 'next/navigation';
+import AppointmentConfirmation from "@/components/modules/Patient/PatientAppointment/AppointmentConfirmation";
+import { getDoctorById } from "@/services/admin/doctorManagement";
+import { getScheduleById } from "@/services/admin/schedulesManagement";
+import { IDoctor } from "@/types/doctor.interface";
+import { ISchedule } from "@/types/schedule.interface";
+import { notFound } from "next/navigation";
 
 interface BookAppointmentPageProps {
   params: Promise<{

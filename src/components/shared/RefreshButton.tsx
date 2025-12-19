@@ -1,18 +1,18 @@
-'use client';
-import { RefreshCcw } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
-import { Button } from '../ui/button';
+"use client";
+import { RefreshCcw } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
+import { Button } from "../ui/button";
 
 interface RefreshButtonProps {
-  size?: 'sm' | 'default' | 'lg';
-  variant?: 'default' | 'outline' | 'ghost';
+  size?: "sm" | "default" | "lg";
+  variant?: "default" | "outline" | "ghost";
   showLabel?: boolean;
 }
 
 const RefreshButton = ({
-  size = 'default',
-  variant = 'default',
+  size = "default",
+  variant = "default",
   showLabel = true,
 }: RefreshButtonProps) => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const RefreshButton = ({
 
   const handleRefresh = () => {
     startTransition(() => {
-      router.refresh();
+      router.push(window.location.pathname);
     });
   };
   return (
@@ -31,11 +31,11 @@ const RefreshButton = ({
       disabled={isPending}
     >
       <RefreshCcw
-        className={`h-4 w-4 ${isPending ? 'animate-spin' : ''} ${
-          showLabel ? 'mr-2' : ''
+        className={`h-4 w-4 ${isPending ? "animate-spin" : ""} ${
+          showLabel ? "mr-2" : ""
         }`}
       />
-      {showLabel && 'Refresh'}
+      {showLabel && "Refresh"}
     </Button>
   );
 };

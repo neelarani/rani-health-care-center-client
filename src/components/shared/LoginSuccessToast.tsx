@@ -1,16 +1,19 @@
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-import { toast } from 'sonner';
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 const LoginSuccessToast = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {
-    if (searchParams.get('login') === 'true') {
-      toast.success('You have been logged in successfully!');
+    if (searchParams.get("loggedIn") === "true") {
+      toast.success("You have been logged in successfully.");
+
       const newUrl = new URL(window.location.href);
-      newUrl.searchParams.delete('loggedIn');
+      newUrl.searchParams.delete("loggedIn");
       router.replace(newUrl.toString());
     }
   }, [searchParams, router]);

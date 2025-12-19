@@ -1,14 +1,14 @@
-'use client';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+"use client";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   createAppointment,
   createAppointmentWithPayLater,
-} from '@/services/patient/appointment.service';
-import { IDoctor } from '@/types/doctor.interface';
-import { ISchedule } from '@/types/schedule.interface';
-import { format } from 'date-fns';
+} from "@/services/patient/appointment.service";
+import { IDoctor } from "@/types/doctor.interface";
+import { ISchedule } from "@/types/schedule.interface";
+import { format } from "date-fns";
 import {
   Calendar,
   CheckCircle2,
@@ -19,10 +19,10 @@ import {
   Phone,
   Stethoscope,
   User,
-} from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from 'sonner';
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface AppointmentConfirmationProps {
   doctor: IDoctor;
@@ -49,23 +49,23 @@ const AppointmentConfirmation = ({
       });
 
       if (result.success && result.data?.paymentUrl) {
-        toast.success('Redirecting to payment...');
+        toast.success("Redirecting to payment...");
         // Redirect to Stripe checkout
         window.location.replace(result.data.paymentUrl);
       } else if (result.success) {
         setBookingSuccess(true);
-        toast.success('Appointment booked successfully!');
+        toast.success("Appointment booked successfully!");
 
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard/my-appointments');
+          router.push("/dashboard/my-appointments");
         }, 2000);
       } else {
-        toast.error(result.message || 'Failed to book appointment');
+        toast.error(result.message || "Failed to book appointment");
         setIsPayingNow(false);
       }
     } catch (error) {
-      toast.error('An error occurred while booking the appointment');
+      toast.error("An error occurred while booking the appointment");
       setIsPayingNow(false);
       console.error(error);
     }
@@ -83,19 +83,19 @@ const AppointmentConfirmation = ({
       if (result.success) {
         setBookingSuccess(true);
         toast.success(
-          'Appointment booked! You can pay later from your appointments page.'
+          "Appointment booked! You can pay later from your appointments page."
         );
 
         // Redirect after 2 seconds
         setTimeout(() => {
-          router.push('/dashboard/my-appointments');
+          router.push("/dashboard/my-appointments");
         }, 2000);
       } else {
-        toast.error(result.message || 'Failed to book appointment');
+        toast.error(result.message || "Failed to book appointment");
         setIsPayingLater(false);
       }
     } catch (error) {
-      toast.error('An error occurred while booking the appointment');
+      toast.error("An error occurred while booking the appointment");
       setIsPayingLater(false);
       console.error(error);
     }
@@ -170,7 +170,7 @@ const AppointmentConfirmation = ({
                         key={idx}
                         className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md border border-blue-200"
                       >
-                        {ds.specialities?.title || 'N/A'}
+                        {ds.specialities?.title || "N/A"}
                       </span>
                     ))}
                   </div>
@@ -260,10 +260,10 @@ const AppointmentConfirmation = ({
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Date</p>
                 <p className="text-2xl font-bold text-blue-900">
-                  {format(new Date(schedule.startDateTime), 'EEEE')}
+                  {format(new Date(schedule.startDateTime), "EEEE")}
                 </p>
                 <p className="text-lg text-blue-700">
-                  {format(new Date(schedule.startDateTime), 'MMMM d, yyyy')}
+                  {format(new Date(schedule.startDateTime), "MMMM d, yyyy")}
                 </p>
               </div>
 
@@ -274,8 +274,8 @@ const AppointmentConfirmation = ({
                 <div>
                   <p className="text-sm text-muted-foreground">Time</p>
                   <p className="text-lg font-semibold text-blue-900">
-                    {format(new Date(schedule.startDateTime), 'h:mm a')} -{' '}
-                    {format(new Date(schedule.endDateTime), 'h:mm a')}
+                    {format(new Date(schedule.startDateTime), "h:mm a")} -{" "}
+                    {format(new Date(schedule.endDateTime), "h:mm a")}
                   </p>
                 </div>
               </div>

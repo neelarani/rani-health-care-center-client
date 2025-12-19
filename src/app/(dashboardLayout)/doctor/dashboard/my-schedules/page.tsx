@@ -1,15 +1,14 @@
-import MySchedulesFilters from '@/components/modules/Doctor/MySchedules/MyScheduleFilters';
-import MySchedulesHeader from '@/components/modules/Doctor/MySchedules/MyScheduleHeader';
-import MySchedulesTable from '@/components/modules/Doctor/MySchedules/MyScheduleTable';
-import TablePagination from '@/components/shared/TablePagination';
-import { TableSkeleton } from '@/components/shared/TableSkeleton';
-import { queryStringFormatter } from '@/lib/formatters';
+import MySchedulesFilters from "@/components/modules/Doctor/MySchedules/MyScheduleFilters";
+import MySchedulesHeader from "@/components/modules/Doctor/MySchedules/MyScheduleHeader";
+import MySchedulesTable from "@/components/modules/Doctor/MySchedules/MyScheduleTable";
+import TablePagination from "@/components/shared/TablePagination";
+import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { queryStringFormatter } from "@/lib/formatters";
 import {
   getAvailableSchedules,
   getDoctorOwnSchedules,
-} from '@/services/doctor/doctorScedule.services';
-
-import { Suspense } from 'react';
+} from "@/services/doctor/doctorScedule.services";
+import { Suspense } from "react";
 
 interface DoctorMySchedulesPageProps {
   searchParams: Promise<{
@@ -27,11 +26,6 @@ const DoctorMySchedulesPage = async ({
   const queryString = queryStringFormatter(params);
   const myDoctorsScheduleResponse = await getDoctorOwnSchedules(queryString);
   const availableSchedulesResponse = await getAvailableSchedules();
-
-  console.log({
-    myDoctorsScheduleResponse,
-    availableSchedulesResponse,
-  });
 
   const schedules = myDoctorsScheduleResponse?.data || [];
   const meta = myDoctorsScheduleResponse?.meta;

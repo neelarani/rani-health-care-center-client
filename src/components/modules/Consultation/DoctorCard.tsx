@@ -1,7 +1,7 @@
-'use client';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,13 +9,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { getInitials } from '@/lib/formatters';
-import { IDoctor } from '@/types/doctor.interface';
-import { Clock, DollarSign, Eye, MapPin, Star } from 'lucide-react';
-import Link from 'next/link';
-import { useState } from 'react';
-import BookAppointmentDialog from './BookAppointmentDialog';
+} from "@/components/ui/card";
+import { getInitials } from "@/lib/formatters";
+import { IDoctor } from "@/types/doctor.interface";
+import { Clock, DollarSign, Eye, MapPin, Star } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import BookAppointmentDialog from "./BookAppointmentDialog";
 
 interface DoctorCard {
   doctor: IDoctor;
@@ -30,7 +30,7 @@ export default function DoctorCard({ doctor }: DoctorCard) {
         <CardHeader className="pb-3">
           <div className="flex items-start gap-4">
             <Avatar className="h-16 w-16">
-              <AvatarImage src={doctor.profilePhoto || ''} alt={doctor.name} />
+              <AvatarImage src={doctor.profilePhoto || ""} alt={doctor.name} />
               <AvatarFallback className="text-lg">
                 {getInitials(doctor.name)}
               </AvatarFallback>
@@ -48,13 +48,13 @@ export default function DoctorCard({ doctor }: DoctorCard) {
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                   <span className="text-sm font-medium">
-                    {doctor.averageRating?.toFixed(1) || 'N/A'}
+                    {doctor.averageRating?.toFixed(1) || "N/A"}
                   </span>
                 </div>
                 {doctor.doctorSpecialties &&
                   doctor.doctorSpecialties.length > 0 && (
                     <Badge variant="secondary" className="text-xs">
-                      {doctor.doctorSpecialties[0].specialties?.title}
+                      {doctor.doctorSpecialties[0].specialities?.title}
                     </Badge>
                   )}
               </div>
@@ -92,13 +92,13 @@ export default function DoctorCard({ doctor }: DoctorCard) {
 
           {doctor.doctorSpecialties && doctor.doctorSpecialties.length > 1 && (
             <div className="flex flex-wrap gap-1">
-              {doctor.doctorSpecialties.slice(1, 3).map(specialty => (
+              {doctor.doctorSpecialties.slice(1, 3).map((specialty) => (
                 <Badge
                   key={specialty.specialitiesId}
                   variant="outline"
                   className="text-xs"
                 >
-                  {specialty.specialties?.title}
+                  {specialty.specialities?.title}
                 </Badge>
               ))}
               {doctor.doctorSpecialties.length > 3 && (
