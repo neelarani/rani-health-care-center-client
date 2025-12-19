@@ -24,11 +24,11 @@ const DashboardMobileSidebar = ({
 }: DashboardMobileSidebarContentProps) => {
   const pathname = usePathname();
   return (
-    <div className=" flex h-full flex-col">
+    <div className=" flex h-full flex-col ">
       {/* Logo */}
       <div className="flex h-16 items-center border-b px-6">
         <Link href={dashboardHome}>
-          <span className="text-xl font-bold text-primary">PH Healthcare</span>
+          <span className="text-xl font-bold text-muted">Rani Health Care</span>
         </Link>
       </div>
       <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
@@ -87,7 +87,9 @@ const DashboardMobileSidebar = ({
             </span>
           </div>
           <div className="flex-1 overflow-hidden">
-            <p className="text-sm font-medium truncate">{userInfo.name}</p>
+            <p className="text-sm font-medium truncate text-muted">
+              {userInfo.name}
+            </p>
             <p className="text-xs text-muted capitalize">
               {userInfo.role.toLowerCase()}
             </p>

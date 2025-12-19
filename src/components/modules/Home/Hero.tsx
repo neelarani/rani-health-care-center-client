@@ -21,7 +21,7 @@ export function Hero({
   ],
 
   stats = [
-    { value: '50K+', label: 'Patients Served' },
+    { value: '10k+', label: 'Patients Served' },
     { value: '1000+', label: 'Expert Doctors' },
     {
       value: '4.9',
@@ -101,14 +101,14 @@ export function Hero({
               {/* Buttons */}
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link
-                  href={'/all-doctors'}
+                  href={'/consultation'}
                   className="text-chart-1 border-chart-1 hover:text-chart-1/70 border rounded-md px-4 py-2"
                 >
                   View Doctors
                 </Link>
                 <Link
-                  href={'/all-doctors'}
-                  className="text-muted/70  border-background hover:text-muted/60 border rounded-md px-4 py-2"
+                  href={'/consultation'}
+                  className="text-muted/70  border-background hover:text-muted/60 border-4 rounded-md px-4 py-2"
                 >
                   Book Appointment
                 </Link>
@@ -137,7 +137,9 @@ export function Hero({
               <div className="w-full max-w-[600px] rounded-2xl bg-background/40 p-8 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
                 {/* Card Header */}
                 <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-base leading-6">{formCard.title}</h2>
+                  <h2 className="text-base leading-6 text-muted">
+                    {formCard.title}
+                  </h2>
                   <LargeSparkleIcon />
                 </div>
 

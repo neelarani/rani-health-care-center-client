@@ -59,7 +59,7 @@ const DashboardNavbarContent = ({
         <Sheet open={isMobile && isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild className="md:hidden">
             <Button variant="outline" size="icon">
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5 text-muted" />
             </Button>
           </SheetTrigger>
           {/* Hide the overlay on medium and larger screens */}

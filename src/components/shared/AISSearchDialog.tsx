@@ -193,7 +193,7 @@ export default function AISearchDialog({
                 }
               }}
               rows={4}
-              className="resize-none border-muted/30 focus:border-primary focus:ring-primary/50 text-muted/60"
+              className="resize-none border-muted/30 focus:border-primary focus:ring-primary/50 text-muted-foreground"
               disabled={isLoading}
             />
             <div className="flex justify-between items-center mt-1">

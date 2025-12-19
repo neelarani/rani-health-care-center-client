@@ -163,7 +163,11 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
               )}
             </Button>
           )}
-          <Button variant="outline" onClick={() => router.back()}>
+          <Button
+            variant="outline"
+            onClick={() => router.back()}
+            className="text-muted"
+          >
             Back
           </Button>
         </div>
@@ -257,7 +261,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Doctor Information */}
-        <Card className="bg-foreground text-muted">
+        <Card className="bg-foreground text-muted border-muted-foreground/30">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <User className="h-5 w-5" />
@@ -362,14 +366,14 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
         </Card>
 
         {/* Appointment Details */}
-        <div className="space-y-6 lg:col-span-1">
+        <div className="space-y-6 lg:col-span-1 ">
           {/* Status */}
-          <Card>
+          <Card className="bg-background border-none text-muted">
             <CardHeader>
               <CardTitle>Appointment Status</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between ">
                 <span className="text-sm text-muted">Current Status</span>
                 {getStatusBadge(appointment.status)}
               </div>
@@ -378,7 +382,7 @@ const AppointmentDetails = ({ appointment }: AppointmentDetailProps) => {
 
           {/* Schedule */}
           {appointment.schedule && (
-            <Card>
+            <Card className="bg-background border-none text-muted">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />

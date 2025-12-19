@@ -19,7 +19,7 @@ const NavbarLinks = ({ navItems }: { navItems: NavItem[] }) => {
           href={link.href}
           className={`transition-colors ${
             pathname === link.href
-              ? 'border-b-2 border-chart-4 text-muted hover:text-muted/80'
+              ? 'border-b-4 border-chart-1 text-muted hover:text-muted/80'
               : 'hover:text-muted/70'
           }`}
         >

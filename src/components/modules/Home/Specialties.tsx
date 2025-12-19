@@ -40,12 +40,6 @@ const Specialities = () => {
               Access to medical experts across all major specialities.
             </p>
           </div>
-          <a
-            href="#"
-            className="text-muted font-semibold hover:underline mt-4 sm:mt-0"
-          >
-            View All
-          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
