@@ -29,7 +29,7 @@ const LoginCredential = ({
         variant="outline"
         onClick={() =>
           setCredentials({
-            email: 'rasel@gmail.com',
+            email: 'rima@gmail.com',
             password: '1234567',
           })
         }
@@ -42,7 +42,7 @@ const LoginCredential = ({
         variant="outline"
         onClick={() =>
           setCredentials({
-            email: 'admin@gmail.com',
+            email: 'neela2@gmail.com',
             password: '1234567',
           })
         }
