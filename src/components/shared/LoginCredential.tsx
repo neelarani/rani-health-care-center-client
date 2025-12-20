@@ -9,7 +9,7 @@ const LoginCredential = ({
   setCredentials: (data: { email: string; password: string }) => void;
 }) => {
   return (
-    <div className="flex gap-3 mb-4">
+    <div className="flex gap-3 mb-4 flex-wrap">
       <Button
         className="bg-foreground/20"
         type="button"

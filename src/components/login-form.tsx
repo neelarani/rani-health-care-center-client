@@ -22,12 +22,14 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
 
   return (
     <form action={formAction} className="text-muted">
-      <LoginCredential
-        setCredentials={data => {
-          setEmail(data.email);
-          setPassword(data.password);
-        }}
-      />
+      <div>
+        <LoginCredential
+          setCredentials={data => {
+            setEmail(data.email);
+            setPassword(data.password);
+          }}
+        />
+      </div>
       {redirect && <input type="hidden" name="redirect" value={redirect} />}
       <FieldGroup>
         <div className="grid grid-cols-1 gap-4">
