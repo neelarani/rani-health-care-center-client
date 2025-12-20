@@ -1,11 +1,11 @@
-import { Column } from "@/components/shared/ManagementTable";
-import { ISpecialty } from "@/types/specialities.interface";
-import Image from "next/image";
+import { Column } from '@/components/shared/ManagementTable';
+import { ISpecialty } from '@/types/specialities.interface';
+import Image from 'next/image';
 
-export const specialitiesColumns: Column<ISpecialty>[] = [
+export const SpecialitiesColumns: Column<ISpecialty>[] = [
   {
-    header: "Icon",
-    accessor: (speciality) => (
+    header: 'Icon',
+    accessor: speciality => (
       <Image
         src={speciality.icon}
         alt={speciality.title}
@@ -16,7 +16,7 @@ export const specialitiesColumns: Column<ISpecialty>[] = [
     ),
   },
   {
-    header: "Title",
-    accessor: (speciality) => speciality.title,
+    header: 'Title',
+    accessor: speciality => speciality.title,
   },
 ];

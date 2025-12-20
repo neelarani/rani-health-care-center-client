@@ -1,12 +1,12 @@
-"use client";
-import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
-import ManagementTable from "@/components/shared/ManagementTable";
-import { deleteSpeciality } from "@/services/admin/specialitiesManagement";
-import { ISpecialty } from "@/types/specialities.interface";
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { toast } from "sonner";
-import { specialitiesColumns } from "./specialitiesColumns";
+'use client';
+import DeleteConfirmationDialog from '@/components/shared/DeleteConfirmationDialog';
+import ManagementTable from '@/components/shared/ManagementTable';
+import { deleteSpeciality } from '@/services/admin/specialitiesManagement';
+import { ISpecialty } from '@/types/specialities.interface';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
+import { toast } from 'sonner';
+import { SpecialitiesColumns } from './specialitiesColumns';
 
 interface SpecialityTableProps {
   specialities: ISpecialty[];
@@ -36,11 +36,11 @@ const SpecialitiesTable = ({ specialities }: SpecialityTableProps) => {
     const result = await deleteSpeciality(deletingSpeciality.id);
     setIsDeletingDialog(false);
     if (result.success) {
-      toast.success(result.message || "Speciality deleted successfully");
+      toast.success(result.message || 'Speciality deleted successfully');
       setDeletingSpeciality(null);
       handleRefresh();
     } else {
-      toast.error(result.message || "Failed to delete speciality");
+      toast.error(result.message || 'Failed to delete speciality');
     }
   };
 
@@ -48,16 +48,16 @@ const SpecialitiesTable = ({ specialities }: SpecialityTableProps) => {
     <>
       <ManagementTable
         data={specialities}
-        columns={specialitiesColumns}
+        columns={SpecialitiesColumns}
         onDelete={handleDelete}
-        getRowKey={(speciality) => speciality.id}
+        getRowKey={speciality => speciality.id}
         emptyMessage="No specialities found"
       />
 
       {/* Delete Confirmation Dialog */}
       <DeleteConfirmationDialog
         open={!!deletingSpeciality}
-        onOpenChange={(open) => !open && setDeletingSpeciality(null)}
+        onOpenChange={open => !open && setDeletingSpeciality(null)}
         onConfirm={confirmDelete}
         title="Delete Speciality"
         description={`Are you sure you want to delete ${deletingSpeciality?.title}? This action cannot be undone.`}

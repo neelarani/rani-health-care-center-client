@@ -7,6 +7,9 @@ import MobileMenu from './MobileMenu';
 import NavbarAuthButtons from './NavbarAuthButtons';
 import NavbarLinks from './NavbarLinks';
 
+import Image from 'next/image';
+import logo from '../../assets/logo/logo.png';
+
 const PublicNavbar = async () => {
   const navItems = [
     { href: '/consultation', label: 'Consultation' },
@@ -25,8 +28,8 @@ const PublicNavbar = async () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-foreground border-muted-foreground/20">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="text-xl font-bold text-muted">
-          Rani Health Care
+        <Link href="/" className="text-xl font-bold text-muted pt-3">
+          <Image src={logo} alt="logo" width={220} height={220}></Image>
         </Link>
 
         {/* Client Component */}

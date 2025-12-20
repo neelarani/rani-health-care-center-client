@@ -157,7 +157,7 @@ export function Hero({
                       id="symptoms"
                       name="symptoms"
                       placeholder={formCard.symptomPlaceholder}
-                      className="h-[49.787px] rounded-xl border-muted/30"
+                      className="h-[49.787px] rounded-xl border-muted/30 text-muted"
                     />
                   </div>
 
