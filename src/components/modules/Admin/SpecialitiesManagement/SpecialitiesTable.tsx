@@ -6,7 +6,7 @@ import { ISpecialty } from '@/types/specialities.interface';
 import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { toast } from 'sonner';
-import { SpecialitiesColumns } from './specialitiesColumns';
+import { specialitiesColumns } from './specialitiesColumns';
 
 interface SpecialityTableProps {
   specialities: ISpecialty[];
@@ -48,7 +48,7 @@ const SpecialitiesTable = ({ specialities }: SpecialityTableProps) => {
     <>
       <ManagementTable
         data={specialities}
-        columns={SpecialitiesColumns}
+        columns={specialitiesColumns}
         onDelete={handleDelete}
         getRowKey={speciality => speciality.id}
         emptyMessage="No specialities found"
