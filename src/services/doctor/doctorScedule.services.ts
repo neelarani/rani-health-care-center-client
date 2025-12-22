@@ -9,7 +9,6 @@ export async function getAllDoctors() {
     const result = await response.json();
     return result;
   } catch (error: any) {
-    console.log(error);
     return {
       success: false,
       message: `${
