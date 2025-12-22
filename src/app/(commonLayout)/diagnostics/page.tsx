@@ -80,17 +80,23 @@ const DiagnosticsPage = () => {
           return (
             <Card
               key={index}
-              className="hover:shadow-lg transition-shadow bg-pink-200"
+              className="hover:shadow-lg transition-shadow bg-pink-100"
             >
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
+                <CardTitle className="text-xl font-bold">
+                  {service.title}
+                </CardTitle>
+                <CardDescription className="font-medium text-foreground text-base">
+                  {service.description}
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <Badge variant="secondary">{service.tests}</Badge>
+                <Badge className="bg-green-500 text-foreground">
+                  {service.tests}
+                </Badge>
               </CardContent>
             </Card>
           );
@@ -110,7 +116,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div className="text-muted">
                   <h3 className="font-semibold mb-1">Accredited Labs</h3>
-                  <p className="text-sm text-muted">
+                  <p className="text-base text-muted/70">
                     Partner labs certified by national and international bodies
                   </p>
                 </div>
@@ -121,7 +127,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Home Sample Collection</h3>
-                  <p className="text-sm text-muted">
+                  <p className="text-base text-muted/70">
                     Trained phlebotomists collect samples from your home
                   </p>
                 </div>
@@ -132,7 +138,7 @@ const DiagnosticsPage = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">Digital Reports</h3>
-                  <p className="text-sm text-muted">
+                  <p className="text-base text-muted/70">
                     Access your reports online anytime, anywhere
                   </p>
                 </div>
@@ -145,7 +151,7 @@ const DiagnosticsPage = () => {
                   <h3 className="font-semibold mb-1 text-muted">
                     Affordable Pricing
                   </h3>
-                  <p className="text-sm text-muted">
+                  <p className="text-base text-muted/70">
                     Competitive rates with package discounts
                   </p>
                 </div>
@@ -156,10 +162,10 @@ const DiagnosticsPage = () => {
       </Card>
 
       <div className="text-center ">
-        <Card className="inline-block bg-green-100">
+        <Card className="inline-block bg-pink-100">
           <CardContent className="p-8 ">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted mb-6 max-w-md">
+            <p className="text-foreground mb-6 max-w-md font-medium">
               We are partnering with top diagnostic labs to bring you the best
               testing services. Stay tuned!
             </p>

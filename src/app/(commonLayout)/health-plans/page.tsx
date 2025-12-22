@@ -102,8 +102,8 @@ const HealthPlansPage = () => {
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-sm text-muted">{benefit.desc}</p>
+                <h3 className=" mb-2 font-bold text-lg">{benefit.title}</h3>
+                <p className="text-base font-medium">{benefit.desc}</p>
               </CardContent>
             </Card>
           );
@@ -127,8 +127,12 @@ const HealthPlansPage = () => {
               </div>
             )}
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-              <CardDescription>{plan.description}</CardDescription>
+              <CardTitle className="text-2xl mb-2 font-bold">
+                {plan.name}
+              </CardTitle>
+              <CardDescription className="text-foreground font-medium">
+                {plan.description}
+              </CardDescription>
               <div className="mt-4">
                 <span className="text-4xl font-bold text-primary">
                   {plan.price}

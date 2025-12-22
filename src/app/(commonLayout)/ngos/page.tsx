@@ -72,16 +72,25 @@ const NGOsPage = () => {
         {ngoCategories.map((category, index) => {
           const Icon = category.icon;
           return (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+            <Card
+              key={index}
+              className="hover:shadow-lg transition-shadow bg-pink-100"
+            >
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl">{category.title}</CardTitle>
-                <CardDescription>{category.description}</CardDescription>
+                <CardTitle className="text-xl font-bold">
+                  {category.title}
+                </CardTitle>
+                <CardDescription className="text-foreground text-base font-medium">
+                  {category.description}
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <Badge variant="secondary">{category.count}</Badge>
+                <Badge className="bg-green-500 text-foreground">
+                  {category.count}
+                </Badge>
               </CardContent>
             </Card>
           );
@@ -152,14 +161,18 @@ const NGOsPage = () => {
         </CardContent>
       </Card>
 
-      <Card className="bg-linear-to-br from-green-300 to-blue-50 border-green-200">
+      <Card className="bg-background border-none text-muted">
         <CardContent className="p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Partner With Us</h2>
-          <p className="text-muted mb-6 max-w-2xl mx-auto">
+          <p className="text-muted/70 mb-6 max-w-2xl mx-auto">
             Are you a healthcare NGO? Register your organization to reach more
             people in need and make a bigger impact.
           </p>
-          <Button size="lg" variant="outline" className="text-muted">
+          <Button
+            size="lg"
+            variant="outline"
+            className="text-muted border-muted-foreground/60"
+          >
             Register Your NGO
           </Button>
         </CardContent>
@@ -169,7 +182,7 @@ const NGOsPage = () => {
         <Card className="inline-block bg-pink-100">
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted mb-6 max-w-md">
+            <p className="text-background font-medium mb-6 max-w-md">
               We are building a comprehensive directory of healthcare NGOs to
               connect those in need with available resources.
             </p>

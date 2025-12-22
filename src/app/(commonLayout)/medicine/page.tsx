@@ -77,16 +77,20 @@ const MedicinePage = () => {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl">{feature.title}</CardTitle>
-                <CardDescription>{feature.description}</CardDescription>
+                <CardTitle className="text-xl font-bold">
+                  {feature.title}
+                </CardTitle>
+                <CardDescription className="text-foreground text-base font-medium">
+                  {feature.description}
+                </CardDescription>
               </CardHeader>
             </Card>
           );
         })}
       </div>
 
-      <Card className="bg-green-200 border-primary/20">
-        <CardContent className="p-8">
+      <Card className="bg-background border-primary/20">
+        <CardContent className="p-8 text-muted">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl font-bold mb-4">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -94,17 +98,19 @@ const MedicinePage = () => {
                 <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-xl">
                   1
                 </div>
-                <h3 className="font-semibold">Upload Prescription</h3>
-                <p className="text-sm text-muted">
+                <h3 className="text-lg text-muted font-bold">
+                  Upload Prescription
+                </h3>
+                <p className="text-base text-muted/70 font-medium ">
                   Upload your doctor&apos;s prescription or browse medicines
                 </p>
               </div>
               <div className="space-y-2">
-                <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-xl">
+                <div className="w-12 h-12 bg-primary text-muted rounded-full flex items-center justify-center mx-auto font-bold text-xl">
                   2
                 </div>
-                <h3 className="font-semibold">Place Order</h3>
-                <p className="text-sm text-muted">
+                <h3 className="text-lg text-muted font-bold">Place Order</h3>
+                <p className="text-base text-muted/70 font-medium ">
                   Add medicines to cart and complete your order
                 </p>
               </div>
@@ -112,8 +118,8 @@ const MedicinePage = () => {
                 <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto font-bold text-xl">
                   3
                 </div>
-                <h3 className="font-semibold">Get Delivered</h3>
-                <p className="text-sm text-muted">
+                <h3 className="text-lg text-muted font-bold">Get Delivered</h3>
+                <p className="text-base text-muted/70 font-medium ">
                   Receive your medicines at your doorstep
                 </p>
               </div>
@@ -123,10 +129,10 @@ const MedicinePage = () => {
       </Card>
 
       <div className="mt-12 text-center">
-        <Card className="inline-block">
+        <Card className="inline-block bg-pink-100">
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
-            <p className="text-muted mb-6 max-w-md">
+            <p className="text-foreground font-medium text-base mb-6 max-w-md">
               We are working hard to bring you the best online medicine ordering
               experience. Stay tuned!
             </p>
