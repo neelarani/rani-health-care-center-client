@@ -6,8 +6,10 @@ function PublicFooter() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-bold mb-2 text-muted">Rani Health Care</h3>
-            <p className="text-sm text-muted/70">
+            <h3 className="font-bold mb-2 text-muted text-xl">
+              Rani Health Care
+            </h3>
+            <p className="text-base text-muted/70 ">
               Your health is our priority. We are here to provide the best
               medical services.
             </p>
@@ -16,22 +18,28 @@ function PublicFooter() {
             <h3 className="font-semibold mb-2 text-muted">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
+                <Link href="/" className="text-muted/70 hover:text-muted">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
+                <Link href="/about" className="text-muted/70 hover:text-muted">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
+                <Link
+                  href="/consultation"
+                  className="text-muted/70 hover:text-muted"
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
+                <Link
+                  href="/contact"
+                  className="text-muted/70 hover:text-muted"
+                >
                   Contact
                 </Link>
               </li>
@@ -41,23 +49,8 @@ function PublicFooter() {
             <h3 className="font-semibold mb-2 text-muted">Support</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
+                <Link href="/faq" className="text-muted/70 hover:text-muted">
                   FAQ
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
-                  Help Center
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-muted/70 hover:text-muted">
-                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -69,11 +62,11 @@ function PublicFooter() {
               <br />
               Health City, HC 12345
               <br />
-              contact@phdoc.com
+              neelarany@gmail.com
             </p>
           </div>
         </div>
-        <div className="mt-8 border-t border-muted-foreground pt-4 text-center text-sm text-muted">
+        <div className="mt-8 border-t border-muted-foreground pt-4 text-center text-base text-muted">
           &copy; {new Date().getFullYear()} Rani Health Care. All Rights
           Reserved.
         </div>

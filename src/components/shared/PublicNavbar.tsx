@@ -13,6 +13,9 @@ import logo from '../../assets/logo/logo.png';
 const PublicNavbar = async () => {
   const navItems = [
     { href: '/consultation', label: 'Consultation' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+
     { href: '/health-plans', label: 'Health Plans' },
     { href: '/medicine', label: 'Medicine' },
     { href: '/diagnostics', label: 'Diagnostics' },
