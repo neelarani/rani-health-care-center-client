@@ -93,7 +93,7 @@ export default function Error({
                   <h1 className="text-3xl font-bold tracking-tight">
                     Oops! Something went wrong
                   </h1>
-                  <p className="text-muted">
+                  <p className="text-foreground">
                     We encountered an unexpected error. Don&apos;t worry,
                     it&apos;s not your fault.
                   </p>
@@ -102,11 +102,11 @@ export default function Error({
                 {/* Error Details (Development Only) */}
                 {process.env.NODE_ENV === 'development' && (
                   <div className="w-full rounded-lg bg-muted p-4 text-left">
-                    <p className="text-sm font-mono text-muted break-all">
+                    <p className="text-sm font-mono text-foreground break-all">
                       {error.message}
                     </p>
                     {error.digest && (
-                      <p className="text-xs font-mono text-muted mt-2">
+                      <p className="text-xs font-mono  mt-2">
                         Error ID: {error.digest}
                       </p>
                     )}
@@ -119,16 +119,21 @@ export default function Error({
                     <RefreshCcw className="h-4 w-4" />
                     Try Again
                   </Button>
-                  <Button variant="outline" size="lg" asChild className="gap-2">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    asChild
+                    className="gap-2 text-white"
+                  >
                     <Link href="/">
-                      <Home className="h-4 w-4" />
+                      <Home className="h-4 w-4 text-white" />
                       Back to Home
                     </Link>
                   </Button>
                 </div>
 
                 {/* Help Text */}
-                <p className="text-sm text-muted">
+                <p className="text-sm text-foreground">
                   If this problem persists, please contact our support team.
                 </p>
               </div>

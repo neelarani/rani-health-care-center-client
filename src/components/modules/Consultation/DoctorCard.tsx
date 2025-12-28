@@ -26,7 +26,7 @@ export default function DoctorCard({ doctor }: DoctorCard) {
 
   return (
     <>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow bg-foreground text-muted">
+      <Card className="overflow-hidden hover:shadow-lg hover:shadow-background transition-shadow bg-foreground text-muted border-accent-foreground/80 ">
         <CardHeader className="pb-3">
           <div className="flex items-start gap-4">
             <Avatar className="h-16 w-16">
@@ -108,7 +108,7 @@ export default function DoctorCard({ doctor }: DoctorCard) {
           )}
         </CardContent>
 
-        <CardFooter className="pt-3 border-t flex gap-2">
+        <CardFooter className="pt-3 border-t flex gap-2 border-accent-foreground/90">
           <Link className="flex-1" href={`/consultation/doctor/${doctor.id}`}>
             <Button variant="outline" className="w-full">
               <Eye className="h-4 w-4 mr-2" />
