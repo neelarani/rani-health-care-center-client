@@ -36,7 +36,7 @@ const Contact = () => {
             {/* Email */}
             <div className="border border-muted-foreground/70 text-muted p-6 rounded-2xl shadow">
               <h3 className="text-xl font-semibold mb-2">Email</h3>
-              <p className="text-muted/70">info@ranihealthcare.com</p>
+              <p className="text-muted/70">neelarany@gmail.com</p>
             </div>
 
             {/* Working Hours */}
