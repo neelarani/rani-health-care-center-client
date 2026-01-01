@@ -2,7 +2,8 @@ import { getNewAccessToken } from '@/services/auth/auth.service';
 import { getCookie } from '@/services/auth/tokenHandlers';
 
 const BACKEND_API_URL =
-  process.env.NEXT_PUBLIC_BASE_API_URL || 'http://localhost:5000/api/v1';
+  process.env.NEXT_PUBLIC_BASE_API_URL ||
+  'https://rani-health-care-center-server-57e8.onrender.com/api/v1';
 
 console.log(process.env.NEXT_PUBLIC_BASE_API_URL, 'url');
 // /auth/login
