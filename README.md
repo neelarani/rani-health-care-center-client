@@ -5,13 +5,21 @@ It provides an easy-to-use interface for managing healthcare services, patient d
 
 ---
 
+## Live Link
+
+[https://rani-health-care-center-client.vercel.app](https://rani-health-care-center-client.vercel.app)
+
 ## Features
 
 - Responsive and modern UI built with **Next.js**
-- Backend powered by **Node.js**, **Prisma ORM**, and **PostgreSQL**
+- Developed an AI-powered doctor search feature, enabling users to find the right doctor
+  effortlessly.
 - Manage healthcare services, categories, and patient information
 - Easy environment configuration using `.env` files
-- Fast development workflow with **Hot Reloading**
+- Implemented intelligent search algorithms that provide fast, accurate, and personalized doctor
+  recommendations based on user needs
+- Improved healthcare accessibility through AI-driven solutions, making it easier for users to
+  connect with trusted medical specialists
 
 ---
 
