@@ -1,63 +1,63 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { CheckCircle, Shield, Users, Zap } from 'lucide-react';
-import Link from 'next/link';
+} from "@/components/ui/card";
+import { CheckCircle, Shield, Users, Zap } from "lucide-react";
+import Link from "next/link";
 
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 const HealthPlansPage = () => {
   const plans = [
     {
-      name: 'Basic Plan',
-      price: '৳499',
-      period: '/month',
-      description: 'Perfect for individuals seeking basic healthcare coverage',
+      name: "Basic Plan",
+      price: "৳499",
+      period: "/month",
+      description: "Ideal for basic healthcare coverage",
       features: [
-        '2 Doctor Consultations per month',
-        'Basic Health Checkup',
-        'Prescription Management',
-        'Health Records Access',
-        'Email Support',
+        "2 Doctor Consultations per month",
+        "Basic Health Checkup",
+        "Prescription Management",
+        "Health Records Access",
+        "Email Support",
       ],
       popular: false,
     },
     {
-      name: 'Family Plan',
-      price: '৳1,499',
-      period: '/month',
-      description: 'Comprehensive coverage for your entire family',
+      name: "Family Plan",
+      price: "৳1,499",
+      period: "/month",
+      description: "Comprehensive coverage for your entire family",
       features: [
-        'Unlimited Doctor Consultations',
-        'Annual Health Checkup for 4 members',
-        'Priority Appointment Booking',
-        'Specialist Consultations',
-        '24/7 Phone Support',
-        'Medicine Discounts up to 20%',
-        'Diagnostic Test Discounts',
+        "Unlimited Doctor Consultations",
+        "Annual Health Checkup for 4 members",
+        "Priority Appointment Booking",
+        "Specialist Consultations",
+        "24/7 Phone Support",
+        "Medicine Discounts up to 20%",
+        "Diagnostic Test Discounts",
       ],
       popular: true,
     },
     {
-      name: 'Premium Plan',
-      price: '৳2,999',
-      period: '/month',
-      description: 'Ultimate healthcare with VIP benefits',
+      name: "Premium Plan",
+      price: "৳2,999",
+      period: "/month",
+      description: "Ultimate healthcare with VIP benefits",
       features: [
-        'Unlimited Consultations (All specialties)',
-        'Comprehensive Annual Checkup',
-        'Home Visit Services',
-        'Emergency Consultation 24/7',
-        'Dedicated Health Manager',
-        'Medicine Discounts up to 30%',
-        'Free Diagnostic Tests (Monthly quota)',
-        'Mental Health Support',
+        "Unlimited Consultations (All specialties)",
+        "Comprehensive Annual Checkup",
+        "Home Visit Services",
+        "Emergency Consultation 24/7",
+        "Dedicated Health Manager",
+        "Medicine Discounts up to 30%",
+        "Free Diagnostic Tests (Monthly quota)",
+        "Mental Health Support",
       ],
       popular: false,
     },
@@ -80,19 +80,19 @@ const HealthPlansPage = () => {
         {[
           {
             icon: Shield,
-            title: 'Comprehensive Coverage',
-            desc: 'Wide range of medical services',
+            title: "Comprehensive Coverage",
+            desc: "Wide range of medical services",
           },
-          { icon: Users, title: 'Family Plans', desc: 'Cover your loved ones' },
+          { icon: Users, title: "Family Plans", desc: "Cover your loved ones" },
           {
             icon: Zap,
-            title: 'Quick Access',
-            desc: 'Fast appointment booking',
+            title: "Quick Access",
+            desc: "Fast appointment booking",
           },
           {
             icon: CheckCircle,
-            title: 'Quality Care',
-            desc: 'Verified healthcare professionals',
+            title: "Quality Care",
+            desc: "Verified healthcare professionals",
           },
         ].map((benefit, idx) => {
           const Icon = benefit.icon;
@@ -116,7 +116,7 @@ const HealthPlansPage = () => {
           <Card
             key={index}
             className={`relative ${
-              plan.popular ? 'border-primary shadow-lg' : ''
+              plan.popular ? "border-primary shadow-lg" : ""
             }`}
           >
             {plan.popular && (
@@ -134,11 +134,20 @@ const HealthPlansPage = () => {
                 {plan.description}
               </CardDescription>
               <div className="mt-4">
-                <span className="text-4xl font-bold text-primary">
+                <span className=" text-lg md:text-4xl font-bold ">
                   {plan.price}
                 </span>
-                <span className="text-muted">{plan.period}</span>
+                <span className="">{plan.period}</span>
               </div>
+              <Link href="/login" className="block">
+                <Button
+                  className="w-full bg-chart-1 hover:bg-chart-1/80"
+                  variant={plan.popular ? "default text-black" : "outline"}
+                  size="lg"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 mb-6">
@@ -149,15 +158,6 @@ const HealthPlansPage = () => {
                   </li>
                 ))}
               </ul>
-              <Link href="/login" className="block">
-                <Button
-                  className="w-full bg-chart-1 hover:bg-chart-1/80"
-                  variant={plan.popular ? 'default' : 'outline'}
-                  size="lg"
-                >
-                  Get Started
-                </Button>
-              </Link>
             </CardContent>
           </Card>
         ))}
