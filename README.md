@@ -12,12 +12,9 @@ It provides an easy-to-use interface for managing healthcare services, patient d
 ## Features
 
 - Role-based dashboard (Admin, Doctor, Patient)
-- Appointment booking system
 - Authentication & Authorization
 - Protected routes with middleware
 - Form validation using Zod
-- Modern UI with Tailwind & Radix UI
-
 - Responsive and modern UI built with **Next.js**
 - Developed an AI-powered doctor search feature, enabling users to find the right doctor
   effortlessly.

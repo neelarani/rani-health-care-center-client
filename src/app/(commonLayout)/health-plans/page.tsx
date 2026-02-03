@@ -142,7 +142,7 @@ const HealthPlansPage = () => {
               <Link href="/login" className="block">
                 <Button
                   className="w-full bg-chart-1 hover:bg-chart-1/80"
-                  variant={plan.popular ? "default text-black" : "outline"}
+                  variant={"outline"}
                   size="lg"
                 >
                   Get Started
